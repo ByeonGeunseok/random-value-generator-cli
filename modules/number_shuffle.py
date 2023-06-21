@@ -10,6 +10,3 @@ def number_shuffle(amt, min, max, shuffle):
     print(numberList[:amt])
 
     return 0
-
-# number_shuffle(amount_input, min_range_input,
-#                max_range_input, shuffle_count_input)
