@@ -25,6 +25,3 @@ def number_repeat(amt, min, max, repeat):
         print(resultList[z])
 
     return 0
-
-# number_repeat(amount_input, min_range_input,
-#               max_range_input, repeat_count_input)
