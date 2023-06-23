@@ -68,23 +68,4 @@ def create_value(length, allows_number, allows_lower, allows_upper, allows_punct
     return result
 
 
-while True:
-    menu = select_menu(length, number_state, lower_state,
-                       upper_state, punctuation_state)
-    if menu == "1":
-        length = int(input("How long value do you need? : "))
-    elif menu == "2":
-        allows_number, number_state = toggle_condition(
-            allows_number, number_state)
-    elif menu == "3":
-        allows_lower, lower_state = toggle_condition(allows_lower, lower_state)
-    elif menu == "4":
-        allows_upper, upper_state = toggle_condition(allows_upper, upper_state)
-    elif menu == "5":
-        allows_punctuation, punctuation_state = toggle_condition(
-            allows_punctuation, punctuation_state)
-    elif menu == "9":
-        print(create_value(length, allows_number,
-              allows_lower, allows_upper, allows_punctuation))
-    else:
-        break
+
