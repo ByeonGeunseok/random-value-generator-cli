@@ -1,5 +1,6 @@
 from modules.number_repeat import number_repeat
 from modules.number_shuffle import number_shuffle
+from modules.string_random import *
 from modules.error_check import *
 
 while 1:
@@ -10,6 +11,7 @@ while 1:
     print("CHOOSE THE MENU")
     print("1 -> repeat")
     print("2 -> shuffle")
+    print("3 -> random string")
     print("9 -> Exit from this app.")
     print("-*- -*- -*- -*- -*- -*- -*-")
 
@@ -46,7 +48,30 @@ while 1:
                             max_range_input), int(shuffle_count_input))
                 else:
                     print("Please check your inputs.")
-
+            # Random string menu
+            case 3:
+                while True:
+                    menu = select_menu(length, number_state, lower_state,
+                                       upper_state, punctuation_state)
+                    if menu == "1":
+                        length = int(input("How long value do you need? : "))
+                    elif menu == "2":
+                        allows_number, number_state = toggle_condition(
+                            allows_number, number_state)
+                    elif menu == "3":
+                        allows_lower, lower_state = toggle_condition(
+                            allows_lower, lower_state)
+                    elif menu == "4":
+                        allows_upper, upper_state = toggle_condition(
+                            allows_upper, upper_state)
+                    elif menu == "5":
+                        allows_punctuation, punctuation_state = toggle_condition(
+                            allows_punctuation, punctuation_state)
+                    elif menu == "9":
+                        print(create_value(length, allows_number,
+                                           allows_lower, allows_upper, allows_punctuation))
+                    else:
+                        break
             case 9:
                 break
             case _:
