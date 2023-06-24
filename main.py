@@ -47,7 +47,7 @@ while 1:
                 # If all inputs are numeric
                 if check_is_number(amount_input, min_range_input, max_range_input, shuffle_count_input):
                     if check_min_max(int(min_range_input), int(max_range_input)):
-                        number_repeat(int(amount_input), int(min_range_input), int(
+                        number_shuffle(int(amount_input), int(min_range_input), int(
                             max_range_input), int(shuffle_count_input))
                 else:
                     print("Please check your inputs.")
@@ -75,6 +75,7 @@ while 1:
                                            allows_lower, allows_upper, allows_punctuation))
                     else:
                         break
+            # Random CSV menu
             case "4":
                 set_config_header()
             case "9":
