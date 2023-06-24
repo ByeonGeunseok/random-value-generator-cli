@@ -3,12 +3,16 @@ sys.path.append(r'./modules/variables/')
 import var_names
 import var_numbers
 import var_tel_nums
+import random
+import csv
 
 
-global col_type_contents
-col_type_contents = []
 global headers
 headers = []
+global col_type_contents
+col_type_contents = []
+global col_type_list
+col_type_list = []
 
 
 def set_config_header():
@@ -37,6 +41,7 @@ def set_config_header():
         else:
             headers.append(header_str)
     set_config_column_type(headers)
+    create_csv()
 
 
 def set_config_column_type(headers):
@@ -52,11 +57,30 @@ def set_config_column_type(headers):
         print("What type of column of ", headers[i])
         col_type = input(
             "[name/number/num/tel/email/percentage/per/boolean/bool]")
+        if col_type == "name":
+            col_type = var_names.choose_name_type()
+        col_type_list.append(col_type)
 
+
+def create_csv_row(col_type_list):
+    print(col_type_list)
+    for col_type in col_type_list:
         match col_type:
-            case "name":
+            case "name_first":
                 col_type_contents.append(
-                    var_names.create_random_name(col_type_contents))
+                    var_names.create_random_name("first"))
+            case "name_last":
+                col_type_contents.append(
+                    var_names.create_random_name("last"))
+            case "name_full":
+                if ("name_first" in col_type_list) & ("name_last" in col_type_list):
+                    name_full = col_type_contents[col_type_list.index(
+                        "name_first")] + " " + col_type_contents[col_type_list.index("name_last")]
+                    col_type_contents.append(name_full)
+                else:
+                    col_type_contents.append(
+                        var_names.create_random_name("full"))
+
                 print(col_type_contents)
             case "number" | "num":
                 col_type_contents.append(var_numbers.create_random_number())
@@ -65,7 +89,6 @@ def set_config_column_type(headers):
                 col_type_contents.append(
                     var_tel_nums.generate_fake_phone_number())
                 print(col_type_contents)
-                print()
             case "email":
                 print()
             case "percentage":
@@ -73,7 +96,21 @@ def set_config_column_type(headers):
             case "boolean":
                 print()
             case _:
-                print("What?")
+                print()
+    return col_type_contents
+
+def create_csv():
+    cnt = int(input("How many rows do you need? : "))
+
+    file = open('random.csv', 'w', newline='')
+    wr = csv.writer(file)
+    wr.writerow(headers)
+
+    for _ in range(cnt):
+        col_type_contents = []
+        wr.writerow(create_csv_row(col_type_list))
+
+    file.close()
 
 
 set_config_header()
