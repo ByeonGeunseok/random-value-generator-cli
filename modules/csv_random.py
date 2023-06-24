@@ -1,6 +1,7 @@
 import sys
 sys.path.append(r'./modules/variables/')
 import var_names
+import var_numbers
 
 
 global col_type_contents
@@ -48,15 +49,17 @@ def set_config_column_type(headers):
 
     for i in range(col_cnt):
         print("What type of column of ", headers[i])
-        col_type = input("[name/number/tel/email/percentage/boolean]")
+        col_type = input(
+            "[name/number/num/tel/email/percentage/per/boolean/bool]")
 
         match col_type:
             case "name":
                 col_type_contents.append(
                     var_names.create_random_name(col_type_contents))
                 print(col_type_contents)
-            case "number":
-                print()
+            case "number" | "num":
+                col_type_contents.append(var_numbers.create_random_number())
+                print(col_type_contents)
             case "tel":
                 print()
             case "email":
