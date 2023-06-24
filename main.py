@@ -1,7 +1,9 @@
-from modules.number_repeat import number_repeat
-from modules.number_shuffle import number_shuffle
+from modules.number_repeat import *
+from modules.number_shuffle import *
 from modules.string_random import *
+from modules.csv_random import *
 from modules.error_check import *
+
 
 while 1:
     is_possible = True
@@ -12,6 +14,7 @@ while 1:
     print("1 -> repeat")
     print("2 -> shuffle")
     print("3 -> random string")
+    print("4 -> random CSV file")
     print("9 -> Exit from this app.")
     print("-*- -*- -*- -*- -*- -*- -*-")
 
@@ -19,9 +22,9 @@ while 1:
 
     if menu.isdigit():
         # Choose the menu
-        match int(menu):
+        match menu:
             # Repeat Menu
-            case 1:
+            case "1":
                 amount_input = input("How many numbers do you need? : ")
                 min_range_input = input("Choose a minimum range. : ")
                 max_range_input = input("Choose a maximum range. : ")
@@ -35,7 +38,7 @@ while 1:
                 else:
                     print("Please check your inputs.")
             # Shuffle menu
-            case 2:
+            case "2":
                 amount_input = input("How many numbers do you need? : ")
                 min_range_input = input("Choose a minimum range. : ")
                 max_range_input = input("Choose a maximum range. : ")
@@ -49,7 +52,7 @@ while 1:
                 else:
                     print("Please check your inputs.")
             # Random string menu
-            case 3:
+            case "3":
                 while True:
                     menu = select_menu(length, number_state, lower_state,
                                        upper_state, punctuation_state)
@@ -72,7 +75,9 @@ while 1:
                                            allows_lower, allows_upper, allows_punctuation))
                     else:
                         break
-            case 9:
+            case "4":
+                set_config_header()
+            case "9":
                 break
             case _:
                 print("Choose the correct menu.")

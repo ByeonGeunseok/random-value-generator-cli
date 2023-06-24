@@ -1,6 +1,9 @@
-import random_names
-import random_numbers
-import random_tel_nums
+# import random_names
+# import random_numbers
+# import random_tel_nums
+from . import random_names
+from . import random_numbers
+from . import random_tel_nums
 import csv
 
 
@@ -109,6 +112,3 @@ def create_csv():
         wr.writerow(create_csv_row(col_type_list))
 
     file.close()
-
-
-set_config_header()
