@@ -1,8 +1,6 @@
-import sys
-sys.path.append(r'./modules/variables/')
-import var_names
-import var_numbers
-import var_tel_nums
+import random_names
+import random_numbers
+import random_tel_nums
 import csv
 
 
@@ -57,7 +55,7 @@ def set_config_column_type(headers):
         col_type = input(
             "[name/number/num/tel/email/percentage/per/boolean/bool]")
         if col_type == "name":
-            col_type = var_names.choose_name_type()
+            col_type = random_names.choose_name_type()
         col_type_list.append(col_type)
 
 
@@ -67,11 +65,11 @@ def create_csv_row(col_type_list):
         match col_type:
             case "name_first":
                 col_type_contents.append(
-                    var_names.create_random_name("first"))
+                    random_names.create_random_name("first"))
 
             case "name_last":
                 col_type_contents.append(
-                    var_names.create_random_name("last"))
+                    random_names.create_random_name("last"))
 
             case "name_full":
                 if ("name_first" in col_type_list) & ("name_last" in col_type_list):
@@ -80,14 +78,14 @@ def create_csv_row(col_type_list):
                     col_type_contents.append(name_full)
                 else:
                     col_type_contents.append(
-                        var_names.create_random_name("full"))
+                        random_names.create_random_name("full"))
 
             case "number" | "num":
-                col_type_contents.append(var_numbers.create_random_number())
+                col_type_contents.append(random_numbers.create_random_number())
 
             case "tel":
                 col_type_contents.append(
-                    var_tel_nums.generate_fake_phone_number())
+                    random_tel_nums.generate_fake_phone_number())
 
             case "email":
                 print()
