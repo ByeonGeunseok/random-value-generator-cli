@@ -2,6 +2,7 @@ import sys
 sys.path.append(r'./modules/variables/')
 import var_names
 import var_numbers
+import var_tel_nums
 
 
 global col_type_contents
@@ -61,6 +62,9 @@ def set_config_column_type(headers):
                 col_type_contents.append(var_numbers.create_random_number())
                 print(col_type_contents)
             case "tel":
+                col_type_contents.append(
+                    var_tel_nums.generate_fake_phone_number())
+                print(col_type_contents)
                 print()
             case "email":
                 print()
