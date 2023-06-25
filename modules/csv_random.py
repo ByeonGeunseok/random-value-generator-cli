@@ -1,6 +1,5 @@
-# import random_names
-# import random_numbers
-# import random_tel_nums
+import time
+import os
 from . import random_names
 from . import random_numbers
 from . import random_tel_nums
@@ -103,9 +102,15 @@ def create_csv_row(col_type_list):
 
 
 def create_csv():
+    current_time = time.strftime('%Y%m%d%H%M%S')
+    path = "./output/"
+    file_name = path + "random_" + current_time + ".csv"
     cnt = int(input("How many rows do you need? : "))
 
-    file = open('random.csv', 'w', newline='')
+    # folder check
+    if os.path.isdir("./output") == False:
+        os.mkdir("./output")
+    file = open(file_name, 'w', newline='')
     wr = csv.writer(file)
     wr.writerow(headers)
 
