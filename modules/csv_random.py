@@ -4,6 +4,7 @@ from . import random_names
 from . import random_numbers
 from . import random_tel_nums
 from . import random_email
+import random
 import csv
 
 
@@ -92,8 +93,9 @@ def create_csv_row(col_type_list):
 
             case "email":
                 col_type_contents.append(random_email.create_email_address())
-            case "percentage":
-                print()
+            case "percentage" | "per":
+                percent = str(random.randint(0, 100)) + "%"
+                col_type_contents.append(percent)
             case "boolean":
                 print()
             case _:
