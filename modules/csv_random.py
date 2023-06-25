@@ -96,8 +96,8 @@ def create_csv_row(col_type_list):
             case "percentage" | "per":
                 percent = str(random.randint(0, 100)) + "%"
                 col_type_contents.append(percent)
-            case "boolean":
-                print()
+            case "boolean" | "bool":
+                col_type_contents.append(bool(random.getrandbits(1)))
             case _:
                 print()
     return col_type_contents
