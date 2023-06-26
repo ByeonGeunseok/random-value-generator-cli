@@ -6,6 +6,7 @@ from . import random_tel_nums
 from . import random_email
 import random
 import csv
+from modules.msg_print import *
 
 
 global headers
@@ -18,17 +19,16 @@ col_type_list = []
 
 def set_config_header():
     while True:
-        print("-*- -*- -*- -*- -*- -*- -*-")
-        print("If you need header, input once.")
-        print("If you delete to last header, input \" \" and ENTER.")
-        print("if you done to input header, Just press ENTER.")
-        print("-*- -*- -*- -*- -*- -*- -*-")
+        msg = "If you need header, input once.\n" + \
+            "If you delete to last header, input \" \" and ENTER.\n" + \
+            "If you done to input header, Just press ENTER."
+        title = "Random CSV"
+        msg_panel(msg, title)
+
         if len(headers) <= 0:
             print("header: (nothing)")
         else:
             print("header: ", *headers)
-        print("-*- -*- -*- -*- -*- -*- -*-")
-
         header_str = input()
 
         if header_str == " ":
@@ -49,15 +49,24 @@ def set_config_column_type(headers):
     col_cnt = len(headers)
 
     if col_cnt <= 0:
-        continue_flg = input(
-            "There are no headers. Are you continue to create CSV? [y/n]")
+        msg = "There are no headers. Are you continue to create CSV?"
+        title = "Random CSV"
+        msg_panel(msg, title)
+        continue_flg = input("(y/n) >>")
         if continue_flg == "y":
-            col_cnt = int(input("How many columns do you need?"))
+            msg = "How many columns do you need?"
+            title = "Random CSV"
+            msg_panel(msg, title)
+            col_cnt = int(input(">>"))
 
     for i in range(col_cnt):
-        print("What type of column of ", headers[i])
-        col_type = input(
-            "[name/number/num/tel/email/percentage/per/boolean/bool]")
+        msg = "What type of column of " + \
+            headers[i] + "\n" + \
+            "(name/number/num/tel/email/percentage/per/boolean/bool)"
+        title = "Random CSV"
+        msg_panel(msg, title)
+
+        col_type = input(">>")
         if col_type == "name":
             col_type = random_names.choose_name_type()
         col_type_list.append(col_type)

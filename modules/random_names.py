@@ -1,4 +1,5 @@
 import random
+from modules.msg_print import msg_name_type
 
 first_names = [
     "Liam", "Ava", "Noah", "Isabella", "Ethan", "Sophia", "Mason", "Mia", "Lucas", "Charlotte",
@@ -18,9 +19,7 @@ last_names = [
 
 
 def choose_name_type():
-    print("First name [1]")
-    print("Last name [2]")
-    print("Full name [3]")
+    msg_name_type()
     name_type = input("Choose : ")
 
     match name_type:
