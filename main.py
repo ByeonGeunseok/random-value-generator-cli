@@ -3,20 +3,14 @@ from modules.number_shuffle import *
 from modules.string_random import *
 from modules.csv_random import *
 from modules.error_check import *
+from modules.msg_print import *
 
 
 while 1:
     is_possible = True
 
     # START
-    print("-*- -*- -*- -*- -*- -*- -*-")
-    print("CHOOSE THE MENU")
-    print("1 -> repeat")
-    print("2 -> shuffle")
-    print("3 -> random string")
-    print("4 -> random CSV file")
-    print("9 -> Exit from this app.")
-    print("-*- -*- -*- -*- -*- -*- -*-")
+    msg_main_menu()
 
     menu = input("Choose the menu.")
 
