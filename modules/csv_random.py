@@ -1,9 +1,10 @@
-# import random_names
-# import random_numbers
-# import random_tel_nums
+import time
+import os
 from . import random_names
 from . import random_numbers
 from . import random_tel_nums
+from . import random_email
+import random
 import csv
 
 
@@ -91,20 +92,27 @@ def create_csv_row(col_type_list):
                     random_tel_nums.generate_fake_phone_number())
 
             case "email":
-                print()
-            case "percentage":
-                print()
-            case "boolean":
-                print()
+                col_type_contents.append(random_email.create_email_address())
+            case "percentage" | "per":
+                percent = str(random.randint(0, 100)) + "%"
+                col_type_contents.append(percent)
+            case "boolean" | "bool":
+                col_type_contents.append(bool(random.getrandbits(1)))
             case _:
                 print()
     return col_type_contents
 
 
 def create_csv():
+    current_time = time.strftime('%Y%m%d%H%M%S')
+    path = "./output/"
+    file_name = path + "random_" + current_time + ".csv"
     cnt = int(input("How many rows do you need? : "))
 
-    file = open('random.csv', 'w', newline='')
+    # folder check
+    if os.path.isdir("./output") == False:
+        os.mkdir("./output")
+    file = open(file_name, 'w', newline='')
     wr = csv.writer(file)
     wr.writerow(headers)
 
