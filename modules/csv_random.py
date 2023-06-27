@@ -42,7 +42,6 @@ def set_config_header():
         else:
             headers.append(header_str)
     set_config_column_type(headers)
-    create_csv()
 
 
 def set_config_column_type(headers):
@@ -58,6 +57,8 @@ def set_config_column_type(headers):
             title = "Random CSV"
             msg_panel(msg, title)
             col_cnt = int(input(">>"))
+        else:
+            return
 
     for i in range(col_cnt):
         msg = "What type of column of " + \
@@ -70,6 +71,8 @@ def set_config_column_type(headers):
         if col_type == "name":
             col_type = random_names.choose_name_type()
         col_type_list.append(col_type)
+
+    create_csv()
 
 
 def create_csv_row(col_type_list):
