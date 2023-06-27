@@ -5,9 +5,6 @@ from modules.msg_print import *
 
 
 def number_repeat(amt, min, max, repeat):
-    # Time start
-    start_time = time.time()
-
     numList = {}
 
     # Create Dictionary
@@ -29,8 +26,4 @@ def number_repeat(amt, min, max, repeat):
     for z in amount:
         print(resultList[z])
 
-    # Time End
-    end_time = time.time()
-
-    print(end_time - start_time)
     return 0
