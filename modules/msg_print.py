@@ -11,12 +11,14 @@ def msg_main_menu():
                   show_header=True, header_style="bold")
     table.add_column("SELECT")
     table.add_column("TYPE")
-    table.add_row("Press [1]", "Number Repeat")
-    table.add_row("Press [2]", "Number Shuffle")
-    table.add_row("Press [3]", "Random String")
-    table.add_row("Press [4]", "Random CSV")
+    table.add_column("DESCRIPTION")
+    table.add_row("Press [1]", "Number Repeat", "")
+    table.add_row("Press [2]", "Number Shuffle", "")
+    table.add_row("Press [3]", "Random String", "")
+    table.add_row("Press [4]", "Random CSV", "")
+    table.add_row("Press [5]", "Random JSON", "")
     table.add_row()
-    table.add_row("Press [9]", "EXIT...")
+    table.add_row("Press [9]", "EXIT...", "")
 
     console.print(table)
 
@@ -57,3 +59,26 @@ def msg_name_type():
     table.add_row("Press [3]", "Full Name")
 
     console.print(table)
+
+
+def msg_json_type(keys, list):
+    index = 0
+    json_length = len(keys)
+    console = Console()
+
+    table = Table(title="CHOOSE THE MENU",
+                  show_header=True, header_style="bold")
+
+    table.add_column("SELECT")
+    table.add_column("TYPE")
+    table.add_column("DATA / LIST")
+
+    for key in keys:
+        table.add_row(f"Press [{index+1}]", key, list[index])
+        index += 1
+    table.add_row()
+    table.add_row("Press [ENTER]", "DONE", "")
+
+    console.print(table)
+
+    return list

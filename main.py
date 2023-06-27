@@ -2,6 +2,7 @@ from modules.number_repeat import *
 from modules.number_shuffle import *
 from modules.string_random import *
 from modules.csv_random import *
+from modules.json_random import *
 from modules.error_check import *
 from modules.msg_print import *
 
@@ -72,6 +73,9 @@ while 1:
             # Random CSV menu
             case "4":
                 set_config_header()
+            # Random JSON menu
+            case "5":
+                set_config_key()
             case "9":
                 break
             case _:
