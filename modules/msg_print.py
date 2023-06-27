@@ -23,6 +23,21 @@ def msg_main_menu():
     console.print(table)
 
 
+def result_repeat_count(result, amount):
+    console = Console()
+
+    table = Table(title="NUMBER COUNT",
+                  show_header=True, header_style="bold")
+    table.add_column("NUMBER")
+    table.add_column("COUNT")
+
+    for i in range(amount):
+        num, cnt = result[i]
+        table.add_row(str(num), str(cnt))
+
+    console.print(table)
+
+
 def msg_string_menu(length, number_state, lower_state, upper_state, punctuation_state):
     console = Console()
 

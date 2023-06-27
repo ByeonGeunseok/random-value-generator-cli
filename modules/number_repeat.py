@@ -25,8 +25,6 @@ def number_repeat(amt, min, max, repeat):
         resultList = sorted(
             numList.items(), key=operator.itemgetter(1), reverse=True)
 
-    amount = range(0, amt)
-    for z in amount:
-        print(resultList[z])
+    result_repeat_count(resultList, amt)
 
     return 0
