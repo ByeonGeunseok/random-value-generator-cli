@@ -2,21 +2,16 @@ from modules.number_repeat import *
 from modules.number_shuffle import *
 from modules.string_random import *
 from modules.csv_random import *
+from modules.json_random import *
 from modules.error_check import *
+from modules.msg_print import *
 
 
 while 1:
     is_possible = True
 
     # START
-    print("-*- -*- -*- -*- -*- -*- -*-")
-    print("CHOOSE THE MENU")
-    print("1 -> repeat")
-    print("2 -> shuffle")
-    print("3 -> random string")
-    print("4 -> random CSV file")
-    print("9 -> Exit from this app.")
-    print("-*- -*- -*- -*- -*- -*- -*-")
+    msg_main_menu()
 
     menu = input("Choose the menu.")
 
@@ -36,7 +31,7 @@ while 1:
                         number_repeat(int(amount_input), int(min_range_input), int(
                             max_range_input), int(repeat_count_input))
                 else:
-                    print("Please check your inputs.")
+                    err_panel("Please check your inputs.")
             # Shuffle menu
             case "2":
                 amount_input = input("How many numbers do you need? : ")
@@ -50,7 +45,7 @@ while 1:
                         number_shuffle(int(amount_input), int(min_range_input), int(
                             max_range_input), int(shuffle_count_input))
                 else:
-                    print("Please check your inputs.")
+                    err_panel("Please check your inputs.")
             # Random string menu
             case "3":
                 while True:
@@ -71,16 +66,19 @@ while 1:
                         allows_punctuation, punctuation_state = toggle_condition(
                             allows_punctuation, punctuation_state)
                     elif menu == "9":
-                        print(create_value(length, allows_number,
-                                           allows_lower, allows_upper, allows_punctuation))
+                        result_panel(create_value(length, allows_number,
+                                                  allows_lower, allows_upper, allows_punctuation))
                     else:
                         break
             # Random CSV menu
             case "4":
                 set_config_header()
+            # Random JSON menu
+            case "5":
+                set_config_key()
             case "9":
                 break
             case _:
-                print("Choose the correct menu.")
+                err_panel("Choose the correct menu.")
     else:
-        print("Choose the correct menu.")
+        err_panel("Choose the correct menu.")

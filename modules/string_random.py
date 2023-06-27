@@ -1,5 +1,6 @@
 import string
 import random
+from modules.msg_print import *
 
 global allows_number
 global allows_lower
@@ -20,19 +21,8 @@ punctuation_state = "O"
 
 
 def select_menu(length, number_state, lower_state, upper_state, punctuation_state):
-    print("")
-    print("-*- -*- -*- -*- -*- -*- -*-")
-    print("-*- -*- -*- -*- -*- -*- -*-")
-    print("[1] LENGTH : ", length)
-    print("-*- -*- -*- -*- -*- -*- -*-")
-    print("[2] Number : ", number_state)
-    print("[3] Lower case : ", lower_state)
-    print("[4] Upper case : ", upper_state)
-    print("[5] Punctuation : ", punctuation_state)
-    print("[9] Execute")
-    print("[0] Done")
-    print("-*- -*- -*- -*- -*- -*- -*-")
-    print("-*- -*- -*- -*- -*- -*- -*-")
+    msg_string_menu(length, number_state, lower_state,
+                    upper_state, punctuation_state)
 
     menu = input("Select the menu.")
 
@@ -66,6 +56,3 @@ def create_value(length, allows_number, allows_lower, allows_upper, allows_punct
         result += random.choice(target)
 
     return result
-
-
-

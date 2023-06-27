@@ -1,12 +1,15 @@
+from modules.msg_print import *
+
+
 def check_min_max(min, max):
-    if min <= 0:
-        print("Minimum number must bigger than 0.")
+    if min < 0:
+        err_panel("Minimum number must bigger than 0.")
         return False
-    if max <= 0:
-        print("Minimum number must bigger than 0.")
+    if max < 0:
+        err_panel("Minimum number must bigger than 0.")
         return False
     if min >= max:
-        print("Minimum number must bigger than Maximum.")
+        err_panel("Minimum number must bigger than Maximum.")
         return False
     return True
 

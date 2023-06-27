@@ -1,6 +1,8 @@
 import operator
 import random
 import time
+from modules.msg_print import *
+
 
 def number_repeat(amt, min, max, repeat):
     # Time start
