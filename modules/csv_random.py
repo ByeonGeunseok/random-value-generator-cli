@@ -18,6 +18,7 @@ col_type_list = []
 
 
 def set_config_header():
+    headers = []
     while True:
         msg = "If you need header, input once.\n" + \
             "If you delete to last header, input \" \" and ENTER.\n" + \
@@ -72,7 +73,7 @@ def set_config_column_type(headers):
             col_type = random_names.choose_name_type()
         col_type_list.append(col_type)
 
-    create_csv()
+    create_csv(headers, col_type_list)
 
 
 def create_csv_row(col_type_list):
@@ -115,7 +116,7 @@ def create_csv_row(col_type_list):
     return col_type_contents
 
 
-def create_csv():
+def create_csv(headers, col_type_list):
     current_time = time.strftime('%Y%m%d%H%M%S')
     path = "./output/"
     file_name = path + "random_" + current_time + ".csv"
