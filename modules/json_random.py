@@ -1,4 +1,4 @@
-from . import msg_print
+from modules.msg_print import *
 
 global keys
 global value_type_list
@@ -12,23 +12,23 @@ def set_config_key():
             "If you delete to last key, input \" \" and ENTER.\n" + \
             "If you done to input key, Just press ENTER."
         title = "Random CSV"
-        msg_print.msg_panel(msg, title)
+        msg_panel(msg, title)
 
         if len(keys) <= 0:
-            print("key: (nothing)")
+            msg_panel("key: (nothing)", "KEY")
         else:
-            print("key: ", *keys)
-        key_str = input()
+            msg_panel(f"key: {keys}", "KEY")
+        key_str = input(">> ")
 
         if key_str == " ":
             # Delete last key
             if len(keys) <= 0:
-                print("There are no keys.")
+                err_panel("There are no keys.")
             else:
                 keys.pop()
         elif key_str == "":
             if len(keys) <= 0:
-                print("There are no keys.")
+                err_panel("There are no keys.")
             else:
                 break
         else:
@@ -43,7 +43,7 @@ def set_key_type(keys):
         value_type_list.append("X")
 
     while True:
-        value_type_list = msg_print.msg_json_type(keys, value_type_list)
+        value_type_list = msg_json_type(keys, value_type_list)
         select = input("Change value type >> ")
 
         if select == "":

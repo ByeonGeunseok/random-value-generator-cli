@@ -44,7 +44,15 @@ def msg_string_menu(length, number_state, lower_state, upper_state, punctuation_
 
 
 def msg_panel(msg, title):
-    print(Panel(msg, title="Random CSV"))
+    print(Panel(msg, title=title, style="bold"))
+
+
+def err_panel(msg):
+    print(Panel(msg, title="ERROR", style="bold red"))
+
+
+def result_panel(msg):
+    print(Panel(msg, title="RESULT", style="bold green"))
 
 
 def msg_name_type():

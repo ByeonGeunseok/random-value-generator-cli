@@ -27,15 +27,15 @@ def set_config_header():
         msg_panel(msg, title)
 
         if len(headers) <= 0:
-            print("header: (nothing)")
+            msg_panel("header: (nothing)", "HEADER")
         else:
-            print("header: ", *headers)
+            msg_panel(f"header: {headers}", "HEADER")
         header_str = input()
 
         if header_str == " ":
             # Delete last header
             if len(headers) <= 0:
-                print("There are no headers.")
+                err_panel("There are no headers.")
             else:
                 headers.pop()
         elif header_str == "":
