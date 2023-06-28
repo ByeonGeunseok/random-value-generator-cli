@@ -100,7 +100,7 @@ def msg_json_type(keys, list):
         table.add_row(f"Press [{index+1}]", key, list[index])
         index += 1
     table.add_row()
-    table.add_row("Press [ENTER]", "DONE", "")
+    table.add_row("Press [ENTER]", "NEXT", "")
 
     console.print(table)
 
