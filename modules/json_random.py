@@ -1,4 +1,7 @@
 from re import match
+from json import *
+import os
+import time
 from modules.msg_print import *
 from modules.random_names import *
 from modules.random_numbers import *
@@ -112,5 +115,17 @@ def generate_json_data(keys, value_type_list):
         index += 1
 
         json_data[key] = data
+    create_json_file(json_data)
 
-    print(json_data)
+
+def create_json_file(json_data):
+    current_time = time.strftime('%Y%m%d%H%M%S')
+    path = "./output/"
+    file_name = path + "random_" + current_time + ".json"
+
+    if os.path.isdir("./output") == False:
+        os.mkdir("./output")
+        file = open(file_name, 'w', newline='')
+
+    with open(file_name, 'w') as f:
+        dump(json_data, f)
