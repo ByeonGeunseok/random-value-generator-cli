@@ -1,5 +1,9 @@
 from re import match
 from modules.msg_print import *
+from modules.random_names import *
+from modules.random_numbers import *
+from modules.random_tel_nums import *
+from modules.random_email import *
 
 global keys
 global value_type_list
@@ -49,7 +53,9 @@ def set_key_type(keys):
     while True:
         value_type_list = msg_json_type(keys, value_type_list)
         menu = input("Choose the menu >> ")
-        if menu.isdigit():
+        if menu == "":
+            break
+        elif menu.isdigit():
             if int(menu) <= data_length and menu != "0":
                 index = int(menu) - 1
             else:
@@ -77,7 +83,34 @@ def set_key_type(keys):
             value_type_list[index] = select_type
         elif select_type == "boolean" or "bool":
             value_type_list[index] = select_type
-        elif select_type == "":
-            print("TODO: NEXT STEP")
         else:
             err_panel("SELECT CORRECT MENU")
+    generate_json_data(keys, value_type_list)
+
+
+def generate_json_data(keys, value_type_list):
+    json_data = {}
+    index = 0
+    for key in keys:
+        data = ""
+        if value_type_list[index] == "list":
+            print()
+        elif value_type_list[index] == "name":
+            data = create_random_name("full")
+        elif value_type_list[index] == "number" or value_type_list[index] == "num":
+            data = create_random_number()
+        elif value_type_list[index] == "tel":
+            data = generate_fake_phone_number()
+        elif value_type_list[index] == "email":
+            data = create_email_address()
+        elif value_type_list[index] == "percentage" or value_type_list[index] == "per":
+            data = str(random.randint(0, 100)) + "%"
+        elif value_type_list[index] == "boolean" or value_type_list[index] == "bool":
+            data = bool(random.getrandbits(1))
+        else:
+            print()
+        index += 1
+
+        json_data[key] = data
+
+    print(json_data)
