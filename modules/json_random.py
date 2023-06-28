@@ -100,7 +100,7 @@ def generate_json_data(keys, value_type_list):
         elif value_type_list[index] == "number" or value_type_list[index] == "num":
             data = create_random_number()
         elif value_type_list[index] == "tel":
-            data = generate_fake_phone_number()
+            data = create_tel_number()
         elif value_type_list[index] == "email":
             data = create_email_address()
         elif value_type_list[index] == "percentage" or value_type_list[index] == "per":

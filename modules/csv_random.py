@@ -102,7 +102,7 @@ def create_csv_row(col_type_list):
 
             case "tel":
                 col_type_contents.append(
-                    random_tel_nums.generate_fake_phone_number())
+                    random_tel_nums.create_tel_number())
 
             case "email":
                 col_type_contents.append(random_email.create_email_address())
