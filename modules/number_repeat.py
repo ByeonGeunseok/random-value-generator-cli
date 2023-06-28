@@ -2,35 +2,29 @@ import operator
 import random
 import time
 from modules.msg_print import *
+from rich.console import Console
 
 
 def number_repeat(amt, min, max, repeat):
-    # Time start
-    start_time = time.time()
-
+    console = Console()
     numList = {}
 
-    # Create Dictionary
-    rpt = range(min, max + 1)
-    for i in rpt:
-        numList[i] = 0
+    with console.status("[bold green]Working on tasks...") as status:
+        # Create Dictionary
+        rpt = range(min, max + 1)
+        for i in rpt:
+            numList[i] = 0
 
-    # Pick a number
-    for x in range(repeat):
-        for y in range(amt):
-            picked = random.randint(1, max)
-            numList[picked] += 1
+        # Pick a number
+        for x in range(repeat):
+            for y in range(amt):
+                picked = random.randint(1, max)
+                numList[picked] += 1
 
-    # Sorting
-    resultList = sorted(
-        numList.items(), key=operator.itemgetter(1), reverse=True)
+        # Sorting
+        resultList = sorted(
+            numList.items(), key=operator.itemgetter(1), reverse=True)
 
-    amount = range(0, amt)
-    for z in amount:
-        print(resultList[z])
+    result_repeat_count(resultList, amt)
 
-    # Time End
-    end_time = time.time()
-
-    print(end_time - start_time)
     return 0
