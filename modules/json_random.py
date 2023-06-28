@@ -14,7 +14,7 @@ def set_config_key():
         msg = "Input a key.\n" + \
             "If you delete to last key, input \" \" and ENTER.\n" + \
             "If you done to input key, Just press ENTER."
-        title = "Random CSV"
+        title = "Random JSON"
         msg_panel(msg, title)
 
         if len(keys) <= 0:
@@ -42,22 +42,45 @@ def set_config_key():
 
 def set_key_type(keys):
     value_type_list = []
-    for i in range(len(keys)):
-        value_type_list.append("DATA")
+    data_length = len(keys)
+    for _ in range(data_length):
+        value_type_list.append("")
 
     while True:
         value_type_list = msg_json_type(keys, value_type_list)
-        select = input("Change value type >> ")
-
-        if select == "":
-            break
-        elif int(select) <= len(keys):
-            type = value_type_list[int(select)-1]
-            if type == "LIST":
-                value_type_list[int(select)-1] = "DATA"
+        menu = input("Choose the menu >> ")
+        if menu.isdigit():
+            if int(menu) <= data_length and menu != "0":
+                index = int(menu) - 1
             else:
-                value_type_list[int(select)-1] = "LIST"
-    set_config_value(keys, value_type_list)
+                err_panel("CHOOSE CORRECT MENU")
+                continue
+        else:
+            err_panel("CHOOSE CORRECT MENU")
+            continue
+
+        msg_panel(
+            f"((name/number/num/tel/email/percentage/per/boolean/bool))", "TYPE SELECT")
+        select_type = input(">> ")
+
+        if select_type == "list":
+            value_type_list[index] = select_type
+        elif select_type == "name":
+            value_type_list[index] = select_type
+        elif select_type == "number" or "num":
+            value_type_list[index] = select_type
+        elif select_type == "tel":
+            value_type_list[index] = select_type
+        elif select_type == "email":
+            value_type_list[index] = select_type
+        elif select_type == "percentage" or "per":
+            value_type_list[index] = select_type
+        elif select_type == "boolean" or "bool":
+            value_type_list[index] = select_type
+        elif select_type == "":
+            print("TODO: NEXT STEP")
+        else:
+            err_panel("SELECT CORRECT MENU")
 
 
 def set_config_value(keys, type_list):

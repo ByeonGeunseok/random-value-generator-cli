@@ -93,11 +93,11 @@ def msg_json_type(keys, list):
                   show_header=True, header_style="bold")
 
     table.add_column("SELECT")
+    table.add_column("KEY")
     table.add_column("TYPE")
-    table.add_column("DATA / LIST")
 
     for key in keys:
-        table.add_row(f"Press [{index+1}]", key, list[index])
+        table.add_row(f"Type [{index+1}]", key, f"{list[index]}")
         index += 1
     table.add_row()
     table.add_row("Press [ENTER]", "NEXT", "")
