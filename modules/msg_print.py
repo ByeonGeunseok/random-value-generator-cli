@@ -1,3 +1,5 @@
+import os
+import platform
 from rich import print
 from rich.panel import Panel
 from rich.console import Console
@@ -5,9 +7,14 @@ from rich.table import Table
 from config import config
 
 
-def msg_main_menu():
-    console = Console()
+def clear_screen():
+    if platform.system() == "Windows":
+        os.system("cls")
+    else:
+        os.system("clear")
 
+
+def msg_main_menu():
     table = Table(title=config['REQUIRE_MENU'],
                   show_header=True, header_style="bold")
     table.add_column("SELECT")
@@ -21,7 +28,9 @@ def msg_main_menu():
     table.add_row()
     table.add_row("Press [9]", "EXIT...", "")
 
-    console.print(table)
+    clear_screen()
+    console = Console()
+    console.print(table, justify="center")
 
 
 def result_repeat_count(result, amount):
