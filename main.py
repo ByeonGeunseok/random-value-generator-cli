@@ -5,25 +5,29 @@ from modules.csv_random import *
 from modules.json_random import *
 from modules.error_check import *
 from modules.msg_print import *
+import json
 
 
 while 1:
+    with open('config.json') as f:
+        config = json.load(f)
     is_possible = True
 
     # START
     msg_main_menu()
 
-    menu = input("Choose the menu.")
+    menu = input(config['REQUIRE_MENU'])
 
     if menu.isdigit():
         # Choose the menu
         match menu:
             # Repeat Menu
             case "1":
-                amount_input = input("How many numbers do you need? : ")
-                min_range_input = input("Choose a minimum range. : ")
-                max_range_input = input("Choose a maximum range. : ")
-                repeat_count_input = input("How many times repeat? : ")
+                amount_input = input(f"{config['REQUIRE_NUMBER_NEED']} : ")
+                min_range_input = input(f"{config['REQUIRE_MINIMUM']} : ")
+                max_range_input = input(f"{config['REQUIRE_MAXIMUM']} : ")
+                repeat_count_input = input(
+                    f"{config['REQUIRE_REPEAT_COUNT']} : ")
 
                 # If all inputs are numeric
                 if check_is_number(amount_input, min_range_input, max_range_input, repeat_count_input):
@@ -31,13 +35,14 @@ while 1:
                         number_repeat(int(amount_input), int(min_range_input), int(
                             max_range_input), int(repeat_count_input))
                 else:
-                    err_panel("Please check your inputs.")
+                    err_panel(config['ERROR_INPUT'])
             # Shuffle menu
             case "2":
-                amount_input = input("How many numbers do you need? : ")
-                min_range_input = input("Choose a minimum range. : ")
-                max_range_input = input("Choose a maximum range. : ")
-                shuffle_count_input = input("How many times shuffle? : ")
+                amount_input = input(f"{config['REQUIRE_NUMBER_NEED']} : ")
+                min_range_input = input(f"{config['REQUIRE_MINIMUM']} : ")
+                max_range_input = input(f"{config['REQUIRE_MAXIMUM']} : ")
+                shuffle_count_input = input(
+                    f"{config['REQUIRE_SHUFFLE_COUNT']} : ")
 
                 # If all inputs are numeric
                 if check_is_number(amount_input, min_range_input, max_range_input, shuffle_count_input):
@@ -45,14 +50,15 @@ while 1:
                         number_shuffle(int(amount_input), int(min_range_input), int(
                             max_range_input), int(shuffle_count_input))
                 else:
-                    err_panel("Please check your inputs.")
+                    err_panel(config['ERROR_INPUT'])
             # Random string menu
             case "3":
                 while True:
                     menu = select_menu(length, number_state, lower_state,
                                        upper_state, punctuation_state)
                     if menu == "1":
-                        length = int(input("How long value do you need? : "))
+                        length = int(
+                            input(f"{config['REQUIRE_VALUE_LENGTH']} : "))
                     elif menu == "2":
                         allows_number, number_state = toggle_condition(
                             allows_number, number_state)
@@ -79,6 +85,6 @@ while 1:
             case "9":
                 break
             case _:
-                err_panel("Choose the correct menu.")
+                err_panel(config['ERROR_WRONG_MENU'])
     else:
-        err_panel("Choose the correct menu.")
+        err_panel(config['ERROR_WRONG_MENU'])
