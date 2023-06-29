@@ -1,6 +1,8 @@
 import string
 import random
+from config import config
 from modules.msg_print import *
+
 
 global allows_number
 global allows_lower
@@ -24,7 +26,7 @@ def select_menu(length, number_state, lower_state, upper_state, punctuation_stat
     msg_string_menu(length, number_state, lower_state,
                     upper_state, punctuation_state)
 
-    menu = input("Select the menu.")
+    menu = input(config['REQUIRE_MENU'])
 
     return menu
 

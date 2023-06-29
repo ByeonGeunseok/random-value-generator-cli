@@ -2,6 +2,7 @@ from re import match
 from json import *
 import os
 import time
+from config import config
 from modules.msg_print import *
 from modules.random_names import *
 from modules.random_numbers import *

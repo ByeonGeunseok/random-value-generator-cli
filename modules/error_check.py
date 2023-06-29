@@ -1,15 +1,16 @@
 from modules.msg_print import *
+from config import config
 
 
 def check_min_max(min, max):
     if min < 0:
-        err_panel("Minimum number must bigger than 0.")
+        err_panel(config['ERROR_MIN_ZERO'])
         return False
     if max < 0:
-        err_panel("Minimum number must bigger than 0.")
+        err_panel(config['ERROR_MAX_ZERO'])
         return False
     if min >= max:
-        err_panel("Minimum number must bigger than Maximum.")
+        err_panel(config['ERROR_NUMBER_COMPARE'])
         return False
     return True
 

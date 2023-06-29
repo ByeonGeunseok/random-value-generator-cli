@@ -35,7 +35,7 @@ def set_config_header():
         if header_str == " ":
             # Delete last header
             if len(headers) <= 0:
-                err_panel("There are no headers.")
+                err_panel(config['ERROR_NO_HEADER'])
             else:
                 headers.pop()
         elif header_str == "":
@@ -118,13 +118,13 @@ def create_csv_row(col_type_list):
 
 def create_csv(headers, col_type_list):
     current_time = time.strftime('%Y%m%d%H%M%S')
-    path = "./output/"
+    path = config['OUTPUT_PATH']
     file_name = path + "random_" + current_time + ".csv"
-    cnt = int(input("How many rows do you need? : "))
+    cnt = int(input(f"{config['REQUIRE_ROW_COUNT']} : "))
 
     # folder check
-    if os.path.isdir("./output") == False:
-        os.mkdir("./output")
+    if os.path.isdir(config['OUTPUT_PATH']) == False:
+        os.mkdir(config['OUTPUT_PATH'])
     file = open(file_name, 'w', newline='')
     wr = csv.writer(file)
     wr.writerow(headers)
