@@ -5,12 +5,9 @@ from modules.csv_random import *
 from modules.json_random import *
 from modules.error_check import *
 from modules.msg_print import *
-import json
-
+from config import config
 
 while 1:
-    with open('config.json') as f:
-        config = json.load(f)
     is_possible = True
 
     # START
