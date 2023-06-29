@@ -1,15 +1,15 @@
 import operator
 import random
-import time
 from modules.msg_print import *
 from rich.console import Console
+from config import config
 
 
 def number_repeat(amt, min, max, repeat):
     console = Console()
     numList = {}
 
-    with console.status("[bold green]Working on tasks...") as status:
+    with console.status(config['PROGRESS_STATUS']) as status:
         # Create Dictionary
         rpt = range(min, max + 1)
         for i in rpt:

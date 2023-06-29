@@ -1,21 +1,10 @@
 import random
+from config import config
 from modules.msg_print import msg_name_type
 
-first_names = [
-    "Liam", "Ava", "Noah", "Isabella", "Ethan", "Sophia", "Mason", "Mia", "Lucas", "Charlotte",
-    "Oliver", "Amelia", "Elijah", "Harper", "Aiden", "Evelyn", "James", "Abigail", "Benjamin", "Emily",
-    "Henry", "Elizabeth", "Alexander", "Sofia", "William", "Avery", "Daniel", "Ella", "Samuel", "Scarlett",
-    "Michael", "Grace", "Matthew", "Victoria", "Jackson", "Chloe", "Sebastian", "Camila", "David", "Zoey",
-    "Carter", "Penelope", "Jayden", "Riley", "Joseph", "Layla", "John", "Lillian", "Gabriel", "Natalie"
-]
+first_names = config['FIRST_NAME_EN']
 
-last_names = [
-    "Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "Garcia", "Rodriguez", "Wilson",
-    "Martinez", "Anderson", "Taylor", "Thomas", "Hernandez", "Moore", "Martin", "Jackson", "Thompson", "White",
-    "Lopez", "Lee", "Gonzalez", "Harris", "Clark", "Lewis", "Young", "Hall", "Walker", "Allen",
-    "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Adams", "Nelson", "Baker", "Hall",
-    "Rivera", "Mitchell", "Carter", "Roberts", "Turner", "Phillips", "Campbell", "Parker", "Evans", "Edwards"
-]
+last_names = config['LAST_NAME_EN']
 
 
 def choose_name_type():

@@ -1,13 +1,13 @@
 import random
-import time
 from rich.console import Console
+from config import config
 
 
 def number_shuffle(amt, min, max, shuffle):
     console = Console()
     numberList = list(range(min, max+1))
 
-    with console.status("[bold green]Working on tasks...") as status:
+    with console.status(config['PROGRESS_STATUS']) as status:
         for _ in range(shuffle):
             random.shuffle(numberList)
 
