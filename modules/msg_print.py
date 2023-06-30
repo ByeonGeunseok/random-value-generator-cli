@@ -115,3 +115,8 @@ def display_json_type(keys, list):
     console.print(table)
 
     return list
+
+
+def check_continue():
+    print(Panel("Press any button to continue.", style="bold"))
+    temp = input()

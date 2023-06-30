@@ -1,6 +1,7 @@
 import random
 from rich.console import Console
 from config import config
+from modules.msg_print import *
 
 
 def calc_number_shuffle(amt, min, max, shuffle):
@@ -12,5 +13,5 @@ def calc_number_shuffle(amt, min, max, shuffle):
             random.shuffle(numberList)
 
     print(numberList[:amt])
-
+    check_continue()
     return 0
