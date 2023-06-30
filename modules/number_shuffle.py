@@ -3,7 +3,7 @@ from rich.console import Console
 from config import config
 
 
-def number_shuffle(amt, min, max, shuffle):
+def calc_number_shuffle(amt, min, max, shuffle):
     console = Console()
     numberList = list(range(min, max+1))
 

@@ -14,7 +14,7 @@ def clear_screen():
         os.system("clear")
 
 
-def msg_main_menu():
+def render_main_menu():
     table = Table(title=config['REQUIRE_MENU'],
                   show_header=True, header_style="bold")
     table.add_column("SELECT")
@@ -33,7 +33,7 @@ def msg_main_menu():
     console.print(table, justify="center")
 
 
-def result_repeat_count(result, amount):
+def display_repeat_count(result, amount):
     console = Console()
 
     table = Table(title="NUMBER COUNT",
@@ -48,7 +48,7 @@ def result_repeat_count(result, amount):
     console.print(table)
 
 
-def msg_string_menu(length, number_state, lower_state, upper_state, punctuation_state):
+def display_string_menu(length, number_state, lower_state, upper_state, punctuation_state):
     console = Console()
 
     table = Table(title=config['REQUIRE_MENU'],
@@ -80,7 +80,7 @@ def result_panel(msg):
     print(Panel(msg, title="RESULT", style="bold green"))
 
 
-def msg_name_type():
+def display_name_type():
     console = Console()
 
     table = Table(title=config['REQUIRE_MENU'],
@@ -94,7 +94,7 @@ def msg_name_type():
     console.print(table)
 
 
-def msg_json_type(keys, list):
+def display_json_type(keys, list):
     index = 0
     json_length = len(keys)
     console = Console()

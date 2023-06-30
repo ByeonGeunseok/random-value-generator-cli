@@ -11,7 +11,7 @@ while 1:
     is_possible = True
 
     # START
-    msg_main_menu()
+    render_main_menu()
 
     menu = input(config['REQUIRE_MENU'])
 
@@ -29,7 +29,7 @@ while 1:
                 # If all inputs are numeric
                 if check_is_number(amount_input, min_range_input, max_range_input, repeat_count_input):
                     if check_min_max(int(min_range_input), int(max_range_input)):
-                        number_repeat(int(amount_input), int(min_range_input), int(
+                        calc_number_repeat(int(amount_input), int(min_range_input), int(
                             max_range_input), int(repeat_count_input))
                 else:
                     err_panel(config['ERROR_INPUT'])
@@ -44,7 +44,7 @@ while 1:
                 # If all inputs are numeric
                 if check_is_number(amount_input, min_range_input, max_range_input, shuffle_count_input):
                     if check_min_max(int(min_range_input), int(max_range_input)):
-                        number_shuffle(int(amount_input), int(min_range_input), int(
+                        calc_number_shuffle(int(amount_input), int(min_range_input), int(
                             max_range_input), int(shuffle_count_input))
                 else:
                     err_panel(config['ERROR_INPUT'])

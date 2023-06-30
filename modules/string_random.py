@@ -23,7 +23,7 @@ punctuation_state = "O"
 
 
 def select_menu(length, number_state, lower_state, upper_state, punctuation_state):
-    msg_string_menu(length, number_state, lower_state,
+    display_string_menu(length, number_state, lower_state,
                     upper_state, punctuation_state)
 
     menu = input(config['REQUIRE_MENU'])
