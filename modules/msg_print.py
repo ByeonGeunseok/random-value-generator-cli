@@ -45,7 +45,7 @@ def display_repeat_count(result, amount):
         num, cnt = result[i]
         table.add_row(str(num), str(cnt))
 
-    console.print(table)
+    console.print(table, justify="center")
 
 
 def display_string_menu(length, number_state, lower_state, upper_state, punctuation_state):
@@ -65,7 +65,7 @@ def display_string_menu(length, number_state, lower_state, upper_state, punctuat
     table.add_row("Press [9]", "EXECUTE", "")
     table.add_row("Press [0]", "DONE", "")
 
-    console.print(table)
+    console.print(table, justify="center")
 
 
 def msg_panel(msg, title):
@@ -91,7 +91,7 @@ def display_name_type():
     table.add_row("Press [2]", "Last Name")
     table.add_row("Press [3]", "Full Name")
 
-    console.print(table)
+    console.print(table, justify="center")
 
 
 def display_json_type(keys, list):
@@ -112,7 +112,7 @@ def display_json_type(keys, list):
     table.add_row()
     table.add_row("Press [ENTER]", "NEXT", "")
 
-    console.print(table)
+    console.print(table, justify="center")
 
     return list
 
