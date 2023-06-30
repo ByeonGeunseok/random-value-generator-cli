@@ -55,7 +55,7 @@ def set_key_type(keys):
         value_type_list.append("")
 
     while True:
-        value_type_list = msg_json_type(keys, value_type_list)
+        value_type_list = display_json_type(keys, value_type_list)
         menu = input("Choose the menu >> ")
         if menu == "":
             break
@@ -89,10 +89,10 @@ def set_key_type(keys):
             value_type_list[index] = select_type
         else:
             err_panel("SELECT CORRECT MENU")
-    generate_json_data(keys, value_type_list)
+    create_json_data(keys, value_type_list)
 
 
-def generate_json_data(keys, value_type_list):
+def create_json_data(keys, value_type_list):
     json_data = {}
     index = 0
     for key in keys:

@@ -5,7 +5,7 @@ from rich.console import Console
 from config import config
 
 
-def number_repeat(amt, min, max, repeat):
+def calc_number_repeat(amt, min, max, repeat):
     console = Console()
     numList = {}
 
@@ -25,6 +25,6 @@ def number_repeat(amt, min, max, repeat):
         resultList = sorted(
             numList.items(), key=operator.itemgetter(1), reverse=True)
 
-    result_repeat_count(resultList, amt)
-
+    display_repeat_count(resultList, amt)
+    check_continue()
     return 0

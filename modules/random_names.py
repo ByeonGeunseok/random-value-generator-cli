@@ -1,6 +1,6 @@
 import random
 from config import config
-from modules.msg_print import msg_name_type
+from modules.msg_print import display_name_type
 
 first_names = config['FIRST_NAME_EN']
 
@@ -8,7 +8,7 @@ last_names = config['LAST_NAME_EN']
 
 
 def choose_name_type():
-    msg_name_type()
+    display_name_type()
     name_type = input("Choose : ")
 
     match name_type:
