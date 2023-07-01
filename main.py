@@ -5,7 +5,7 @@ from modules.csv_random import *
 from modules.json_random import *
 from modules.error_check import *
 from modules.msg_print import *
-from config import config
+from conf import config
 
 while 1:
     is_possible = True
@@ -29,8 +29,9 @@ while 1:
                 # If all inputs are numeric
                 if check_is_number(amount_input, min_range_input, max_range_input, repeat_count_input):
                     if check_min_max(int(min_range_input), int(max_range_input)):
-                        calc_number_repeat(int(amount_input), int(min_range_input), int(
-                            max_range_input), int(repeat_count_input))
+                        if check_range_cnt(int(amount_input), int(min_range_input), int(max_range_input)):
+                            calc_number_repeat(int(amount_input), int(min_range_input), int(
+                                max_range_input), int(repeat_count_input))
                 else:
                     err_panel(config['ERROR_INPUT'])
             # Shuffle menu
@@ -44,8 +45,9 @@ while 1:
                 # If all inputs are numeric
                 if check_is_number(amount_input, min_range_input, max_range_input, shuffle_count_input):
                     if check_min_max(int(min_range_input), int(max_range_input)):
-                        calc_number_shuffle(int(amount_input), int(min_range_input), int(
-                            max_range_input), int(shuffle_count_input))
+                        if check_range_cnt(int(amount_input), int(min_range_input), int(max_range_input)):
+                            calc_number_shuffle(int(amount_input), int(min_range_input), int(
+                                max_range_input), int(shuffle_count_input))
                 else:
                     err_panel(config['ERROR_INPUT'])
             # Random string menu

@@ -4,7 +4,7 @@ from rich import print
 from rich.panel import Panel
 from rich.console import Console
 from rich.table import Table
-from config import config
+from conf import config
 
 
 def clear_screen():

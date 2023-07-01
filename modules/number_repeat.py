@@ -2,7 +2,7 @@ import operator
 import random
 from modules.msg_print import *
 from rich.console import Console
-from config import config
+from conf import config
 
 
 def calc_number_repeat(amt, min, max, repeat):

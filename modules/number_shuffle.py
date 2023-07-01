@@ -1,6 +1,6 @@
 import random
 from rich.console import Console
-from config import config
+from conf import config
 from modules.msg_print import *
 
 
