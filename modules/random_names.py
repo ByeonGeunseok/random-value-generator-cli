@@ -1,5 +1,5 @@
 import random
-from config import config
+from conf import config
 from modules.msg_print import display_name_type
 
 first_names = config['FIRST_NAME_EN']

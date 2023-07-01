@@ -1,6 +1,6 @@
 import string
 import random
-from config import config
+from conf import config
 from modules.msg_print import *
 
 
@@ -24,7 +24,7 @@ punctuation_state = "O"
 
 def select_menu(length, number_state, lower_state, upper_state, punctuation_state):
     display_string_menu(length, number_state, lower_state,
-                    upper_state, punctuation_state)
+                        upper_state, punctuation_state)
 
     menu = input(config['REQUIRE_MENU'])
 

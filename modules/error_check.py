@@ -1,5 +1,5 @@
 from modules.msg_print import *
-from config import config
+from conf import config
 
 
 def check_min_max(min, max):
@@ -28,3 +28,14 @@ def check_is_number(*args):
         return True
     else:
         return False
+
+
+def check_range_cnt(amount, min, max) -> bool:
+    range_cnt = 0
+    for _ in range(min, max + 1):
+        range_cnt += 1
+
+    if range_cnt < amount:
+        return False
+    else:
+        return True
