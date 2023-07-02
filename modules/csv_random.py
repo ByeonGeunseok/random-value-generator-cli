@@ -54,9 +54,8 @@ def set_column_type(headers):
         msg_panel(msg, title)
         continue_flg = input("(y/n) >>")
         if continue_flg == "y":
-            msg = "How many columns do you need?"
             title = "Random CSV"
-            msg_panel(msg, title)
+            msg_panel(const['REQUIRE_COLUMN_COUNT'], title)
             col_cnt = int(input(">>"))
 
             for _ in range(col_cnt):
@@ -76,10 +75,10 @@ def set_column_type(headers):
             if int(menu) <= col_cnt and menu != "0":
                 index = int(menu) - 1
             else:
-                err_panel("CHOOSE CORRECT MENU")
+                err_panel(const['ERROR_WRONG_MENU'])
                 continue
         else:
-            err_panel("CHOOSE CORRECT MENU")
+            err_panel(const['ERROR_WRONG_MENU'])
             continue
 
         msg_panel(
@@ -101,7 +100,7 @@ def set_column_type(headers):
         elif select_type == "boolean" or "bool":
             value_type_list[index] = select_type
         else:
-            err_panel("SELECT CORRECT MENU")
+            err_panel(const['ERROR_WRONG_MENU'])
 
     create_csv(headers, value_type_list)
 
