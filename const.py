@@ -8,6 +8,7 @@ const = \
         "REQUIRE_SHUFFLE_COUNT": "How many times shuffle?",
         "REQUIRE_ROW_COUNT": "How many rows do you need?",
         "REQUIRE_VALUE_LENGTH": "How long value do you need?",
+        "REQUIRE_CONTINUE": "Press any button to continue.",
         "ERROR_WRONG_MENU": "CHOOSE CORRECT MENU.",
         "ERROR_INPUT": "PLEASE CHECK YOUR INPUT.",
         "ERROR_NO_HEADER": "THERE ARE NO HEADERS",
