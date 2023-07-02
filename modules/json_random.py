@@ -2,7 +2,7 @@ from re import match
 from json import *
 import os
 import time
-from conf import config
+from conf import conf
 from modules.msg_print import *
 from modules.random_names import *
 from modules.random_numbers import *
@@ -121,11 +121,11 @@ def create_json_data(keys, value_type_list):
 
 def create_json_file(json_data):
     current_time = time.strftime('%Y%m%d%H%M%S')
-    path = "./output/"
+    path = conf['OUTPUT_PATH']
     file_name = path + "random_" + current_time + ".json"
 
-    if os.path.isdir("./output") == False:
-        os.mkdir("./output")
+    if os.path.isdir(conf['OUTPUT_PATH']) == False:
+        os.mkdir(conf['OUTPUT_PATH'])
         file = open(file_name, 'w', newline='')
 
     with open(file_name, 'w') as f:

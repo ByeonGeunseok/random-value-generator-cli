@@ -4,7 +4,7 @@ from rich import print
 from rich.panel import Panel
 from rich.console import Console
 from rich.table import Table
-from conf import config
+from const import const
 
 
 def clear_screen():
@@ -15,7 +15,7 @@ def clear_screen():
 
 
 def render_main_menu():
-    table = Table(title=config['REQUIRE_MENU'],
+    table = Table(title=const['REQUIRE_MENU'],
                   show_header=True, header_style="bold")
     table.add_column("SELECT")
     table.add_column("TYPE")
@@ -51,7 +51,7 @@ def display_repeat_count(result, amount):
 def display_string_menu(length, number_state, lower_state, upper_state, punctuation_state):
     console = Console()
 
-    table = Table(title=config['REQUIRE_MENU'],
+    table = Table(title=const['REQUIRE_MENU'],
                   show_header=True, header_style="bold")
     table.add_column("SELECT")
     table.add_column("TYPE")
@@ -83,7 +83,7 @@ def result_panel(msg):
 def display_name_type():
     console = Console()
 
-    table = Table(title=config['REQUIRE_MENU'],
+    table = Table(title=const['REQUIRE_MENU'],
                   show_header=True, header_style="bold")
     table.add_column("SELECT")
     table.add_column("TYPE")
@@ -99,7 +99,7 @@ def display_json_type(keys, list):
     json_length = len(keys)
     console = Console()
 
-    table = Table(title=config['REQUIRE_MENU'],
+    table = Table(title=const['REQUIRE_MENU'],
                   show_header=True, header_style="bold")
 
     table.add_column("SELECT")
