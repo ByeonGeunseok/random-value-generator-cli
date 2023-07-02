@@ -7,7 +7,8 @@ from . import random_email
 import random
 import csv
 from modules.msg_print import *
-
+from conf import conf
+from const import const
 
 global headers
 headers = []
@@ -35,7 +36,7 @@ def set_config_header():
         if header_str == " ":
             # Delete last header
             if len(headers) <= 0:
-                err_panel(config['ERROR_NO_HEADER'])
+                err_panel(const['ERROR_NO_HEADER'])
             else:
                 headers.pop()
         elif header_str == "":
@@ -118,13 +119,13 @@ def create_csv_row(col_type_list):
 
 def create_csv(headers, col_type_list):
     current_time = time.strftime('%Y%m%d%H%M%S')
-    path = config['OUTPUT_PATH']
+    path = conf['OUTPUT_PATH']
     file_name = path + "random_" + current_time + ".csv"
-    cnt = int(input(f"{config['REQUIRE_ROW_COUNT']} : "))
+    cnt = int(input(f"{const['REQUIRE_ROW_COUNT']} : "))
 
     # folder check
-    if os.path.isdir(config['OUTPUT_PATH']) == False:
-        os.mkdir(config['OUTPUT_PATH'])
+    if os.path.isdir(conf['OUTPUT_PATH']) == False:
+        os.mkdir(conf['OUTPUT_PATH'])
     file = open(file_name, 'w', newline='')
     wr = csv.writer(file)
     wr.writerow(headers)

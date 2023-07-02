@@ -1,6 +1,6 @@
 import string
 import random
-from conf import config
+from const import const
 from modules.msg_print import *
 
 
@@ -26,7 +26,7 @@ def select_menu(length, number_state, lower_state, upper_state, punctuation_stat
     display_string_menu(length, number_state, lower_state,
                         upper_state, punctuation_state)
 
-    menu = input(config['REQUIRE_MENU'])
+    menu = input(const['REQUIRE_MENU'])
 
     return menu
 

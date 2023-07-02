@@ -1,16 +1,16 @@
 from modules.msg_print import *
-from conf import config
+from const import const
 
 
 def check_min_max(min, max):
     if min < 0:
-        err_panel(config['ERROR_MIN_ZERO'])
+        err_panel(const['ERROR_MIN_ZERO'])
         return False
     if max < 0:
-        err_panel(config['ERROR_MAX_ZERO'])
+        err_panel(const['ERROR_MAX_ZERO'])
         return False
     if min >= max:
-        err_panel(config['ERROR_NUMBER_COMPARE'])
+        err_panel(const['ERROR_NUMBER_COMPARE'])
         return False
     return True
 

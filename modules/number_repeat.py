@@ -2,14 +2,14 @@ import operator
 import random
 from modules.msg_print import *
 from rich.console import Console
-from conf import config
+from const import const
 
 
 def calc_number_repeat(amt, min, max, repeat):
     console = Console()
     numList = {}
 
-    with console.status(config['PROGRESS_STATUS']) as status:
+    with console.status(const['PROGRESS_STATUS']) as status:
         # Create Dictionary
         rpt = range(min, max + 1)
         for i in rpt:
