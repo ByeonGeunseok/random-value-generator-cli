@@ -16,6 +16,8 @@ while 1:
     menu = input(const['REQUIRE_MENU'])
 
     if menu.isdigit():
+        clear_screen()
+
         # Choose the menu
         match menu:
             # Repeat Menu

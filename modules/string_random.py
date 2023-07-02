@@ -25,6 +25,7 @@ def execute_random_string():
             case "1":
                 length = int(
                     input(f"{const['REQUIRE_VALUE_LENGTH']} : "))
+                clear_screen()
             case "2":
                 allows_number, number_state = toggle_condition(
                     allows_number, number_state)
@@ -56,6 +57,7 @@ def select_menu(length, number_state, lower_state, upper_state, punctuation_stat
 
 
 def toggle_condition(flg, state):
+    clear_screen()
     if flg:
         state = "X"
     else:
