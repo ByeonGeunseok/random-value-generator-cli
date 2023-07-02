@@ -20,36 +20,10 @@ while 1:
         match menu:
             # Repeat Menu
             case "1":
-                amount_input = input(f"{const['REQUIRE_NUMBER_NEED']} : ")
-                min_range_input = input(f"{const['REQUIRE_MINIMUM']} : ")
-                max_range_input = input(f"{const['REQUIRE_MAXIMUM']} : ")
-                repeat_count_input = input(
-                    f"{const['REQUIRE_REPEAT_COUNT']} : ")
-
-                # If all inputs are numeric
-                if check_is_number(amount_input, min_range_input, max_range_input, repeat_count_input):
-                    if check_min_max(int(min_range_input), int(max_range_input)):
-                        if check_range_cnt(int(amount_input), int(min_range_input), int(max_range_input)):
-                            calc_number_repeat(int(amount_input), int(min_range_input), int(
-                                max_range_input), int(repeat_count_input))
-                else:
-                    err_panel(const['ERROR_INPUT'])
+                execute_number_repeat()
             # Shuffle menu
             case "2":
-                amount_input = input(f"{const['REQUIRE_NUMBER_NEED']} : ")
-                min_range_input = input(f"{const['REQUIRE_MINIMUM']} : ")
-                max_range_input = input(f"{const['REQUIRE_MAXIMUM']} : ")
-                shuffle_count_input = input(
-                    f"{const['REQUIRE_SHUFFLE_COUNT']} : ")
-
-                # If all inputs are numeric
-                if check_is_number(amount_input, min_range_input, max_range_input, shuffle_count_input):
-                    if check_min_max(int(min_range_input), int(max_range_input)):
-                        if check_range_cnt(int(amount_input), int(min_range_input), int(max_range_input)):
-                            calc_number_shuffle(int(amount_input), int(min_range_input), int(
-                                max_range_input), int(shuffle_count_input))
-                else:
-                    err_panel(const['ERROR_INPUT'])
+                execute_number_shuffle()
             # Random string menu
             case "3":
                 while True:
