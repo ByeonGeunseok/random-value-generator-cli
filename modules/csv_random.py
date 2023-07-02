@@ -14,8 +14,6 @@ global headers
 headers = []
 global col_type_contents
 col_type_contents = []
-global col_type_list
-col_type_list = []
 
 
 def set_config_header():
@@ -43,10 +41,11 @@ def set_config_header():
             break
         else:
             headers.append(header_str)
-    set_config_column_type(headers)
+    set_column_type(headers)
 
 
-def set_config_column_type(headers):
+def set_column_type(headers):
+    value_type_list = []
     col_cnt = len(headers)
 
     if col_cnt <= 0:
@@ -59,27 +58,57 @@ def set_config_column_type(headers):
             title = "Random CSV"
             msg_panel(msg, title)
             col_cnt = int(input(">>"))
+
+            for _ in range(col_cnt):
+                headers.append("")
         else:
             return
 
-    for i in range(col_cnt):
-        msg = "What type of column of " + \
-            headers[i] + "\n" + \
-            "(name/number/num/tel/email/percentage/per/boolean/bool)"
-        title = "Random CSV"
-        msg_panel(msg, title)
+    for _ in range(col_cnt):
+        value_type_list.append("")
 
-        col_type = input(">>")
-        if col_type == "name":
-            col_type = random_names.choose_name_type()
-        col_type_list.append(col_type)
+    while True:
+        value_type_list = display_csv_type(headers, value_type_list)
+        menu = input("Choose the menu >> ")
+        if menu == "":
+            break
+        elif menu.isdigit():
+            if int(menu) <= col_cnt and menu != "0":
+                index = int(menu) - 1
+            else:
+                err_panel("CHOOSE CORRECT MENU")
+                continue
+        else:
+            err_panel("CHOOSE CORRECT MENU")
+            continue
 
-    create_csv(headers, col_type_list)
+        msg_panel(
+            f"((name/number/num/tel/email/percentage/per/boolean/bool))", "TYPE SELECT")
+        select_type = input(">> ")
+
+        if select_type == "list":
+            value_type_list[index] = select_type
+        elif select_type == "name":
+            value_type_list[index] = select_type
+        elif select_type == "number" or "num":
+            value_type_list[index] = select_type
+        elif select_type == "tel":
+            value_type_list[index] = select_type
+        elif select_type == "email":
+            value_type_list[index] = select_type
+        elif select_type == "percentage" or "per":
+            value_type_list[index] = select_type
+        elif select_type == "boolean" or "bool":
+            value_type_list[index] = select_type
+        else:
+            err_panel("SELECT CORRECT MENU")
+
+    create_csv(headers, value_type_list)
 
 
-def create_csv_row(col_type_list):
+def create_csv_row(value_type_list):
     col_type_contents = []
-    for col_type in col_type_list:
+    for col_type in value_type_list:
         match col_type:
             case "name_first":
                 col_type_contents.append(
@@ -90,9 +119,9 @@ def create_csv_row(col_type_list):
                     random_names.create_random_name("last"))
 
             case "name_full":
-                if ("name_first" in col_type_list) & ("name_last" in col_type_list):
-                    name_full = col_type_contents[col_type_list.index(
-                        "name_first")] + " " + col_type_contents[col_type_list.index("name_last")]
+                if ("name_first" in value_type_list) & ("name_last" in value_type_list):
+                    name_full = col_type_contents[value_type_list.index(
+                        "name_first")] + " " + col_type_contents[value_type_list.index("name_last")]
                     col_type_contents.append(name_full)
                 else:
                     col_type_contents.append(
@@ -117,7 +146,7 @@ def create_csv_row(col_type_list):
     return col_type_contents
 
 
-def create_csv(headers, col_type_list):
+def create_csv(headers, value_type_list):
     current_time = time.strftime('%Y%m%d%H%M%S')
     path = conf['OUTPUT_PATH']
     file_name = path + "random_" + current_time + ".csv"
@@ -131,6 +160,6 @@ def create_csv(headers, col_type_list):
     wr.writerow(headers)
 
     for _ in range(cnt):
-        wr.writerow(create_csv_row(col_type_list))
+        wr.writerow(create_csv_row(value_type_list))
 
     file.close()

@@ -26,29 +26,7 @@ while 1:
                 execute_number_shuffle()
             # Random string menu
             case "3":
-                while True:
-                    menu = select_menu(length, number_state, lower_state,
-                                       upper_state, punctuation_state)
-                    if menu == "1":
-                        length = int(
-                            input(f"{const['REQUIRE_VALUE_LENGTH']} : "))
-                    elif menu == "2":
-                        allows_number, number_state = toggle_condition(
-                            allows_number, number_state)
-                    elif menu == "3":
-                        allows_lower, lower_state = toggle_condition(
-                            allows_lower, lower_state)
-                    elif menu == "4":
-                        allows_upper, upper_state = toggle_condition(
-                            allows_upper, upper_state)
-                    elif menu == "5":
-                        allows_punctuation, punctuation_state = toggle_condition(
-                            allows_punctuation, punctuation_state)
-                    elif menu == "9":
-                        result_panel(create_value(length, allows_number,
-                                                  allows_lower, allows_upper, allows_punctuation))
-                    else:
-                        break
+                execute_random_string()
             # Random CSV menu
             case "4":
                 set_config_header()

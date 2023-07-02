@@ -94,6 +94,29 @@ def display_name_type():
     console.print(table, justify="center")
 
 
+def display_csv_type(keys, list):
+    index = 0
+    json_length = len(keys)
+    console = Console()
+
+    table = Table(title=const['REQUIRE_MENU'],
+                  show_header=True, header_style="bold")
+
+    table.add_column("SELECT")
+    table.add_column("KEY")
+    table.add_column("TYPE")
+
+    for key in keys:
+        table.add_row(f"Type [{index+1}]", key, f"{list[index]}")
+        index += 1
+    table.add_row()
+    table.add_row("Press [ENTER]", "NEXT", "")
+
+    console.print(table, justify="center")
+
+    return list
+
+
 def display_json_type(keys, list):
     index = 0
     json_length = len(keys)

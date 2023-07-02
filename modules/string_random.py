@@ -2,24 +2,48 @@ import string
 import random
 from const import const
 from modules.msg_print import *
+from modules.error_check import *
 
 
-global allows_number
-global allows_lower
-global allows_upper
-global allows_punctuation
+def execute_random_string():
+    length = 16
 
-length = 16
+    allows_number = True
+    allows_lower = True
+    allows_upper = True
+    allows_punctuation = True
 
-allows_number = True
-allows_lower = True
-allows_upper = True
-allows_punctuation = True
+    number_state = "O"
+    lower_state = "O"
+    upper_state = "O"
+    punctuation_state = "O"
 
-number_state = "O"
-lower_state = "O"
-upper_state = "O"
-punctuation_state = "O"
+    while True:
+        menu = select_menu(length, number_state, lower_state,
+                           upper_state, punctuation_state)
+        match menu:
+            case "1":
+                length = int(
+                    input(f"{const['REQUIRE_VALUE_LENGTH']} : "))
+            case "2":
+                allows_number, number_state = toggle_condition(
+                    allows_number, number_state)
+            case "3":
+                allows_lower, lower_state = toggle_condition(
+                    allows_lower, lower_state)
+            case "4":
+                allows_upper, upper_state = toggle_condition(
+                    allows_upper, upper_state)
+            case "5":
+                allows_punctuation, punctuation_state = toggle_condition(
+                    allows_punctuation, punctuation_state)
+            case "9":
+                result_panel(create_value(length, allows_number,
+                                          allows_lower, allows_upper, allows_punctuation))
+            case "0":
+                break
+            case _:
+                err_panel(const['ERROR_WRONG_MENU'])
 
 
 def select_menu(length, number_state, lower_state, upper_state, punctuation_state):
