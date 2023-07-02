@@ -30,6 +30,6 @@ def calc_number_shuffle(amt, min, max, shuffle):
         for _ in range(shuffle):
             random.shuffle(numberList)
 
-    print(numberList[:amt])
+    result_panel(str(numberList[:amt]))
     check_continue()
     return 0
