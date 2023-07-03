@@ -141,5 +141,5 @@ def display_json_type(keys, list):
 
 
 def check_continue():
-    print(Panel("Press any button to continue.", style="bold"))
+    print(Panel(const['REQUIRE_CONTINUE'], style="bold"))
     temp = input()

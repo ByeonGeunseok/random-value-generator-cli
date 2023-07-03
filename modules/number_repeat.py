@@ -36,7 +36,7 @@ def calc_number_repeat(amt, min, max, repeat):
         # Pick a number
         for x in range(repeat):
             for y in range(amt):
-                picked = random.randint(1, max)
+                picked = random.randint(min, max)
                 numList[picked] += 1
 
         # Sorting
