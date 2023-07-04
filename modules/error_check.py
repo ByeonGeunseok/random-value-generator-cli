@@ -2,7 +2,14 @@ from modules.msg_print import *
 from const import const
 
 
-def check_min_max(min, max):
+def check_min_max(min: int, max: int):
+    """
+    Check minimum and maximum.\n
+    1. Check if the minimum value is greater than 0.\n
+    2. Check if the maximum value is greater than 0.\n
+    3. Check if maximum value is equal to or greater than minimum value.\n
+    Return True, If all conditions are satisfied.
+    """
     if min < 0:
         err_panel(const['ERROR_MIN_ZERO'])
         return False
@@ -16,6 +23,10 @@ def check_min_max(min, max):
 
 
 def check_is_number(*args):
+    """
+    Check the parameters.\n
+    Return True, If all parameters are number.
+    """
     is_number = True
     for i in args:
         if type(i) is not int:
@@ -30,7 +41,10 @@ def check_is_number(*args):
         return False
 
 
-def check_range_cnt(amount, min, max) -> bool:
+def check_range_cnt(amount: int, min: int, max: int) -> bool:
+    """
+    Check if the number of elements between minimum value and maximum value is less than the desired quantity.
+    """
     range_cnt = 0
     for _ in range(min, max + 1):
         range_cnt += 1

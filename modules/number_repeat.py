@@ -10,8 +10,7 @@ def execute_number_repeat():
     amount_input = input(f"{const['REQUIRE_NUMBER_NEED']} : ")
     min_range_input = input(f"{const['REQUIRE_MINIMUM']} : ")
     max_range_input = input(f"{const['REQUIRE_MAXIMUM']} : ")
-    repeat_count_input = input(
-        f"{const['REQUIRE_REPEAT_COUNT']} : ")
+    repeat_count_input = input(f"{const['REQUIRE_REPEAT_COUNT']} : ")
 
     # If all inputs are numeric
     if check_is_number(amount_input, min_range_input, max_range_input, repeat_count_input):
