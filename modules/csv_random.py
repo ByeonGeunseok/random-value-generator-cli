@@ -16,7 +16,7 @@ global col_type_contents
 col_type_contents = []
 
 
-def set_config_header():
+def set_csv_header():
     headers = []
     while True:
         msg = "If you need header, input once.\n" + \

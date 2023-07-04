@@ -17,7 +17,7 @@ value_type_list = []
 json_data = {}
 
 
-def set_config_key():
+def set_json_key():
     while True:
         msg = "Input a key.\n" + \
             "If you delete to last key, input \" \" and ENTER.\n" + \
