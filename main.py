@@ -7,14 +7,14 @@ from modules.error_check import *
 from modules.msg_print import *
 from const import const
 
-while 1:
-    is_possible = True
-
+while True:
     # START
     render_main_menu()
 
+    # Choose the menu, Return menu number.
     menu = input(const['REQUIRE_MENU'])
 
+    # Check the input.
     if menu.isdigit():
         clear_screen()
 
@@ -31,13 +31,16 @@ while 1:
                 execute_random_string()
             # Random CSV menu
             case "4":
-                set_config_header()
+                set_csv_header()
             # Random JSON menu
             case "5":
-                set_config_key()
+                set_json_key()
+            # End
             case "9":
                 break
+            # If the menu doesn't exist.
             case _:
                 err_panel(const['ERROR_WRONG_MENU'])
+    # If input is not number.
     else:
         err_panel(const['ERROR_WRONG_MENU'])
