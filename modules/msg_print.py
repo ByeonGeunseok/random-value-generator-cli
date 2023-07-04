@@ -8,6 +8,9 @@ from const import const
 
 
 def clear_screen():
+    """
+    Clear the console screen.
+    """
     if platform.system() == "Windows":
         os.system("cls")
     else:
@@ -15,6 +18,9 @@ def clear_screen():
 
 
 def render_main_menu():
+    """
+    Render the main menu.
+    """
     table = Table(title=const['REQUIRE_MENU'],
                   show_header=True, header_style="bold")
     table.add_column("SELECT")
