@@ -1,6 +1,6 @@
+from pathlib import Path
 from re import match
 from json import *
-import os
 import time
 from conf import conf
 from modules.msg_print import *
@@ -124,9 +124,7 @@ def create_json_file(json_data):
     path = conf['OUTPUT_PATH']
     file_name = path + "random_" + current_time + ".json"
 
-    if os.path.isdir(conf['OUTPUT_PATH']) == False:
-        os.mkdir(conf['OUTPUT_PATH'])
-        file = open(file_name, 'w', newline='')
+    Path(path).mkdir(exist_ok=True)
 
     with open(file_name, 'w') as f:
         dump(json_data, f)

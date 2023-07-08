@@ -1,5 +1,5 @@
+from pathlib import Path
 import time
-import os
 from . import random_names
 from . import random_numbers
 from . import random_tel_nums
@@ -151,9 +151,7 @@ def create_csv(headers, value_type_list):
     file_name = path + "random_" + current_time + ".csv"
     cnt = int(input(f"{const['REQUIRE_ROW_COUNT']} : "))
 
-    # folder check
-    if os.path.isdir(conf['OUTPUT_PATH']) == False:
-        os.mkdir(conf['OUTPUT_PATH'])
+    Path(path).mkdir(exist_ok=True)
     file = open(file_name, 'w', newline='')
     wr = csv.writer(file)
     wr.writerow(headers)
