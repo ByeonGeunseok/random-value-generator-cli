@@ -1,5 +1,5 @@
+from pathlib import Path
 import time
-import os
 from . import random_names
 from . import random_numbers
 from . import random_tel_nums
@@ -85,22 +85,31 @@ def set_column_type(headers):
             f"((name/number/num/tel/email/percentage/per/boolean/bool))", "TYPE SELECT")
         select_type = input(">> ")
 
-        if select_type == "list":
-            value_type_list[index] = select_type
-        elif select_type == "name":
-            value_type_list[index] = select_type
-        elif select_type == "number" or "num":
-            value_type_list[index] = select_type
-        elif select_type == "tel":
-            value_type_list[index] = select_type
-        elif select_type == "email":
-            value_type_list[index] = select_type
-        elif select_type == "percentage" or "per":
-            value_type_list[index] = select_type
-        elif select_type == "boolean" or "bool":
-            value_type_list[index] = select_type
-        else:
-            err_panel(const['ERROR_WRONG_MENU'])
+        match select_type:
+            case "name":
+                display_name_type()
+                name_menu = input(">> ")
+                match name_menu:
+                    case "1":
+                        value_type_list[index] = "first name"
+                    case "2":
+                        value_type_list[index] = "last name"
+                    case "3":
+                        value_type_list[index] = "full name"
+                    case _:
+                        err_panel(const['ERROR_WRONG_MENU'])
+            case "number" | "num":
+                value_type_list[index] = select_type
+            case "tel":
+                value_type_list[index] = select_type
+            case "email":
+                value_type_list[index] = select_type
+            case "percentage" | "per":
+                value_type_list[index] = select_type
+            case "boolean" | "bool":
+                value_type_list[index] = select_type
+            case _:
+                err_panel(const['ERROR_WRONG_MENU'])
 
     create_csv(headers, value_type_list)
 
@@ -109,18 +118,18 @@ def create_csv_row(value_type_list):
     col_type_contents = []
     for col_type in value_type_list:
         match col_type:
-            case "name_first":
+            case "first name":
                 col_type_contents.append(
                     random_names.create_random_name("first"))
 
-            case "name_last":
+            case "last name":
                 col_type_contents.append(
                     random_names.create_random_name("last"))
 
-            case "name_full":
-                if ("name_first" in value_type_list) & ("name_last" in value_type_list):
+            case "full name":
+                if ("first name" in value_type_list) & ("last name" in value_type_list):
                     name_full = col_type_contents[value_type_list.index(
-                        "name_first")] + " " + col_type_contents[value_type_list.index("name_last")]
+                        "first name")] + " " + col_type_contents[value_type_list.index("last name")]
                     col_type_contents.append(name_full)
                 else:
                     col_type_contents.append(
@@ -151,9 +160,7 @@ def create_csv(headers, value_type_list):
     file_name = path + "random_" + current_time + ".csv"
     cnt = int(input(f"{const['REQUIRE_ROW_COUNT']} : "))
 
-    # folder check
-    if os.path.isdir(conf['OUTPUT_PATH']) == False:
-        os.mkdir(conf['OUTPUT_PATH'])
+    Path(path).mkdir(exist_ok=True)
     file = open(file_name, 'w', newline='')
     wr = csv.writer(file)
     wr.writerow(headers)
