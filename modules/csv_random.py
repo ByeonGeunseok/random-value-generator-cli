@@ -88,7 +88,16 @@ def set_column_type(headers):
         if select_type == "list":
             value_type_list[index] = select_type
         elif select_type == "name":
-            value_type_list[index] = select_type
+            display_name_type()
+            name_menu = input(">> ")
+            if name_menu == "1":
+                value_type_list[index] = "first name"
+            elif name_menu == "2":
+                value_type_list[index] = "last name"
+            elif name_menu == "3":
+                value_type_list[index] = "full name"
+            else:
+                err_panel(const['ERROR_WRONG_MENU'])
         elif select_type == "number" or "num":
             value_type_list[index] = select_type
         elif select_type == "tel":
@@ -109,18 +118,18 @@ def create_csv_row(value_type_list):
     col_type_contents = []
     for col_type in value_type_list:
         match col_type:
-            case "name_first":
+            case "first name":
                 col_type_contents.append(
                     random_names.create_random_name("first"))
 
-            case "name_last":
+            case "last name":
                 col_type_contents.append(
                     random_names.create_random_name("last"))
 
-            case "name_full":
-                if ("name_first" in value_type_list) & ("name_last" in value_type_list):
+            case "full name":
+                if ("first name" in value_type_list) & ("last name" in value_type_list):
                     name_full = col_type_contents[value_type_list.index(
-                        "name_first")] + " " + col_type_contents[value_type_list.index("name_last")]
+                        "first name")] + " " + col_type_contents[value_type_list.index("last name")]
                     col_type_contents.append(name_full)
                 else:
                     col_type_contents.append(
