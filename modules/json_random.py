@@ -1,5 +1,4 @@
 from pathlib import Path
-from re import match
 from json import *
 import time
 from conf import conf
@@ -73,22 +72,23 @@ def set_key_type(keys):
             f"((name/number/num/tel/email/percentage/per/boolean/bool))", "TYPE SELECT")
         select_type = input(">> ")
 
-        if select_type == "list":
-            value_type_list[index] = select_type
-        elif select_type == "name":
-            value_type_list[index] = select_type
-        elif select_type == "number" or "num":
-            value_type_list[index] = select_type
-        elif select_type == "tel":
-            value_type_list[index] = select_type
-        elif select_type == "email":
-            value_type_list[index] = select_type
-        elif select_type == "percentage" or "per":
-            value_type_list[index] = select_type
-        elif select_type == "boolean" or "bool":
-            value_type_list[index] = select_type
-        else:
-            err_panel("SELECT CORRECT MENU")
+        match select_type:
+            case "list":
+                value_type_list[index] = select_type
+            case "name":
+                value_type_list[index] = select_type
+            case "number" | "num":
+                value_type_list[index] = select_type
+            case "tel":
+                value_type_list[index] = select_type
+            case "email":
+                value_type_list[index] = select_type
+            case "percentage" | "per":
+                value_type_list[index] = select_type
+            case "boolean" | "bool":
+                value_type_list[index] = select_type
+            case _:
+                err_panel("SELECT CORRECT MENU")
     create_json_data(keys, value_type_list)
 
 
@@ -97,22 +97,23 @@ def create_json_data(keys, value_type_list):
     index = 0
     for key in keys:
         data = ""
-        if value_type_list[index] == "list":
-            print()
-        elif value_type_list[index] == "name":
-            data = create_random_name("full")
-        elif value_type_list[index] == "number" or value_type_list[index] == "num":
-            data = create_random_number()
-        elif value_type_list[index] == "tel":
-            data = create_tel_number()
-        elif value_type_list[index] == "email":
-            data = create_email_address()
-        elif value_type_list[index] == "percentage" or value_type_list[index] == "per":
-            data = str(random.randint(0, 100)) + "%"
-        elif value_type_list[index] == "boolean" or value_type_list[index] == "bool":
-            data = bool(random.getrandbits(1))
-        else:
-            print()
+        match value_type_list[index]:
+            case "list":
+                print()
+            case "name":
+                data = create_random_name("full")
+            case "number" | "num":
+                data = create_random_number()
+            case "tel":
+                data = create_tel_number()
+            case "email":
+                data = create_email_address()
+            case "percentage" | "per":
+                data = str(random.randint(0, 100)) + "%"
+            case "boolean" | "bool":
+                data = bool(random.getrandbits(1))
+            case _:
+                print()
         index += 1
 
         json_data[key] = data

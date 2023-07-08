@@ -85,31 +85,31 @@ def set_column_type(headers):
             f"((name/number/num/tel/email/percentage/per/boolean/bool))", "TYPE SELECT")
         select_type = input(">> ")
 
-        if select_type == "list":
-            value_type_list[index] = select_type
-        elif select_type == "name":
-            display_name_type()
-            name_menu = input(">> ")
-            if name_menu == "1":
-                value_type_list[index] = "first name"
-            elif name_menu == "2":
-                value_type_list[index] = "last name"
-            elif name_menu == "3":
-                value_type_list[index] = "full name"
-            else:
+        match select_type:
+            case "name":
+                display_name_type()
+                name_menu = input(">> ")
+                match name_menu:
+                    case "1":
+                        value_type_list[index] = "first name"
+                    case "2":
+                        value_type_list[index] = "last name"
+                    case "3":
+                        value_type_list[index] = "full name"
+                    case _:
+                        err_panel(const['ERROR_WRONG_MENU'])
+            case "number" | "num":
+                value_type_list[index] = select_type
+            case "tel":
+                value_type_list[index] = select_type
+            case "email":
+                value_type_list[index] = select_type
+            case "percentage" | "per":
+                value_type_list[index] = select_type
+            case "boolean" | "bool":
+                value_type_list[index] = select_type
+            case _:
                 err_panel(const['ERROR_WRONG_MENU'])
-        elif select_type == "number" or "num":
-            value_type_list[index] = select_type
-        elif select_type == "tel":
-            value_type_list[index] = select_type
-        elif select_type == "email":
-            value_type_list[index] = select_type
-        elif select_type == "percentage" or "per":
-            value_type_list[index] = select_type
-        elif select_type == "boolean" or "bool":
-            value_type_list[index] = select_type
-        else:
-            err_panel(const['ERROR_WRONG_MENU'])
 
     create_csv(headers, value_type_list)
 
