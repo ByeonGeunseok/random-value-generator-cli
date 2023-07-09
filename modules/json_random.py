@@ -17,6 +17,7 @@ json_data = {}
 
 
 def set_json_key():
+    error_flg = False
     while True:
         msg = "Input a key.\n" + \
             "If you delete to last key, input \" \" and ENTER.\n" + \
@@ -28,22 +29,26 @@ def set_json_key():
             msg_panel("key: (nothing)", "KEY")
         else:
             msg_panel(f"key: {keys}", "KEY")
+
+        if error_flg:
+            err_panel("There are no keys.")
+            error_flg = False
         key_str = input(">> ")
 
         if key_str == " ":
             # Delete last key
             if len(keys) <= 0:
-                err_panel("There are no keys.")
+                error_flg = True
             else:
                 keys.pop()
         elif key_str == "":
             if len(keys) <= 0:
-                err_panel("There are no keys.")
+                error_flg = True
             else:
                 break
         else:
             keys.append(key_str)
-
+        clear_screen()
     set_key_type(keys)
 
 

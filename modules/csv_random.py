@@ -17,6 +17,7 @@ col_type_contents = []
 
 
 def set_csv_header():
+    error_flg = False
     headers = []
     while True:
         msg = "If you need header, input once.\n" + \
@@ -29,18 +30,22 @@ def set_csv_header():
             msg_panel("header: (nothing)", "HEADER")
         else:
             msg_panel(f"header: {headers}", "HEADER")
+        if error_flg:
+            err_panel(const['ERROR_NO_HEADER'])
+            error_flg = False
         header_str = input()
 
         if header_str == " ":
             # Delete last header
             if len(headers) <= 0:
-                err_panel(const['ERROR_NO_HEADER'])
+                error_flg = True
             else:
                 headers.pop()
         elif header_str == "":
             break
         else:
             headers.append(header_str)
+        clear_screen()
     set_column_type(headers)
 
 

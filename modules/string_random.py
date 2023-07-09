@@ -18,13 +18,38 @@ def execute_random_string():
     upper_state = "O"
     punctuation_state = "O"
 
+    error_type = 0
+
     while True:
-        menu = select_menu(length, number_state, lower_state,
-                           upper_state, punctuation_state)
+        display_string_menu(length, number_state, lower_state,
+                            upper_state, punctuation_state)
+
+        if error_type == 1:
+            err_panel(const['ERROR_INPUT'])
+        elif error_type == 2:
+            err_panel(const['ERROR_LENGTH_ZERO'])
+        elif error_type == 3:
+            err_panel(const['ERROR_ALLOWS'])
+        elif error_type == 4:
+            err_panel(const['ERROR_WRONG_MENU'])
+
+        error_type = 0
+
+        menu = input(const['REQUIRE_MENU'])
+
         match menu:
             case "1":
-                length = int(
-                    input(f"{const['REQUIRE_VALUE_LENGTH']} : "))
+                length_val = input(f"{const['REQUIRE_VALUE_LENGTH']} : ")
+
+                if not length_val.isdigit():
+                    error_type = 1
+                    continue
+
+                if length <= 0:
+                    error_type = 2
+                    continue
+
+                length = int(length_val)
                 clear_screen()
             case "2":
                 allows_number, number_state = toggle_condition(
@@ -39,21 +64,19 @@ def execute_random_string():
                 allows_punctuation, punctuation_state = toggle_condition(
                     allows_punctuation, punctuation_state)
             case "9":
-                result_panel(create_value(length, allows_number,
-                                          allows_lower, allows_upper, allows_punctuation))
+                if number_state == "X" and lower_state == "X" and upper_state == "X" and punctuation_state == "X":
+                    error_type = 3
+                    clear_screen()
+                    continue
+                else:
+                    create_value(length, allows_number, allows_lower,
+                                 allows_upper, allows_punctuation)
             case "0":
                 break
             case _:
-                err_panel(const['ERROR_WRONG_MENU'])
-
-
-def select_menu(length, number_state, lower_state, upper_state, punctuation_state):
-    display_string_menu(length, number_state, lower_state,
-                        upper_state, punctuation_state)
-
-    menu = input(const['REQUIRE_MENU'])
-
-    return menu
+                error_type = 4
+                clear_screen()
+                continue
 
 
 def toggle_condition(flg, state):
@@ -83,4 +106,6 @@ def create_value(length, allows_number, allows_lower, allows_upper, allows_punct
     for i in range(length):
         result += random.choice(target)
 
-    return result
+    result_panel(result)
+    check_continue()
+    clear_screen()

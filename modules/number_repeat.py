@@ -7,19 +7,35 @@ from const import const
 
 
 def execute_number_repeat():
-    amount_input = input(f"{const['REQUIRE_NUMBER_NEED']} : ")
-    min_range_input = input(f"{const['REQUIRE_MINIMUM']} : ")
-    max_range_input = input(f"{const['REQUIRE_MAXIMUM']} : ")
-    repeat_count_input = input(f"{const['REQUIRE_REPEAT_COUNT']} : ")
+    error_flg = False
+    while True:
+        if error_flg:
+            clear_screen()
+            err_panel(const['ERROR_INPUT'])
+            error_flg = False
+        amount_input = input(f"{const['REQUIRE_NUMBER_NEED']} : ")
+        if not amount_input.isdigit():
+            error_flg = True
+            continue
+        min_range_input = input(f"{const['REQUIRE_MINIMUM']} : ")
+        if not min_range_input.isdigit():
+            error_flg = True
+            continue
+        max_range_input = input(f"{const['REQUIRE_MAXIMUM']} : ")
+        if not max_range_input.isdigit():
+            error_flg = True
+            continue
+        repeat_count_input = input(f"{const['REQUIRE_REPEAT_COUNT']} : ")
+        if not repeat_count_input.isdigit():
+            error_flg = True
+            continue
 
-    # If all inputs are numeric
-    if check_is_number(amount_input, min_range_input, max_range_input, repeat_count_input):
         if check_min_max(int(min_range_input), int(max_range_input)):
             if check_range_cnt(int(amount_input), int(min_range_input), int(max_range_input)):
                 calc_number_repeat(int(amount_input), int(min_range_input), int(
                     max_range_input), int(repeat_count_input))
-    else:
-        err_panel(const['ERROR_INPUT'])
+        else:
+            err_panel(const['ERROR_INPUT'])
 
 
 def calc_number_repeat(amt, min, max, repeat):
@@ -44,4 +60,4 @@ def calc_number_repeat(amt, min, max, repeat):
 
     display_repeat_count(resultList, amt)
     check_continue()
-    return 0
+    clear_screen()

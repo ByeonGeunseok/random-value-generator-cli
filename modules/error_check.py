@@ -22,25 +22,6 @@ def check_min_max(min: int, max: int):
     return True
 
 
-def check_is_number(*args):
-    """
-    Check the parameters.\n
-    Return True, If all parameters are number.
-    """
-    is_number = True
-    for i in args:
-        if type(i) is not int:
-            if i.isdigit():
-                is_number = True
-            else:
-                is_number = False
-                break
-    if is_number:
-        return True
-    else:
-        return False
-
-
 def check_range_cnt(amount: int, min: int, max: int) -> bool:
     """
     Check if the number of elements between minimum value and maximum value is less than the desired quantity.

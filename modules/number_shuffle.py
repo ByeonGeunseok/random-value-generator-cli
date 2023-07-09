@@ -6,20 +6,37 @@ from modules.error_check import *
 
 
 def execute_number_shuffle():
-    amount_input = input(f"{const['REQUIRE_NUMBER_NEED']} : ")
-    min_range_input = input(f"{const['REQUIRE_MINIMUM']} : ")
-    max_range_input = input(f"{const['REQUIRE_MAXIMUM']} : ")
-    shuffle_count_input = input(
-        f"{const['REQUIRE_SHUFFLE_COUNT']} : ")
+    error_flg = False
+    while True:
+        if error_flg:
+            clear_screen()
+            err_panel(const['ERROR_INPUT'])
+            error_flg = False
 
-    # If all inputs are numeric
-    if check_is_number(amount_input, min_range_input, max_range_input, shuffle_count_input):
+        amount_input = input(f"{const['REQUIRE_NUMBER_NEED']} : ")
+        if not amount_input.isdigit():
+            error_flg = True
+            continue
+        min_range_input = input(f"{const['REQUIRE_MINIMUM']} : ")
+        if not min_range_input.isdigit():
+            error_flg = True
+            continue
+        max_range_input = input(f"{const['REQUIRE_MAXIMUM']} : ")
+        if not max_range_input.isdigit():
+            error_flg = True
+            continue
+        shuffle_count_input = input(
+            f"{const['REQUIRE_SHUFFLE_COUNT']} : ")
+        if not shuffle_count_input.isdigit():
+            error_flg = True
+            continue
+
         if check_min_max(int(min_range_input), int(max_range_input)):
             if check_range_cnt(int(amount_input), int(min_range_input), int(max_range_input)):
                 calc_number_shuffle(int(amount_input), int(min_range_input), int(
                     max_range_input), int(shuffle_count_input))
-    else:
-        err_panel(const['ERROR_INPUT'])
+        else:
+            err_panel(const['ERROR_INPUT'])
 
 
 def calc_number_shuffle(amt, min, max, shuffle):
@@ -32,4 +49,4 @@ def calc_number_shuffle(amt, min, max, shuffle):
 
     result_panel(str(numberList[:amt]))
     check_continue()
-    return 0
+    clear_screen()

@@ -15,7 +15,9 @@ const = \
         "ERROR_NO_HEADER": "THERE ARE NO HEADERS",
         "ERROR_MIN_ZERO": "Minimum number must bigger than 0.",
         "ERROR_MAX_ZERO": "Minimum number must bigger than 0.",
+        "ERROR_LENGTH_ZERO": "Length must bigger than 0.",
         "ERROR_NUMBER_COMPARE": "Minimum number must bigger than Maximum.",
+        "ERROR_ALLOWS": "Allow at least one use type.",
         "PROGRESS_STATUS": "[bold green]Working on tasks...",
         "FIRST_NAME_EN": [
             "Liam", "Ava", "Noah", "Isabella", "Ethan", "Sophia", "Mason", "Mia", "Lucas", "Charlotte",
