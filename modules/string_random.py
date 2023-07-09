@@ -39,8 +39,8 @@ def execute_random_string():
                 allows_punctuation, punctuation_state = toggle_condition(
                     allows_punctuation, punctuation_state)
             case "9":
-                result_panel(create_value(length, allows_number,
-                                          allows_lower, allows_upper, allows_punctuation))
+                create_value(length, allows_number,
+                             allows_lower, allows_upper, allows_punctuation)
             case "0":
                 break
             case _:
@@ -83,4 +83,6 @@ def create_value(length, allows_number, allows_lower, allows_upper, allows_punct
     for i in range(length):
         result += random.choice(target)
 
-    return result
+    result_panel(result)
+    check_continue()
+    clear_screen()
