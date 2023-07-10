@@ -35,6 +35,7 @@ def execute_number_shuffle():
             if check_range_cnt(int(amount_input), int(min_range_input), int(max_range_input)):
                 calc_number_shuffle(int(amount_input), int(min_range_input), int(
                     max_range_input), int(shuffle_count_input))
+                break
         else:
             err_panel(const['ERROR_INPUT'])
 

@@ -34,6 +34,7 @@ def execute_number_repeat():
             if check_range_cnt(int(amount_input), int(min_range_input), int(max_range_input)):
                 calc_number_repeat(int(amount_input), int(min_range_input), int(
                     max_range_input), int(repeat_count_input))
+                break
         else:
             err_panel(const['ERROR_INPUT'])
 
@@ -61,3 +62,4 @@ def calc_number_repeat(amt, min, max, repeat):
     display_repeat_count(resultList, amt)
     check_continue()
     clear_screen()
+    
