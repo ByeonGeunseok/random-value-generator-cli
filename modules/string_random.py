@@ -64,9 +64,9 @@ def execute_random_string():
                 allows_punctuation, punctuation_state = toggle_condition(
                     allows_punctuation, punctuation_state)
             case "9":
+                clear_screen()
                 if number_state == "X" and lower_state == "X" and upper_state == "X" and punctuation_state == "X":
                     error_type = 3
-                    clear_screen()
                     continue
                 else:
                     create_value(length, allows_number, allows_lower,
