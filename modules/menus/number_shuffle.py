@@ -1,8 +1,8 @@
 import random
 from rich.console import Console
 from const import const
-from modules.msg_print import *
-from modules.error_check import *
+from ..utils.msg_print import *
+from ..utils.error_check import *
 
 
 def execute_number_shuffle():

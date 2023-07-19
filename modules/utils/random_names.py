@@ -1,6 +1,6 @@
 import random
 from const import const
-from modules.msg_print import display_name_type
+from .msg_print import display_name_type
 
 first_names = const['FIRST_NAME_EN']
 

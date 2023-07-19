@@ -1,14 +1,10 @@
 from pathlib import Path
 import time
-from . import random_names
-from . import random_numbers
-from . import random_tel_nums
-from . import random_email
 import random
 import csv
-from modules.msg_print import *
 from conf import conf
 from const import const
+from ..utils import *
 
 global headers
 headers = []
@@ -24,14 +20,14 @@ def set_csv_header():
             "If you delete to last header, input \" \" and ENTER.\n" + \
             "If you done to input header, Just press ENTER."
         title = "Random CSV"
-        msg_panel(msg, title)
+        msg_print.msg_panel(msg, title)
 
         if len(headers) <= 0:
-            msg_panel("header: (nothing)", "HEADER")
+            msg_print.msg_panel("header: (nothing)", "HEADER")
         else:
-            msg_panel(f"header: {headers}", "HEADER")
+            msg_print.msg_panel(f"header: {headers}", "HEADER")
         if error_flg:
-            err_panel(const['ERROR_NO_HEADER'])
+            error_check.err_panel(const['ERROR_NO_HEADER'])
             error_flg = False
         header_str = input()
 
@@ -45,7 +41,7 @@ def set_csv_header():
             break
         else:
             headers.append(header_str)
-        clear_screen()
+        error_check.clear_screen()
     set_column_type(headers)
 
 
@@ -56,11 +52,11 @@ def set_column_type(headers):
     if col_cnt <= 0:
         msg = "There are no headers. Are you continue to create CSV?"
         title = "Random CSV"
-        msg_panel(msg, title)
+        msg_print.msg_panel(msg, title)
         continue_flg = input("(y/n) >>")
         if continue_flg == "y":
             title = "Random CSV"
-            msg_panel(const['REQUIRE_COLUMN_COUNT'], title)
+            msg_print.msg_panel(const['REQUIRE_COLUMN_COUNT'], title)
             col_cnt = int(input(">>"))
 
             for _ in range(col_cnt):
@@ -72,7 +68,7 @@ def set_column_type(headers):
         value_type_list.append("")
 
     while True:
-        value_type_list = display_csv_type(headers, value_type_list)
+        value_type_list = msg_print.display_csv_type(headers, value_type_list)
         menu = input("Choose the menu >> ")
         if menu == "":
             break
@@ -80,19 +76,19 @@ def set_column_type(headers):
             if int(menu) <= col_cnt and menu != "0":
                 index = int(menu) - 1
             else:
-                err_panel(const['ERROR_WRONG_MENU'])
+                error_check.err_panel(const['ERROR_WRONG_MENU'])
                 continue
         else:
-            err_panel(const['ERROR_WRONG_MENU'])
+            error_check.err_panel(const['ERROR_WRONG_MENU'])
             continue
 
-        msg_panel(
+        msg_print.msg_panel(
             f"((name/number/num/tel/email/percentage/per/boolean/bool))", "TYPE SELECT")
         select_type = input(">> ")
 
         match select_type:
             case "name":
-                display_name_type()
+                msg_print.display_name_type()
                 name_menu = input(">> ")
                 match name_menu:
                     case "1":
@@ -102,7 +98,7 @@ def set_column_type(headers):
                     case "3":
                         value_type_list[index] = "full name"
                     case _:
-                        err_panel(const['ERROR_WRONG_MENU'])
+                        error_check.err_panel(const['ERROR_WRONG_MENU'])
             case "number" | "num":
                 value_type_list[index] = select_type
             case "tel":
@@ -114,7 +110,7 @@ def set_column_type(headers):
             case "boolean" | "bool":
                 value_type_list[index] = select_type
             case _:
-                err_panel(const['ERROR_WRONG_MENU'])
+                error_check.err_panel(const['ERROR_WRONG_MENU'])
 
     create_csv(headers, value_type_list)
 

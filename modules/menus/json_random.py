@@ -1,12 +1,14 @@
 from pathlib import Path
 from json import *
+import random
 import time
 from conf import conf
-from modules.msg_print import *
-from modules.random_names import *
-from modules.random_numbers import *
-from modules.random_tel_nums import *
-from modules.random_email import *
+from ..utils import msg_print
+from ..utils import error_check
+from ..utils import random_names
+from ..utils import random_numbers
+from ..utils import random_tel_nums
+from ..utils import random_email
 
 global keys
 global value_type_list
@@ -23,15 +25,15 @@ def set_json_key():
             "If you delete to last key, input \" \" and ENTER.\n" + \
             "If you done to input key, Just press ENTER."
         title = "Random JSON"
-        msg_panel(msg, title)
+        msg_print.msg_panel(msg, title)
 
         if len(keys) <= 0:
-            msg_panel("key: (nothing)", "KEY")
+            msg_print.msg_panel("key: (nothing)", "KEY")
         else:
-            msg_panel(f"key: {keys}", "KEY")
+            msg_print.msg_panel(f"key: {keys}", "KEY")
 
         if error_flg:
-            err_panel("There are no keys.")
+            error_check("There are no keys.")
             error_flg = False
         key_str = input(">> ")
 
@@ -48,7 +50,7 @@ def set_json_key():
                 break
         else:
             keys.append(key_str)
-        clear_screen()
+        msg_print.clear_screen()
     set_key_type(keys)
 
 
@@ -59,7 +61,7 @@ def set_key_type(keys):
         value_type_list.append("")
 
     while True:
-        value_type_list = display_json_type(keys, value_type_list)
+        value_type_list = msg_print.display_json_type(keys, value_type_list)
         menu = input("Choose the menu >> ")
         if menu == "":
             break
@@ -67,13 +69,13 @@ def set_key_type(keys):
             if int(menu) <= data_length and menu != "0":
                 index = int(menu) - 1
             else:
-                err_panel("CHOOSE CORRECT MENU")
+                error_check("CHOOSE CORRECT MENU")
                 continue
         else:
-            err_panel("CHOOSE CORRECT MENU")
+            error_check("CHOOSE CORRECT MENU")
             continue
 
-        msg_panel(
+        msg_print.msg_panel(
             f"((name/number/num/tel/email/percentage/per/boolean/bool))", "TYPE SELECT")
         select_type = input(">> ")
 
@@ -93,7 +95,7 @@ def set_key_type(keys):
             case "boolean" | "bool":
                 value_type_list[index] = select_type
             case _:
-                err_panel("SELECT CORRECT MENU")
+                error_check("SELECT CORRECT MENU")
     create_json_data(keys, value_type_list)
 
 
@@ -106,13 +108,13 @@ def create_json_data(keys, value_type_list):
             case "list":
                 print()
             case "name":
-                data = create_random_name("full")
+                data = random_names.create_random_name("full")
             case "number" | "num":
-                data = create_random_number()
+                data = random_numbers.create_random_number()
             case "tel":
-                data = create_tel_number()
+                data = random_tel_nums.create_tel_number()
             case "email":
-                data = create_email_address()
+                data = random_email.create_email_address()
             case "percentage" | "per":
                 data = str(random.randint(0, 100)) + "%"
             case "boolean" | "bool":
