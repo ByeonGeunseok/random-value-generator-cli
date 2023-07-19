@@ -1,4 +1,4 @@
-from modules.string_random import create_value
+from modules.menus.string_random import create_value
 
 
 def create_email_address():

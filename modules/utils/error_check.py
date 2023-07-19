@@ -1,4 +1,4 @@
-from modules.msg_print import *
+from .msg_print import *
 from const import const
 
 

@@ -1,8 +1,8 @@
 import string
 import random
 from const import const
-from modules.msg_print import *
-from modules.error_check import *
+from ..utils.msg_print import *
+from ..utils.error_check import *
 
 
 def execute_random_string():
