@@ -60,6 +60,6 @@ def calc_number_repeat(amt, min, max, repeat):
             numList.items(), key=operator.itemgetter(1), reverse=True)
 
     display_repeat_count(resultList, amt)
-    check_continue()
+    input(const['REQUIRE_CONTINUE'])
     clear_screen()
     
