@@ -1,5 +1,6 @@
 import string
 import random
+import clipboard
 from const import const
 from ..utils.msg_print import *
 from ..utils.error_check import *
@@ -106,6 +107,9 @@ def create_value(length, allows_number, allows_lower, allows_upper, allows_punct
     for i in range(length):
         result += random.choice(target)
 
+    clipboard.copy(result)
+
     result_panel(result)
-    check_continue()
+    msg_panel("Copy to clipboard.", "")
+    input(const['REQUIRE_CONTINUE'])
     clear_screen()

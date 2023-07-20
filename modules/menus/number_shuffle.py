@@ -49,5 +49,5 @@ def calc_number_shuffle(amt, min, max, shuffle):
             random.shuffle(numberList)
 
     result_panel(str(numberList[:amt]))
-    check_continue()
+    input(const['REQUIRE_CONTINUE'])
     clear_screen()
