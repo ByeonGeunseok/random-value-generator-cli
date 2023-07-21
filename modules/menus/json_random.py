@@ -53,7 +53,7 @@ def set_json_key():
         msg_print.clear_screen()
     set_key_type(keys)
 
-
+# TODO: Add a object
 def set_key_type(keys):
     value_type_list = []
     data_length = len(keys)
