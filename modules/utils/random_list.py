@@ -4,6 +4,7 @@ from .random_names import create_random_name
 from .random_numbers import create_random_number
 from .random_email import create_email_address
 from .random_tel_nums import create_tel_number
+from .random_string import create_random_string
 
 
 def create_random_list(type, cnt):
@@ -14,8 +15,7 @@ def create_random_list(type, cnt):
             for _ in range(int(cnt)):
                 val = ''
                 letter = string.ascii_letters
-                for _ in range(4):
-                    val += random.choice(letter)
+                val = create_random_string(letter, 4)
                 li.append(val)
         case 'number':
             for _ in range(int(cnt)):
