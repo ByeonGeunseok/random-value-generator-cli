@@ -4,6 +4,7 @@ import clipboard
 from const import const
 from ..utils.msg_print import *
 from ..utils.error_check import *
+from ..utils.random_string import *
 
 
 def execute_random_string():
@@ -91,7 +92,6 @@ def toggle_condition(flg, state):
     return flg, state
 
 
-# TODO: Separate a function into a file
 def create_value(length, allows_number, allows_lower, allows_upper, allows_punctuation):
     result = ""
     target = ""
@@ -105,9 +105,7 @@ def create_value(length, allows_number, allows_lower, allows_upper, allows_punct
     if allows_punctuation:
         target += string.punctuation
 
-    for i in range(length):
-        result += random.choice(target)
-
+    result = create_random_string(target, length)
     clipboard.copy(result)
 
     result_panel(result)

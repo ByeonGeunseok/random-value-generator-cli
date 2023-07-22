@@ -3,8 +3,9 @@ from json import *
 import random
 import time
 from conf import conf
+from const import const
+from ..utils import random_list
 from ..utils import msg_print
-from ..utils import error_check
 from ..utils import random_names
 from ..utils import random_numbers
 from ..utils import random_tel_nums
@@ -33,7 +34,7 @@ def set_json_key():
             msg_print.msg_panel(f"key: {keys}", "KEY")
 
         if error_flg:
-            error_check("There are no keys.")
+            msg_print.err_panel("There are no keys.")
             error_flg = False
         key_str = input(">> ")
 
@@ -71,10 +72,10 @@ def set_key_type(keys):
             if int(menu) <= data_length and menu != "0":
                 index = int(menu) - 1
             else:
-                error_check("CHOOSE CORRECT MENU")
+                msg_print.err_panel("CHOOSE CORRECT MENU")
                 continue
         else:
-            error_check("CHOOSE CORRECT MENU")
+            msg_print.err_panel("CHOOSE CORRECT MENU")
             continue
 
         # msg_print.msg_panel(
@@ -95,13 +96,28 @@ def set_key_type(keys):
                 value_type_list[index] = "Percentage"
             case "boolean" | "bool" | "b":
                 value_type_list[index] = "Boolean"
-            # TODO:
-            # case "list" | "li" | "l":
-            #     value_type_list[index] = "List"
+            case "list" | "li" | "l":
+                msg_print.display_list_type()
+                list_type = input(">> ")
+                match list_type:
+                    case '1':
+                        value_type_list[index] = "List(String)"
+                    case '2':
+                        value_type_list[index] = "List(Number)"
+                    case '3':
+                        value_type_list[index] = "List(Name)"
+                    case '4':
+                        value_type_list[index] = "List(E-Mail)"
+                    case '5':
+                        value_type_list[index] = "List(Tel)"
+                    case _:
+                        msg_print.err_panel("SELECT CORRECT MENU")
+
+                # value_type_list[index] = "List"
             # case "object" | "obj" | "o":
             #     value_type_list[index] = "Object"
             case _:
-                error_check("SELECT CORRECT MENU")
+                msg_print.err_panel("SELECT CORRECT MENU")
     create_json_data(keys, value_type_list)
 
 
@@ -111,19 +127,37 @@ def create_json_data(keys, value_type_list):
     for key in keys:
         data = ""
         match value_type_list[index]:
-            case "list":
-                print()
-            case "name":
+            case "List(String)":
+                msg_print.msg_panel(const['REQUIRE_VALUE_COUNT'], '')
+                list_cnt = input(">> ")
+                data = random_list.create_random_list('str', list_cnt)
+            case "List(Number)":
+                msg_print.msg_panel(const['REQUIRE_VALUE_COUNT'], '')
+                list_cnt = input(">> ")
+                data = random_list.create_random_list('number', list_cnt)
+            case "List(Name)":
+                msg_print.msg_panel(const['REQUIRE_VALUE_COUNT'], '')
+                list_cnt = input(">> ")
+                data = random_list.create_random_list('name', list_cnt)
+            case "List(E-Mail)":
+                msg_print.msg_panel(const['REQUIRE_VALUE_COUNT'], '')
+                list_cnt = input(">> ")
+                data = random_list.create_random_list('email', list_cnt)
+            case "List(Tel)":
+                msg_print.msg_panel(const['REQUIRE_VALUE_COUNT'], '')
+                list_cnt = input(">> ")
+                data = random_list.create_random_list('tel', list_cnt)
+            case "Name":
                 data = random_names.create_random_name("full")
-            case "number" | "num":
+            case "Number":
                 data = random_numbers.create_random_number()
-            case "tel":
+            case "Tel":
                 data = random_tel_nums.create_tel_number()
-            case "email":
+            case "E-Mail":
                 data = random_email.create_email_address()
-            case "percentage" | "per":
+            case "Percentage":
                 data = str(random.randint(0, 100)) + "%"
-            case "boolean" | "bool":
+            case "Boolean":
                 data = bool(random.getrandbits(1))
             case _:
                 print()
