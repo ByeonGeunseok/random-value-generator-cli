@@ -4,3 +4,4 @@ from . import random_email
 from . import random_names
 from . import random_numbers
 from . import random_tel_nums
+from . import random_list

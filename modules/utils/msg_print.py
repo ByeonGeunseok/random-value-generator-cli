@@ -101,6 +101,22 @@ def display_name_type():
     console.print(table, justify="center")
 
 
+def display_list_type():
+    console = Console()
+
+    table = Table(title=const['REQUIRE_MENU'],
+                  show_header=True, header_style="bold")
+    table.add_column("SELECT")
+    table.add_column("TYPE")
+    table.add_row("Press [1]", "String")
+    table.add_row("Press [2]", "Number")
+    table.add_row("Press [3]", "Name")
+    table.add_row("Press [4]", "E-Mail")
+    table.add_row("Press [5]", "Tel")
+
+    console.print(table, justify="center")
+
+
 def display_csv_type(keys, list):
     index = 0
     json_length = len(keys)

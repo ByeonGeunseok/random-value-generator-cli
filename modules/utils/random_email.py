@@ -1,4 +1,5 @@
-from modules.menus.string_random import create_value
+import random
+import string
 
 
 def create_email_address():
@@ -6,8 +7,10 @@ def create_email_address():
     EMAIL_TAIL = ".com"
     LENGTH = 8
 
-    email_id = create_value(LENGTH, True, True, False, False)
-    email_address = create_value(LENGTH, True, True, False, False)
+    val = string.ascii_letters
+    for _ in range(LENGTH):
+        email_id = random.choice(val)
+        email_address = random.choice(val)
 
     email_string = email_id + EMAIL_AT + email_address + EMAIL_TAIL
 

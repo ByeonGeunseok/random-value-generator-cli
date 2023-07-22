@@ -1,5 +1,35 @@
-# TODO:
-# create list
-# value type and count
-# [] -> [type random value1, type random value2 , ... , type random value n(count)]
-# return list
+import string
+import random
+from .random_names import create_random_name
+from .random_numbers import create_random_number
+from .random_email import create_email_address
+from .random_tel_nums import create_tel_number
+
+
+def create_random_list(type, cnt):
+    li = []
+
+    match type:
+        case 'str':
+            for _ in range(int(cnt)):
+                val = ''
+                letter = string.ascii_letters
+                for _ in range(4):
+                    val += random.choice(letter)
+                li.append(val)
+        case 'number':
+            for _ in range(int(cnt)):
+                li.append(create_random_number())
+        case 'name':
+            for _ in range(int(cnt)):
+                li.append(create_random_name('full'))
+        case 'email':
+            for _ in range(int(cnt)):
+                li.append(create_email_address())
+        case 'tel':
+            for _ in range(int(cnt)):
+                li.append(create_tel_number())
+        case _:
+            for _ in range(int(cnt)):
+                li.append('')
+    return li
