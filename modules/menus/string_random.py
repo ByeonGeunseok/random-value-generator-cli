@@ -91,6 +91,7 @@ def toggle_condition(flg, state):
     return flg, state
 
 
+# TODO: Separate a function into a file
 def create_value(length, allows_number, allows_lower, allows_upper, allows_punctuation):
     result = ""
     target = ""

@@ -53,6 +53,8 @@ def set_json_key():
         msg_print.clear_screen()
     set_key_type(keys)
 
+# TODO: Add a object
+
 
 def set_key_type(keys):
     value_type_list = []
@@ -75,25 +77,29 @@ def set_key_type(keys):
             error_check("CHOOSE CORRECT MENU")
             continue
 
-        msg_print.msg_panel(
-            f"((name/number/num/tel/email/percentage/per/boolean/bool))", "TYPE SELECT")
+        # msg_print.msg_panel(
+        #     f"((name/number/num/tel/email/percentage/per/boolean/bool))", "TYPE SELECT")
+        msg_print.display_type_selector('json')
         select_type = input(">> ")
 
         match select_type:
-            case "list":
-                value_type_list[index] = select_type
-            case "name":
-                value_type_list[index] = select_type
+            case "name" | "na":
+                value_type_list[index] = "Name"
             case "number" | "num":
-                value_type_list[index] = select_type
-            case "tel":
-                value_type_list[index] = select_type
-            case "email":
-                value_type_list[index] = select_type
-            case "percentage" | "per":
-                value_type_list[index] = select_type
-            case "boolean" | "bool":
-                value_type_list[index] = select_type
+                value_type_list[index] = "Number"
+            case "tel" | "t":
+                value_type_list[index] = "Tel"
+            case "email" | "e":
+                value_type_list[index] = "E-Mail"
+            case "percentage" | "per" | "p":
+                value_type_list[index] = "Percentage"
+            case "boolean" | "bool" | "b":
+                value_type_list[index] = "Boolean"
+            # TODO:
+            # case "list" | "li" | "l":
+            #     value_type_list[index] = "List"
+            # case "object" | "obj" | "o":
+            #     value_type_list[index] = "Object"
             case _:
                 error_check("SELECT CORRECT MENU")
     create_json_data(keys, value_type_list)
