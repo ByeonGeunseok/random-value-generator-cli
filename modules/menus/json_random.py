@@ -6,7 +6,6 @@ from conf import conf
 from const import const
 from ..utils import random_list
 from ..utils import msg_print
-from ..utils import error_check
 from ..utils import random_names
 from ..utils import random_numbers
 from ..utils import random_tel_nums
@@ -35,7 +34,7 @@ def set_json_key():
             msg_print.msg_panel(f"key: {keys}", "KEY")
 
         if error_flg:
-            error_check("There are no keys.")
+            msg_print.err_panel("There are no keys.")
             error_flg = False
         key_str = input(">> ")
 
@@ -73,10 +72,10 @@ def set_key_type(keys):
             if int(menu) <= data_length and menu != "0":
                 index = int(menu) - 1
             else:
-                error_check("CHOOSE CORRECT MENU")
+                msg_print.err_panel("CHOOSE CORRECT MENU")
                 continue
         else:
-            error_check("CHOOSE CORRECT MENU")
+            msg_print.err_panel("CHOOSE CORRECT MENU")
             continue
 
         # msg_print.msg_panel(
@@ -112,13 +111,13 @@ def set_key_type(keys):
                     case '5':
                         value_type_list[index] = "List(Tel)"
                     case _:
-                        error_check("SELECT CORRECT MENU")
+                        msg_print.err_panel("SELECT CORRECT MENU")
 
                 # value_type_list[index] = "List"
             # case "object" | "obj" | "o":
             #     value_type_list[index] = "Object"
             case _:
-                error_check("SELECT CORRECT MENU")
+                msg_print.err_panel("SELECT CORRECT MENU")
     create_json_data(keys, value_type_list)
 
 
