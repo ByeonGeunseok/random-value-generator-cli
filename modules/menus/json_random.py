@@ -147,17 +147,17 @@ def create_json_data(keys, value_type_list):
                 msg_print.msg_panel(const['REQUIRE_VALUE_COUNT'], '')
                 list_cnt = input(">> ")
                 data = random_list.create_random_list('tel', list_cnt)
-            case "name":
+            case "Name":
                 data = random_names.create_random_name("full")
-            case "number" | "num":
+            case "Number":
                 data = random_numbers.create_random_number()
-            case "tel":
+            case "Tel":
                 data = random_tel_nums.create_tel_number()
-            case "email":
+            case "E-Mail":
                 data = random_email.create_email_address()
-            case "percentage" | "per":
+            case "Percentage":
                 data = str(random.randint(0, 100)) + "%"
-            case "boolean" | "bool":
+            case "Boolean":
                 data = bool(random.getrandbits(1))
             case _:
                 print()
