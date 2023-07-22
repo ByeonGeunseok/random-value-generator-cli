@@ -82,33 +82,34 @@ def set_column_type(headers):
             error_check.err_panel(const['ERROR_WRONG_MENU'])
             continue
 
-        msg_print.msg_panel(
-            f"((name/number/num/tel/email/percentage/per/boolean/bool))", "TYPE SELECT")
+        # msg_print.msg_panel(
+        #     f"((name/number/num/tel/email/percentage/per/boolean/bool))", "TYPE SELECT")
+        msg_print.display_type_selector('csv')
         select_type = input(">> ")
 
         match select_type:
-            case "name":
+            case "name" | "na":
                 msg_print.display_name_type()
                 name_menu = input(">> ")
                 match name_menu:
                     case "1":
-                        value_type_list[index] = "first name"
+                        value_type_list[index] = "First Name"
                     case "2":
-                        value_type_list[index] = "last name"
+                        value_type_list[index] = "Last Name"
                     case "3":
-                        value_type_list[index] = "full name"
+                        value_type_list[index] = "Full Name"
                     case _:
                         error_check.err_panel(const['ERROR_WRONG_MENU'])
             case "number" | "num":
-                value_type_list[index] = select_type
-            case "tel":
-                value_type_list[index] = select_type
-            case "email":
-                value_type_list[index] = select_type
-            case "percentage" | "per":
-                value_type_list[index] = select_type
-            case "boolean" | "bool":
-                value_type_list[index] = select_type
+                value_type_list[index] = "Number"
+            case "tel" | "t":
+                value_type_list[index] = "Tel"
+            case "email" | "e":
+                value_type_list[index] = "E-Mail"
+            case "percentage" | "per" | "p":
+                value_type_list[index] = "Percentage"
+            case "boolean" | "bool" | "b":
+                value_type_list[index] = "Boolean"
             case _:
                 error_check.err_panel(const['ERROR_WRONG_MENU'])
 

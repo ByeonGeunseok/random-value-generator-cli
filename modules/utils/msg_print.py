@@ -4,6 +4,7 @@ from rich import print
 from rich.panel import Panel
 from rich.console import Console
 from rich.table import Table
+from rich.columns import Columns
 from const import const
 
 
@@ -149,3 +150,46 @@ def display_json_type(keys, list):
 def check_continue():
     print(Panel(const['REQUIRE_CONTINUE'], style="bold"))
     temp = input()
+
+
+def display_type_selector(type):
+    def get_content(menus):
+        return f"[b]{menus['name']}[/b]\n[yellow]{menus['keyword']}"
+
+    console = Console()
+
+    menus = [{
+        'name': 'Name',
+        'keyword': 'name / na'
+    }, {
+        'name': 'Number',
+        'keyword': 'number / num',
+    }, {
+        'name': 'Tel',
+        'keyword': 'tel / t',
+    }, {
+        'name': 'E-Mail',
+        'keyword': 'email / e',
+    }, {
+        'name': 'Percent',
+        'keyword': 'percent / per / p',
+    }, {
+        'name': 'Boolean',
+        'keyword': 'boolean / bool / b',
+    }]
+
+    extra = [{
+        'name': 'List',
+        'keyword': 'list / li / l',
+    }, {
+        'name': 'Object',
+        'keyword': 'object / obj / o',
+    }]
+
+    if type == 'json':
+        menus = menus + extra
+
+    # console.print(menus, overflow="ignore", crop=False)
+    menu_renderables = [Panel(get_content(menu), expand=True)
+                        for menu in menus]
+    console.print(Columns(menu_renderables))
