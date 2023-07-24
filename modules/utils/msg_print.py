@@ -1,5 +1,5 @@
-import os
-import platform
+from os import system
+from platform import system as plsys
 from rich import print
 from rich.panel import Panel
 from rich.console import Console
@@ -12,10 +12,10 @@ def clear_screen():
     """
     Clear the console screen.
     """
-    if platform.system() == "Windows":
-        os.system("cls")
+    if plsys() == "Windows":
+        system("cls")
     else:
-        os.system("clear")
+        system("clear")
 
 
 def render_main_menu():
