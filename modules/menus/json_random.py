@@ -85,7 +85,17 @@ def set_key_type(keys):
 
         match select_type:
             case "name" | "na":
-                value_type_list[index] = "Name"
+                msg_print.display_name_type()
+                name_menu = input(">> ")
+                match name_menu:
+                    case "1":
+                        value_type_list[index] = "First Name"
+                    case "2":
+                        value_type_list[index] = "Last Name"
+                    case "3":
+                        value_type_list[index] = "Full Name"
+                    case _:
+                        msg_print.err_panel(const['ERROR_WRONG_MENU'])
             case "number" | "num":
                 value_type_list[index] = "Number"
             case "tel" | "t":
@@ -147,8 +157,17 @@ def create_json_data(keys, value_type_list):
                 msg_print.msg_panel(const['REQUIRE_VALUE_COUNT'], '')
                 list_cnt = input(">> ")
                 data = random_list.create_random_list('tel', list_cnt)
-            case "Name":
-                data = random_names.create_random_name("full")
+            case "First Name":
+                data = random_names.create_random_name("first")
+                first_name = data
+            case "Last Name":
+                data = random_names.create_random_name("last")
+                last_name = data
+            case "Full Name":
+                if "First Name" in value_type_list and "Last Name" in value_type_list:
+                    data = first_name + " " + last_name
+                else:
+                    data = random_names.create_random_name("full")
             case "Number":
                 data = random_numbers.create_random_number()
             case "Tel":
