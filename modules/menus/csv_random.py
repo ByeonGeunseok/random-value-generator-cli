@@ -27,7 +27,7 @@ def set_csv_header():
         else:
             msg_print.msg_panel(f"header: {headers}", "HEADER")
         if error_flg:
-            error_check.err_panel(const['ERROR_NO_HEADER'])
+            msg_print.err_panel(const['ERROR_NO_HEADER'])
             error_flg = False
         header_str = input()
 
@@ -40,7 +40,7 @@ def set_csv_header():
             break
         else:
             headers.append(header_str)
-        error_check.clear_screen()
+        msg_print.clear_screen()
     set_column_type(headers)
 
 
@@ -75,10 +75,10 @@ def set_column_type(headers):
             if int(menu) <= col_cnt and menu != "0":
                 index = int(menu) - 1
             else:
-                error_check.err_panel(const['ERROR_WRONG_MENU'])
+                msg_print.err_panel(const['ERROR_WRONG_MENU'])
                 continue
         else:
-            error_check.err_panel(const['ERROR_WRONG_MENU'])
+            msg_print.err_panel(const['ERROR_WRONG_MENU'])
             continue
 
         msg_print.display_type_selector('csv')
@@ -96,7 +96,7 @@ def set_column_type(headers):
                     case "3":
                         value_type_list[index] = "Full Name"
                     case _:
-                        error_check.err_panel(const['ERROR_WRONG_MENU'])
+                        msg_print.err_panel(const['ERROR_WRONG_MENU'])
             case "number" | "num":
                 value_type_list[index] = "Number"
             case "tel" | "t":
@@ -108,7 +108,7 @@ def set_column_type(headers):
             case "boolean" | "bool" | "b":
                 value_type_list[index] = "Boolean"
             case _:
-                error_check.err_panel(const['ERROR_WRONG_MENU'])
+                msg_print.err_panel(const['ERROR_WRONG_MENU'])
 
     create_csv(headers, value_type_list)
 
