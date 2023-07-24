@@ -32,7 +32,6 @@ def set_csv_header():
         header_str = input()
 
         if header_str == " ":
-            # Delete last header
             if len(headers) <= 0:
                 error_flg = True
             else:
@@ -82,8 +81,6 @@ def set_column_type(headers):
             error_check.err_panel(const['ERROR_WRONG_MENU'])
             continue
 
-        # msg_print.msg_panel(
-        #     f"((name/number/num/tel/email/percentage/per/boolean/bool))", "TYPE SELECT")
         msg_print.display_type_selector('csv')
         select_type = input(">> ")
 

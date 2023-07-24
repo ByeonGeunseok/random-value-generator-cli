@@ -39,7 +39,6 @@ def set_json_key():
         key_str = input(">> ")
 
         if key_str == " ":
-            # Delete last key
             if len(keys) <= 0:
                 error_flg = True
             else:
@@ -54,9 +53,8 @@ def set_json_key():
         msg_print.clear_screen()
     set_key_type(keys)
 
+
 # TODO: Add a object
-
-
 def set_key_type(keys):
     value_type_list = []
     data_length = len(keys)
@@ -78,8 +76,6 @@ def set_key_type(keys):
             msg_print.err_panel("CHOOSE CORRECT MENU")
             continue
 
-        # msg_print.msg_panel(
-        #     f"((name/number/num/tel/email/percentage/per/boolean/bool))", "TYPE SELECT")
         msg_print.display_type_selector('json')
         select_type = input(">> ")
 
@@ -123,7 +119,6 @@ def set_key_type(keys):
                     case _:
                         msg_print.err_panel("SELECT CORRECT MENU")
 
-                # value_type_list[index] = "List"
             # case "object" | "obj" | "o":
             #     value_type_list[index] = "Object"
             case _:
