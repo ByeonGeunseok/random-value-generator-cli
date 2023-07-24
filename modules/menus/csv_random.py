@@ -120,36 +120,36 @@ def create_csv_row(value_type_list):
     col_type_contents = []
     for col_type in value_type_list:
         match col_type:
-            case "first name":
+            case "First Name":
                 col_type_contents.append(
                     random_names.create_random_name("first"))
 
-            case "last name":
+            case "Last Name":
                 col_type_contents.append(
                     random_names.create_random_name("last"))
 
-            case "full name":
-                if ("first name" in value_type_list) & ("last name" in value_type_list):
+            case "Full Name":
+                if ("First Name" in value_type_list) & ("Last Name" in value_type_list):
                     name_full = col_type_contents[value_type_list.index(
-                        "first name")] + " " + col_type_contents[value_type_list.index("last name")]
+                        "First Name")] + " " + col_type_contents[value_type_list.index("Last Name")]
                     col_type_contents.append(name_full)
                 else:
                     col_type_contents.append(
                         random_names.create_random_name("full"))
 
-            case "number" | "num":
+            case "Number":
                 col_type_contents.append(random_numbers.create_random_number())
 
-            case "tel":
+            case "Tel":
                 col_type_contents.append(
                     random_tel_nums.create_tel_number())
 
-            case "email":
+            case "E-Mail":
                 col_type_contents.append(random_email.create_email_address())
-            case "percentage" | "per":
+            case "Percentage":
                 percent = str(random.randint(0, 100)) + "%"
                 col_type_contents.append(percent)
-            case "boolean" | "bool":
+            case "Boolean":
                 col_type_contents.append(bool(random.getrandbits(1)))
             case _:
                 print()
