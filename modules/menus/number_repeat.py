@@ -13,19 +13,35 @@ def execute_number_repeat():
             clear_screen()
             err_panel(const['ERROR_INPUT'])
             error_flg = False
-        amount_input = input(f"{const['REQUIRE_NUMBER_NEED']} : ")
+        # Number amount
+        amount_input = input(
+            f"{const['REQUIRE_NUMBER_NEED']} ({const['QUIT_MESSAGE']}): ")
+        if amount_input == '!q':
+            break
         if not amount_input.isdigit():
             error_flg = True
             continue
-        min_range_input = input(f"{const['REQUIRE_MINIMUM']} : ")
+        # Minimum number range
+        min_range_input = input(
+            f"{const['REQUIRE_MINIMUM']} ({const['QUIT_MESSAGE']}): ")
+        if min_range_input == '!q':
+            break
         if not min_range_input.isdigit():
             error_flg = True
             continue
-        max_range_input = input(f"{const['REQUIRE_MAXIMUM']} : ")
+        # Maximum number range
+        max_range_input = input(
+            f"{const['REQUIRE_MAXIMUM']} ({const['QUIT_MESSAGE']}): ")
+        if max_range_input == '!q':
+            break
         if not max_range_input.isdigit():
             error_flg = True
             continue
-        repeat_count_input = input(f"{const['REQUIRE_REPEAT_COUNT']} : ")
+        # Repeat Count
+        repeat_count_input = input(
+            f"{const['REQUIRE_REPEAT_COUNT']} ({const['QUIT_MESSAGE']}): ")
+        if repeat_count_input == '!q':
+            break
         if not repeat_count_input.isdigit():
             error_flg = True
             continue
@@ -62,4 +78,3 @@ def calc_number_repeat(amt, min, max, repeat):
     display_repeat_count(resultList, amt)
     input(const['REQUIRE_CONTINUE'])
     clear_screen()
-    

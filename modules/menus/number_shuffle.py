@@ -12,21 +12,35 @@ def execute_number_shuffle():
             clear_screen()
             err_panel(const['ERROR_INPUT'])
             error_flg = False
-
-        amount_input = input(f"{const['REQUIRE_NUMBER_NEED']} : ")
+        # Number amount
+        amount_input = input(
+            f"{const['REQUIRE_NUMBER_NEED']} ({const['QUIT_MESSAGE']}): ")
+        if amount_input == '!q':
+            break
         if not amount_input.isdigit():
             error_flg = True
             continue
-        min_range_input = input(f"{const['REQUIRE_MINIMUM']} : ")
+        # Minimum number range
+        min_range_input = input(
+            f"{const['REQUIRE_MINIMUM']} ({const['QUIT_MESSAGE']}): ")
+        if min_range_input == '!q':
+            break
         if not min_range_input.isdigit():
             error_flg = True
             continue
-        max_range_input = input(f"{const['REQUIRE_MAXIMUM']} : ")
+        # Maximum number range
+        max_range_input = input(
+            f"{const['REQUIRE_MAXIMUM']} ({const['QUIT_MESSAGE']}): ")
+        if max_range_input == '!q':
+            break
         if not max_range_input.isdigit():
             error_flg = True
             continue
+        # Shuffle count
         shuffle_count_input = input(
-            f"{const['REQUIRE_SHUFFLE_COUNT']} : ")
+            f"{const['REQUIRE_SHUFFLE_COUNT']} ({const['QUIT_MESSAGE']}): ")
+        if shuffle_count_input == '!q':
+            break
         if not shuffle_count_input.isdigit():
             error_flg = True
             continue
