@@ -14,11 +14,14 @@ col_type_contents = []
 
 def set_csv_header():
     error_flg = False
+    quit_flg = False
     headers = []
+
     while True:
         msg = "If you need header, input once.\n" + \
             "If you delete to last header, input \" \" and ENTER.\n" + \
-            "If you done to input header, Just press ENTER."
+            "If you done to input header, Just press ENTER.\n" + \
+            "If you want to quit, input \"!q\" and ENTER."
         title = "Random CSV"
         msg_print.msg_panel(msg, title)
 
@@ -38,10 +41,14 @@ def set_csv_header():
                 headers.pop()
         elif header_str == "":
             break
+        elif header_str == "!q":
+            quit_flg = True
+            break
         else:
             headers.append(header_str)
         msg_print.clear_screen()
-    set_column_type(headers)
+    if not quit_flg:
+        set_column_type(headers)
 
 
 def set_column_type(headers):

@@ -21,10 +21,13 @@ json_data = {}
 
 def set_json_key():
     error_flg = False
+    quit_flg = False
+
     while True:
         msg = "Input a key.\n" + \
             "If you delete to last key, input \" \" and ENTER.\n" + \
-            "If you done to input key, Just press ENTER."
+            "If you done to input key, Just press ENTER.\n" + \
+            "If you want to quit, input \"!q\" and ENTER."
         title = "Random JSON"
         msg_print.msg_panel(msg, title)
 
@@ -48,10 +51,14 @@ def set_json_key():
                 error_flg = True
             else:
                 break
+        elif key_str == "!q":
+            quit_flg = True
+            break
         else:
             keys.append(key_str)
         msg_print.clear_screen()
-    set_key_type(keys)
+    if not quit_flg:
+        set_key_type(keys)
 
 
 # TODO: Add a object
