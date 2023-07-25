@@ -1,5 +1,4 @@
-import string
-import random
+from string import ascii_letters
 from .random_names import create_random_name
 from .random_numbers import create_random_number
 from .random_email import create_email_address
@@ -14,7 +13,7 @@ def create_random_list(type, cnt):
         case 'str':
             for _ in range(int(cnt)):
                 val = ''
-                letter = string.ascii_letters
+                letter = ascii_letters
                 val = create_random_string(letter, 4)
                 li.append(val)
         case 'number':

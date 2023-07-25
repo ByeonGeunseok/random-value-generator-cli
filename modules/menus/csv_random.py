@@ -14,11 +14,14 @@ col_type_contents = []
 
 def set_csv_header():
     error_flg = False
+    quit_flg = False
     headers = []
+
     while True:
         msg = "If you need header, input once.\n" + \
             "If you delete to last header, input \" \" and ENTER.\n" + \
-            "If you done to input header, Just press ENTER."
+            "If you done to input header, Just press ENTER.\n" + \
+            "If you want to quit, input \"!q\" and ENTER."
         title = "Random CSV"
         msg_print.msg_panel(msg, title)
 
@@ -27,22 +30,25 @@ def set_csv_header():
         else:
             msg_print.msg_panel(f"header: {headers}", "HEADER")
         if error_flg:
-            error_check.err_panel(const['ERROR_NO_HEADER'])
+            msg_print.err_panel(const['ERROR_NO_HEADER'])
             error_flg = False
         header_str = input()
 
         if header_str == " ":
-            # Delete last header
             if len(headers) <= 0:
                 error_flg = True
             else:
                 headers.pop()
         elif header_str == "":
             break
+        elif header_str == "!q":
+            quit_flg = True
+            break
         else:
             headers.append(header_str)
-        error_check.clear_screen()
-    set_column_type(headers)
+        msg_print.clear_screen()
+    if not quit_flg:
+        set_column_type(headers)
 
 
 def set_column_type(headers):
@@ -76,14 +82,12 @@ def set_column_type(headers):
             if int(menu) <= col_cnt and menu != "0":
                 index = int(menu) - 1
             else:
-                error_check.err_panel(const['ERROR_WRONG_MENU'])
+                msg_print.err_panel(const['ERROR_WRONG_MENU'])
                 continue
         else:
-            error_check.err_panel(const['ERROR_WRONG_MENU'])
+            msg_print.err_panel(const['ERROR_WRONG_MENU'])
             continue
 
-        # msg_print.msg_panel(
-        #     f"((name/number/num/tel/email/percentage/per/boolean/bool))", "TYPE SELECT")
         msg_print.display_type_selector('csv')
         select_type = input(">> ")
 
@@ -99,7 +103,7 @@ def set_column_type(headers):
                     case "3":
                         value_type_list[index] = "Full Name"
                     case _:
-                        error_check.err_panel(const['ERROR_WRONG_MENU'])
+                        msg_print.err_panel(const['ERROR_WRONG_MENU'])
             case "number" | "num":
                 value_type_list[index] = "Number"
             case "tel" | "t":
@@ -111,7 +115,7 @@ def set_column_type(headers):
             case "boolean" | "bool" | "b":
                 value_type_list[index] = "Boolean"
             case _:
-                error_check.err_panel(const['ERROR_WRONG_MENU'])
+                msg_print.err_panel(const['ERROR_WRONG_MENU'])
 
     create_csv(headers, value_type_list)
 
@@ -120,36 +124,36 @@ def create_csv_row(value_type_list):
     col_type_contents = []
     for col_type in value_type_list:
         match col_type:
-            case "first name":
+            case "First Name":
                 col_type_contents.append(
                     random_names.create_random_name("first"))
 
-            case "last name":
+            case "Last Name":
                 col_type_contents.append(
                     random_names.create_random_name("last"))
 
-            case "full name":
-                if ("first name" in value_type_list) & ("last name" in value_type_list):
+            case "Full Name":
+                if ("First Name" in value_type_list) & ("Last Name" in value_type_list):
                     name_full = col_type_contents[value_type_list.index(
-                        "first name")] + " " + col_type_contents[value_type_list.index("last name")]
+                        "First Name")] + " " + col_type_contents[value_type_list.index("Last Name")]
                     col_type_contents.append(name_full)
                 else:
                     col_type_contents.append(
                         random_names.create_random_name("full"))
 
-            case "number" | "num":
+            case "Number":
                 col_type_contents.append(random_numbers.create_random_number())
 
-            case "tel":
+            case "Tel":
                 col_type_contents.append(
                     random_tel_nums.create_tel_number())
 
-            case "email":
+            case "E-Mail":
                 col_type_contents.append(random_email.create_email_address())
-            case "percentage" | "per":
+            case "Percentage":
                 percent = str(random.randint(0, 100)) + "%"
                 col_type_contents.append(percent)
-            case "boolean" | "bool":
+            case "Boolean":
                 col_type_contents.append(bool(random.getrandbits(1)))
             case _:
                 print()

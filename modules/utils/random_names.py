@@ -1,4 +1,4 @@
-import random
+from random import choice
 from const import const
 from .msg_print import display_name_type
 
@@ -24,12 +24,12 @@ def choose_name_type():
 
 def create_random_name(name_type):
     if name_type == "first":
-        return random.choice(first_names)
+        return choice(first_names)
     elif name_type == "last":
-        return random.choice(last_names)
+        return choice(last_names)
     elif name_type == "full":
-        full_name = random.choice(first_names) + " " + \
-            random.choice(last_names)
+        full_name = choice(first_names) + " " + \
+            choice(last_names)
         return full_name
     else:
         return 0

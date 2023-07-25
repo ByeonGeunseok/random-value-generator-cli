@@ -21,10 +21,13 @@ json_data = {}
 
 def set_json_key():
     error_flg = False
+    quit_flg = False
+
     while True:
         msg = "Input a key.\n" + \
             "If you delete to last key, input \" \" and ENTER.\n" + \
-            "If you done to input key, Just press ENTER."
+            "If you done to input key, Just press ENTER.\n" + \
+            "If you want to quit, input \"!q\" and ENTER."
         title = "Random JSON"
         msg_print.msg_panel(msg, title)
 
@@ -39,7 +42,6 @@ def set_json_key():
         key_str = input(">> ")
 
         if key_str == " ":
-            # Delete last key
             if len(keys) <= 0:
                 error_flg = True
             else:
@@ -49,14 +51,17 @@ def set_json_key():
                 error_flg = True
             else:
                 break
+        elif key_str == "!q":
+            quit_flg = True
+            break
         else:
             keys.append(key_str)
         msg_print.clear_screen()
-    set_key_type(keys)
+    if not quit_flg:
+        set_key_type(keys)
+
 
 # TODO: Add a object
-
-
 def set_key_type(keys):
     value_type_list = []
     data_length = len(keys)
@@ -78,14 +83,22 @@ def set_key_type(keys):
             msg_print.err_panel("CHOOSE CORRECT MENU")
             continue
 
-        # msg_print.msg_panel(
-        #     f"((name/number/num/tel/email/percentage/per/boolean/bool))", "TYPE SELECT")
         msg_print.display_type_selector('json')
         select_type = input(">> ")
 
         match select_type:
             case "name" | "na":
-                value_type_list[index] = "Name"
+                msg_print.display_name_type()
+                name_menu = input(">> ")
+                match name_menu:
+                    case "1":
+                        value_type_list[index] = "First Name"
+                    case "2":
+                        value_type_list[index] = "Last Name"
+                    case "3":
+                        value_type_list[index] = "Full Name"
+                    case _:
+                        msg_print.err_panel(const['ERROR_WRONG_MENU'])
             case "number" | "num":
                 value_type_list[index] = "Number"
             case "tel" | "t":
@@ -113,7 +126,6 @@ def set_key_type(keys):
                     case _:
                         msg_print.err_panel("SELECT CORRECT MENU")
 
-                # value_type_list[index] = "List"
             # case "object" | "obj" | "o":
             #     value_type_list[index] = "Object"
             case _:
@@ -147,8 +159,17 @@ def create_json_data(keys, value_type_list):
                 msg_print.msg_panel(const['REQUIRE_VALUE_COUNT'], '')
                 list_cnt = input(">> ")
                 data = random_list.create_random_list('tel', list_cnt)
-            case "Name":
-                data = random_names.create_random_name("full")
+            case "First Name":
+                data = random_names.create_random_name("first")
+                first_name = data
+            case "Last Name":
+                data = random_names.create_random_name("last")
+                last_name = data
+            case "Full Name":
+                if "First Name" in value_type_list and "Last Name" in value_type_list:
+                    data = first_name + " " + last_name
+                else:
+                    data = random_names.create_random_name("full")
             case "Number":
                 data = random_numbers.create_random_number()
             case "Tel":
