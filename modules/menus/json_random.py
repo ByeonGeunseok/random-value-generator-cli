@@ -32,9 +32,9 @@ def set_json_key():
         msg_print.msg_panel(msg, title)
 
         if len(keys) <= 0:
-            msg_print.msg_panel("key: (nothing)", "KEY")
+            msg_print.msg_panel("key: (nothing)")
         else:
-            msg_print.msg_panel(f"key: {keys}", "KEY")
+            msg_print.msg_panel(f"key: {keys}")
 
         if error_flg:
             msg_print.err_panel("There are no keys.")

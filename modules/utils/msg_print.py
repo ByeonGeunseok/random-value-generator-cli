@@ -75,8 +75,11 @@ def display_string_menu(length, number_state, lower_state, upper_state, punctuat
     console.print(table, justify="center")
 
 
-def msg_panel(msg, title):
-    print(Panel(msg, title=title, style="bold"))
+def msg_panel(msg, *title):
+    if title:
+        print(Panel(msg, title=title[0], style="bold"))
+    else:
+        print(Panel(msg, style="bold"))
 
 
 def err_panel(msg):
