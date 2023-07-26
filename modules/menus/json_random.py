@@ -11,17 +11,11 @@ from ..utils import random_numbers
 from ..utils import random_tel_nums
 from ..utils import random_email
 
-global keys
-global value_type_list
-global json_data
-keys = []
-value_type_list = []
-json_data = {}
-
 
 def set_json_key():
     error_flg = False
     quit_flg = False
+    keys = []
 
     while True:
         msg = "Input a key.\n" + \
@@ -32,9 +26,9 @@ def set_json_key():
         msg_print.msg_panel(msg, title)
 
         if len(keys) <= 0:
-            msg_print.msg_panel("key: (nothing)", "KEY")
+            msg_print.msg_panel("key: (nothing)")
         else:
-            msg_print.msg_panel(f"key: {keys}", "KEY")
+            msg_print.msg_panel(f"key: {keys}")
 
         if error_flg:
             msg_print.err_panel("There are no keys.")

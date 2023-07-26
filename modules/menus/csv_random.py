@@ -6,11 +6,6 @@ from conf import conf
 from const import const
 from ..utils import *
 
-global headers
-headers = []
-global col_type_contents
-col_type_contents = []
-
 
 def set_csv_header():
     error_flg = False
@@ -26,9 +21,9 @@ def set_csv_header():
         msg_print.msg_panel(msg, title)
 
         if len(headers) <= 0:
-            msg_print.msg_panel("header: (nothing)", "HEADER")
+            msg_print.msg_panel("header: (nothing)")
         else:
-            msg_print.msg_panel(f"header: {headers}", "HEADER")
+            msg_print.msg_panel(f"header: {headers}")
         if error_flg:
             msg_print.err_panel(const['ERROR_NO_HEADER'])
             error_flg = False

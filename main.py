@@ -6,7 +6,6 @@ from const import const
 while True:
     # START
     msg_print.render_main_menu()
-
     # Choose the menu, Return menu number.
     menu = input(const['REQUIRE_MENU'])
 
