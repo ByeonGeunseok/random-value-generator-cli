@@ -11,13 +11,6 @@ from ..utils import random_numbers
 from ..utils import random_tel_nums
 from ..utils import random_email
 
-# global keys
-# global value_type_list
-# global json_data
-# keys = []
-# value_type_list = []
-# json_data = {}
-
 
 def set_json_key():
     error_flg = False
