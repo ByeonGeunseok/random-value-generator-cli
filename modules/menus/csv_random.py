@@ -72,7 +72,11 @@ def set_column_type(headers):
         value_type_list = msg_print.display_csv_type(headers, value_type_list)
         menu = input("Choose the menu >> ")
         if menu == "":
-            break
+            if '' in value_type_list:
+                msg_print.err_panel(const['ERROR_INPUT'])
+                continue
+            else:
+                break
         elif menu.isdigit():
             if int(menu) <= col_cnt and menu != "0":
                 index = int(menu) - 1

@@ -66,7 +66,11 @@ def set_key_type(keys):
         value_type_list = msg_print.display_json_type(keys, value_type_list)
         menu = input("Choose the menu >> ")
         if menu == "":
-            break
+            if '' in value_type_list:
+                msg_print.err_panel(const['ERROR_INPUT'])
+                continue
+            else:
+                break
         elif menu.isdigit():
             if int(menu) <= data_length and menu != "0":
                 index = int(menu) - 1
