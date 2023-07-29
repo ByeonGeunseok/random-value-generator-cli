@@ -13,6 +13,10 @@ def set_csv_header():
     headers = []
 
     while True:
+        if error_flg:
+            msg_print.err_panel(const['ERROR_NO_HEADER'])
+            error_flg = False
+
         msg = "If you need header, input once.\n" + \
             "If you delete to last header, input \" \" and ENTER.\n" + \
             "If you done to input header, Just press ENTER.\n" + \
@@ -24,9 +28,6 @@ def set_csv_header():
             msg_print.msg_panel("header: (nothing)")
         else:
             msg_print.msg_panel(f"header: {headers}")
-        if error_flg:
-            msg_print.err_panel(const['ERROR_NO_HEADER'])
-            error_flg = False
         header_str = input()
 
         if header_str == " ":

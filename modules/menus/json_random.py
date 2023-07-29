@@ -18,6 +18,10 @@ def set_json_key():
     keys = []
 
     while True:
+        if error_flg:
+            msg_print.err_panel("There are no keys.")
+            error_flg = False
+
         msg = "Input a key.\n" + \
             "If you delete to last key, input \" \" and ENTER.\n" + \
             "If you done to input key, Just press ENTER.\n" + \
@@ -30,9 +34,6 @@ def set_json_key():
         else:
             msg_print.msg_panel(f"key: {keys}")
 
-        if error_flg:
-            msg_print.err_panel("There are no keys.")
-            error_flg = False
         key_str = input(">> ")
 
         if key_str == " ":

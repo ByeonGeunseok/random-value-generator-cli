@@ -23,9 +23,6 @@ def execute_random_string():
     error_type = 0
 
     while True:
-        display_string_menu(length, number_state, lower_state,
-                            upper_state, punctuation_state)
-
         if error_type == 1:
             err_panel(const['ERROR_INPUT'])
         elif error_type == 2:
@@ -34,8 +31,10 @@ def execute_random_string():
             err_panel(const['ERROR_ALLOWS'])
         elif error_type == 4:
             err_panel(const['ERROR_WRONG_MENU'])
-
         error_type = 0
+
+        display_string_menu(length, number_state, lower_state,
+                            upper_state, punctuation_state)
 
         menu = input(const['REQUIRE_MENU'])
 
