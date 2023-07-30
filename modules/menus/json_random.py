@@ -58,17 +58,22 @@ def set_json_key():
 
 # TODO: Add a object
 def set_key_type(keys):
+    error_index = ''
     value_type_list = []
     data_length = len(keys)
     for _ in range(data_length):
         value_type_list.append("")
 
     while True:
+        msg_print.clear_screen()
+        if not error_index == '':
+            msg_print.err_panel(const[error_index])
+            error_index = ''
         value_type_list = msg_print.display_json_type(keys, value_type_list)
         menu = input("Choose the menu >> ")
         if menu == "":
             if '' in value_type_list:
-                msg_print.err_panel(const['ERROR_INPUT'])
+                error_index = 'ERROR_INPUT'
                 continue
             else:
                 break
@@ -76,10 +81,10 @@ def set_key_type(keys):
             if int(menu) <= data_length and menu != "0":
                 index = int(menu) - 1
             else:
-                msg_print.err_panel("CHOOSE CORRECT MENU")
+                error_index = 'ERROR_WRONG_MENU'
                 continue
         else:
-            msg_print.err_panel("CHOOSE CORRECT MENU")
+            error_index = 'ERROR_WRONG_MENU'
             continue
 
         msg_print.display_type_selector('json')
@@ -87,6 +92,7 @@ def set_key_type(keys):
 
         match select_type:
             case "name" | "na":
+                msg_print.clear_screen()
                 msg_print.display_name_type()
                 name_menu = input(">> ")
                 match name_menu:
@@ -97,7 +103,7 @@ def set_key_type(keys):
                     case "3":
                         value_type_list[index] = "Full Name"
                     case _:
-                        msg_print.err_panel(const['ERROR_WRONG_MENU'])
+                        error_index = 'ERROR_WRONG_MENU'
             case "number" | "num":
                 value_type_list[index] = "Number"
             case "tel" | "t":
@@ -109,6 +115,7 @@ def set_key_type(keys):
             case "boolean" | "bool" | "b":
                 value_type_list[index] = "Boolean"
             case "list" | "li" | "l":
+                msg_print.clear_screen()
                 msg_print.display_list_type()
                 list_type = input(">> ")
                 match list_type:
@@ -123,12 +130,12 @@ def set_key_type(keys):
                     case '5':
                         value_type_list[index] = "List(Tel)"
                     case _:
-                        msg_print.err_panel("SELECT CORRECT MENU")
+                        error_index = 'ERROR_WRONG_MENU'
 
             # case "object" | "obj" | "o":
             #     value_type_list[index] = "Object"
             case _:
-                msg_print.err_panel("SELECT CORRECT MENU")
+                error_index = 'ERROR_WRONG_MENU'
     create_json_data(keys, value_type_list)
 
 
