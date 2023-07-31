@@ -13,6 +13,10 @@ def set_csv_header():
     headers = []
 
     while True:
+        if error_flg:
+            msg_print.err_panel(const['ERROR_NO_HEADER'])
+            error_flg = False
+
         msg = "If you need header, input once.\n" + \
             "If you delete to last header, input \" \" and ENTER.\n" + \
             "If you done to input header, Just press ENTER.\n" + \
@@ -24,9 +28,6 @@ def set_csv_header():
             msg_print.msg_panel("header: (nothing)")
         else:
             msg_print.msg_panel(f"header: {headers}")
-        if error_flg:
-            msg_print.err_panel(const['ERROR_NO_HEADER'])
-            error_flg = False
         header_str = input()
 
         if header_str == " ":
@@ -47,6 +48,7 @@ def set_csv_header():
 
 
 def set_column_type(headers):
+    error_index = ''
     value_type_list = []
     col_cnt = len(headers)
 
@@ -69,11 +71,15 @@ def set_column_type(headers):
         value_type_list.append("")
 
     while True:
+        msg_print.clear_screen()
+        if not error_index == '':
+            msg_print.err_panel(const[error_index])
+            error_index = ''
         value_type_list = msg_print.display_csv_type(headers, value_type_list)
         menu = input("Choose the menu >> ")
         if menu == "":
             if '' in value_type_list:
-                msg_print.err_panel(const['ERROR_INPUT'])
+                error_index = 'ERROR_INPUT'
                 continue
             else:
                 break
@@ -81,10 +87,10 @@ def set_column_type(headers):
             if int(menu) <= col_cnt and menu != "0":
                 index = int(menu) - 1
             else:
-                msg_print.err_panel(const['ERROR_WRONG_MENU'])
+                error_index = 'ERROR_WRONG_MENU'
                 continue
         else:
-            msg_print.err_panel(const['ERROR_WRONG_MENU'])
+            error_index = 'ERROR_WRONG_MENU'
             continue
 
         msg_print.display_type_selector('csv')
@@ -92,6 +98,7 @@ def set_column_type(headers):
 
         match select_type:
             case "name" | "na":
+                msg_print.clear_screen()
                 msg_print.display_name_type()
                 name_menu = input(">> ")
                 match name_menu:
@@ -102,7 +109,7 @@ def set_column_type(headers):
                     case "3":
                         value_type_list[index] = "Full Name"
                     case _:
-                        msg_print.err_panel(const['ERROR_WRONG_MENU'])
+                        error_index = 'ERROR_WRONG_MENU'
             case "number" | "num":
                 value_type_list[index] = "Number"
             case "tel" | "t":
@@ -114,7 +121,7 @@ def set_column_type(headers):
             case "boolean" | "bool" | "b":
                 value_type_list[index] = "Boolean"
             case _:
-                msg_print.err_panel(const['ERROR_WRONG_MENU'])
+                error_index = 'ERROR_WRONG_MENU'
 
     create_csv(headers, value_type_list)
 

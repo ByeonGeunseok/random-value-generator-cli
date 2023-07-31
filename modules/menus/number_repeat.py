@@ -66,8 +66,8 @@ def calc_number_repeat(amt, min, max, repeat):
             numList[i] = 0
 
         # Pick a number
-        for x in range(repeat):
-            for y in range(amt):
+        for _ in range(repeat):
+            for _ in range(amt):
                 picked = random.randint(min, max)
                 numList[picked] += 1
 
