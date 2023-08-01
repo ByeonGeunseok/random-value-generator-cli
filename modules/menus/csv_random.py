@@ -53,7 +53,8 @@ def set_column_type(headers):
     col_cnt = len(headers)
 
     if col_cnt <= 0:
-        msg = "There are no headers. Are you continue to create CSV?"
+        msg = const['ERROR_NO_HEADER'] + " " + \
+            "Are you continue to create CSV?"
         title = "Random CSV"
         msg_print.msg_panel(msg, title)
         continue_flg = input("(y/n) >>")
@@ -76,7 +77,7 @@ def set_column_type(headers):
             msg_print.err_panel(const[error_index])
             error_index = ''
         value_type_list = msg_print.display_csv_type(headers, value_type_list)
-        menu = input("Choose the menu >> ")
+        menu = input(f"{const['REQUIRE_MENU']} >> ")
         if menu == "":
             if '' in value_type_list:
                 error_index = 'ERROR_INPUT'
