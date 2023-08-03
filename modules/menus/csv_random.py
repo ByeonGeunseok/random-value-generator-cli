@@ -168,10 +168,21 @@ def create_csv_row(value_type_list):
 
 
 def create_csv(headers, value_type_list):
+    is_error = False
+    while True:
+        if is_error:
+            msg_print.clear_screen()
+            msg_print.err_panel(const['ERROR_INPUT'])
+
+        cnt = int(input(f"{const['REQUIRE_ROW_COUNT']} : "))
+        if cnt <= 0:
+            is_error = True
+            continue
+        else:
+            break
     current_time = time.strftime('%Y%m%d%H%M%S')
     path = conf['OUTPUT_PATH']
     file_name = path + "random_" + current_time + ".csv"
-    cnt = int(input(f"{const['REQUIRE_ROW_COUNT']} : "))
 
     Path(path).mkdir(exist_ok=True)
     file = open(file_name, 'w', newline='')
