@@ -192,7 +192,9 @@ def create_csv(headers, value_type_list):
     Path(path).mkdir(exist_ok=True)
     file = open(file_name, 'w', newline='')
     wr = csv.writer(file)
-    wr.writerow(headers)
+
+    if not headers[0] == "":
+        wr.writerow(headers)
 
     for _ in range(int(cnt)):
         wr.writerow(create_csv_row(value_type_list))
