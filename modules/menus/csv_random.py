@@ -174,12 +174,17 @@ def create_csv(headers, value_type_list):
             msg_print.clear_screen()
             msg_print.err_panel(const['ERROR_INPUT'])
 
-        cnt = int(input(f"{const['REQUIRE_ROW_COUNT']} : "))
-        if cnt <= 0:
+        cnt = input(f"{const['REQUIRE_ROW_COUNT']} : ")
+        if cnt.isdigit():
+            if int(cnt) <= 0:
+                is_error = True
+                continue
+            else:
+                break
+        else:
             is_error = True
             continue
-        else:
-            break
+
     current_time = time.strftime('%Y%m%d%H%M%S')
     path = conf['OUTPUT_PATH']
     file_name = path + "random_" + current_time + ".csv"
@@ -189,7 +194,7 @@ def create_csv(headers, value_type_list):
     wr = csv.writer(file)
     wr.writerow(headers)
 
-    for _ in range(cnt):
+    for _ in range(int(cnt)):
         wr.writerow(create_csv_row(value_type_list))
 
     file.close()
