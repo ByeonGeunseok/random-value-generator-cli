@@ -19,7 +19,7 @@ def set_json_key():
 
     while True:
         if error_flg:
-            msg_print.err_panel("There are no keys.")
+            msg_print.err_panel(const['ERROR_NO_KEY'])
             error_flg = False
 
         msg = "Input a key.\n" + \
@@ -70,7 +70,7 @@ def set_key_type(keys):
             msg_print.err_panel(const[error_index])
             error_index = ''
         value_type_list = msg_print.display_json_type(keys, value_type_list)
-        menu = input("Choose the menu >> ")
+        menu = input(f"{const['REQUIRE_MENU']} >> ")
         if menu == "":
             if '' in value_type_list:
                 error_index = 'ERROR_INPUT'

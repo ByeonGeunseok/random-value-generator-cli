@@ -108,6 +108,6 @@ def create_value(length, allows_number, allows_lower, allows_upper, allows_punct
     clipboard.copy(result)
 
     result_panel(result)
-    msg_panel("Copy to clipboard.")
+    msg_panel(const['COPIED'])
     input(const['REQUIRE_CONTINUE'])
     clear_screen()
