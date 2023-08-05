@@ -35,7 +35,6 @@ def render_main_menu():
     table.add_row()
     table.add_row("Press [9]", "EXIT...", "")
 
-    clear_screen()
     console = Console()
     console.print(table, justify="center")
 
