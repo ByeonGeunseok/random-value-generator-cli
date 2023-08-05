@@ -70,7 +70,7 @@ def display_string_menu(length, number_state, lower_state, upper_state, punctuat
     table.add_row("Press [5]", "Use Punctuation", punctuation_state)
     table.add_row()
     table.add_row("Press [9]", "EXECUTE", "")
-    table.add_row("Press [0]", "DONE", "")
+    table.add_row("Press [0]", "QUIT", "")
 
     console.print(table, justify="center")
 
