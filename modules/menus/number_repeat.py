@@ -56,25 +56,40 @@ def execute_number_repeat():
 
 
 def calc_number_repeat(amt, min, max, repeat):
-    console = Console()
-    numList = {}
+    is_calc = True
 
-    with console.status(const['PROGRESS_STATUS']) as status:
-        # Create Dictionary
-        rpt = range(min, max + 1)
-        for i in rpt:
-            numList[i] = 0
+    while True:
+        if is_calc:
+            console = Console()
+            numList = {}
 
-        # Pick a number
-        for _ in range(repeat):
-            for _ in range(amt):
-                picked = random.randint(min, max)
-                numList[picked] += 1
+            with console.status(const['PROGRESS_STATUS']) as status:
+                # Create Dictionary
+                rpt = range(min, max + 1)
+                for i in rpt:
+                    numList[i] = 0
 
-        # Sorting
-        resultList = sorted(
-            numList.items(), key=operator.itemgetter(1), reverse=True)
+                # Pick a number
+                for _ in range(repeat):
+                    for _ in range(amt):
+                        picked = random.randint(min, max)
+                        numList[picked] += 1
 
-    display_repeat_count(resultList, amt)
-    input(const['REQUIRE_CONTINUE'])
-    clear_screen()
+                # Sorting
+                resultList = sorted(
+                    numList.items(), key=operator.itemgetter(1), reverse=True)
+
+            display_repeat_count(resultList, amt)
+        try_input = input(const['REQUIRE_AGAIN'] + ' ' + '(y/n) >>')
+
+        match try_input:
+            case "y":
+                clear_screen()
+                is_calc = True
+                continue
+            case "n":
+                clear_screen()
+                break
+            case _:
+                is_calc = False
+                continue

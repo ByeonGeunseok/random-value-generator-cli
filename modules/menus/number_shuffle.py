@@ -55,13 +55,28 @@ def execute_number_shuffle():
 
 
 def calc_number_shuffle(amt, min, max, shuffle):
-    console = Console()
-    numberList = list(range(min, max+1))
+    is_calc = True
 
-    with console.status(const['PROGRESS_STATUS']) as status:
-        for _ in range(shuffle):
-            random.shuffle(numberList)
+    while True:
+        if is_calc:
+            console = Console()
+            numberList = list(range(min, max+1))
 
-    result_panel(str(numberList[:amt]))
-    input(const['REQUIRE_CONTINUE'])
-    clear_screen()
+            with console.status(const['PROGRESS_STATUS']) as status:
+                for _ in range(shuffle):
+                    random.shuffle(numberList)
+
+            result_panel(str(numberList[:amt]))
+        try_input = input(const['REQUIRE_AGAIN'] + ' ' + '(y/n) >>')
+
+        match try_input:
+            case "y":
+                clear_screen()
+                is_calc = True
+                continue
+            case "n":
+                clear_screen()
+                break
+            case _:
+                is_calc = False
+                continue
