@@ -3,7 +3,15 @@ from modules.utils import error_check
 from modules.utils import msg_print
 from const import const
 
+is_error = False
+
 while True:
+    msg_print.clear_screen()
+
+    if is_error:
+        error_check.err_panel(const['ERROR_WRONG_MENU'])
+        is_error = False
+
     # START
     msg_print.render_main_menu()
     # Choose the menu, Return menu number.
@@ -35,7 +43,7 @@ while True:
                 break
             # If the menu doesn't exist.
             case _:
-                error_check.err_panel(const['ERROR_WRONG_MENU'])
+                is_error = True
     # If input is not number.
     else:
-        error_check.err_panel(const['ERROR_WRONG_MENU'])
+        is_error = True
