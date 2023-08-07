@@ -92,22 +92,36 @@ def toggle_condition(flg, state):
 
 
 def create_value(length, allows_number, allows_lower, allows_upper, allows_punctuation):
-    result = ""
-    target = ""
+    is_play = True
+    while True:
+        if is_play:
+            result = ""
+            target = ""
 
-    if allows_number:
-        target += string.digits
-    if allows_lower:
-        target += string.ascii_lowercase
-    if allows_upper:
-        target += string.ascii_uppercase
-    if allows_punctuation:
-        target += string.punctuation
+            if allows_number:
+                target += string.digits
+            if allows_lower:
+                target += string.ascii_lowercase
+            if allows_upper:
+                target += string.ascii_uppercase
+            if allows_punctuation:
+                target += string.punctuation
 
-    result = create_random_string(target, length)
-    clipboard.copy(result)
+            result = create_random_string(target, length)
+            clipboard.copy(result)
 
-    result_panel(result)
-    msg_panel(const['COPIED'])
-    input(const['REQUIRE_CONTINUE'])
-    clear_screen()
+            result_panel(result)
+            msg_panel(const['COPIED'])
+        try_input = input(const['REQUIRE_AGAIN'] + ' ' + '(y/n) >>')
+
+        match try_input:
+            case "y":
+                clear_screen()
+                is_play = True
+                continue
+            case "n":
+                clear_screen()
+                break
+            case _:
+                is_play = False
+                continue
