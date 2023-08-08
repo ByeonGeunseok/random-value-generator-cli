@@ -57,12 +57,19 @@ def set_json_key():
 
 
 # TODO: Add a object
+# TODO: Modify the logic about setting variables and list row count
 def set_key_type(keys):
+    json_list = {}
+    list_id = 0
     error_index = ''
-    value_type_list = []
-    data_length = len(keys)
-    for _ in range(data_length):
-        value_type_list.append("")
+    value_type_list = [] #
+    data_length = len(keys) #
+    for _ in range(data_length): #
+        value_type_list.append("") #
+
+    for key in keys:
+        json_list[list_id] = [key, 0]
+        list_id += 1
 
     while True:
         msg_print.clear_screen()
