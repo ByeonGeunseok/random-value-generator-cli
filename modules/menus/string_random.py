@@ -1,7 +1,7 @@
 import string
 import random
 import clipboard
-from const import const
+from message import message
 from ..utils.msg_print import *
 from ..utils.error_check import *
 from ..utils.random_string import *
@@ -24,23 +24,23 @@ def execute_random_string():
 
     while True:
         if error_type == 1:
-            err_panel(const['ERROR_INPUT'])
+            err_panel(message['ERROR_INPUT'])
         elif error_type == 2:
-            err_panel(const['ERROR_LENGTH_ZERO'])
+            err_panel(message['ERROR_LENGTH_ZERO'])
         elif error_type == 3:
-            err_panel(const['ERROR_ALLOWS'])
+            err_panel(message['ERROR_ALLOWS'])
         elif error_type == 4:
-            err_panel(const['ERROR_WRONG_MENU'])
+            err_panel(message['ERROR_WRONG_MENU'])
         error_type = 0
 
         display_string_menu(length, number_state, lower_state,
                             upper_state, punctuation_state)
 
-        menu = input(const['REQUIRE_MENU'])
+        menu = input(message['REQUIRE_MENU'])
 
         match menu:
             case "1":
-                length_val = input(f"{const['REQUIRE_VALUE_LENGTH']} : ")
+                length_val = input(f"{message['REQUIRE_VALUE_LENGTH']} : ")
 
                 if not length_val.isdigit():
                     error_type = 1
@@ -111,8 +111,8 @@ def create_value(length, allows_number, allows_lower, allows_upper, allows_punct
             clipboard.copy(result)
 
             result_panel(result)
-            msg_panel(const['COPIED'])
-        try_input = input(const['REQUIRE_AGAIN'] + ' ' + '(y/n) >>')
+            msg_panel(message['COPIED'])
+        try_input = input(message['REQUIRE_AGAIN'] + ' ' + '(y/n) >>')
 
         match try_input:
             case "y":

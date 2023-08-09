@@ -1,7 +1,7 @@
 from modules.menus import *
 from modules.utils import error_check
 from modules.utils import msg_print
-from const import const
+from message import message
 
 is_error = False
 
@@ -9,13 +9,13 @@ while True:
     msg_print.clear_screen()
 
     if is_error:
-        error_check.err_panel(const['ERROR_WRONG_MENU'])
+        error_check.err_panel(message['ERROR_WRONG_MENU'])
         is_error = False
 
     # START
     msg_print.render_main_menu()
     # Choose the menu, Return menu number.
-    menu = input(const['REQUIRE_MENU'])
+    menu = input(message['REQUIRE_MENU'])
 
     # Check the input.
     if menu.isdigit():

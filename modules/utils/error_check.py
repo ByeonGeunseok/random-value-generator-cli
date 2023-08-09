@@ -1,5 +1,5 @@
 from .msg_print import *
-from const import const
+from message import message
 
 
 def check_min_max(min: int, max: int):
@@ -11,13 +11,13 @@ def check_min_max(min: int, max: int):
     Return True, If all conditions are satisfied.
     """
     if min < 0:
-        err_panel(const['ERROR_MIN_ZERO'])
+        err_panel(message['ERROR_MIN_ZERO'])
         return False
     if max < 0:
-        err_panel(const['ERROR_MAX_ZERO'])
+        err_panel(message['ERROR_MAX_ZERO'])
         return False
     if min >= max:
-        err_panel(const['ERROR_NUMBER_COMPARE'])
+        err_panel(message['ERROR_NUMBER_COMPARE'])
         return False
     return True
 

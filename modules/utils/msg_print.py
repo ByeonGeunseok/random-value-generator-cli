@@ -5,7 +5,7 @@ from rich.panel import Panel
 from rich.console import Console
 from rich.table import Table
 from rich.columns import Columns
-from const import const
+from message import message
 
 
 def clear_screen():
@@ -22,7 +22,7 @@ def render_main_menu():
     """
     Render the main menu.
     """
-    table = Table(title=const['REQUIRE_MENU'],
+    table = Table(title=message['REQUIRE_MENU'],
                   show_header=True, header_style="bold")
     table.add_column("SELECT")
     table.add_column("TYPE")
@@ -57,7 +57,7 @@ def display_repeat_count(result, amount):
 def display_string_menu(length, number_state, lower_state, upper_state, punctuation_state):
     console = Console()
 
-    table = Table(title=const['REQUIRE_MENU'],
+    table = Table(title=message['REQUIRE_MENU'],
                   show_header=True, header_style="bold")
     table.add_column("SELECT")
     table.add_column("TYPE")
@@ -92,7 +92,7 @@ def result_panel(msg):
 def display_name_type():
     console = Console()
 
-    table = Table(title=const['REQUIRE_MENU'],
+    table = Table(title=message['REQUIRE_MENU'],
                   show_header=True, header_style="bold")
     table.add_column("SELECT")
     table.add_column("TYPE")
@@ -106,7 +106,7 @@ def display_name_type():
 def display_list_type():
     console = Console()
 
-    table = Table(title=const['REQUIRE_MENU'],
+    table = Table(title=message['REQUIRE_MENU'],
                   show_header=True, header_style="bold")
     table.add_column("SELECT")
     table.add_column("TYPE")
@@ -124,7 +124,7 @@ def display_csv_type(keys, list):
     json_length = len(keys)
     console = Console()
 
-    table = Table(title=const['REQUIRE_MENU'],
+    table = Table(title=message['REQUIRE_MENU'],
                   show_header=True, header_style="bold")
 
     table.add_column("SELECT")
@@ -147,7 +147,7 @@ def display_json_type(keys, list):
     json_length = len(keys)
     console = Console()
 
-    table = Table(title=const['REQUIRE_MENU'],
+    table = Table(title=message['REQUIRE_MENU'],
                   show_header=True, header_style="bold")
 
     table.add_column("SELECT")
@@ -166,7 +166,7 @@ def display_json_type(keys, list):
 
 
 def check_continue():
-    print(Panel(const['REQUIRE_CONTINUE'], style="bold"))
+    print(Panel(message['REQUIRE_CONTINUE'], style="bold"))
     temp = input()
 
 
