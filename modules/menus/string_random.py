@@ -1,7 +1,7 @@
 import string
 import random
 import clipboard
-from const import const
+from message import message
 from ..utils.msg_print import *
 from ..utils.error_check import *
 from ..utils.random_string import *
@@ -24,23 +24,23 @@ def execute_random_string():
 
     while True:
         if error_type == 1:
-            err_panel(const['ERROR_INPUT'])
+            err_panel(message['ERROR_INPUT'])
         elif error_type == 2:
-            err_panel(const['ERROR_LENGTH_ZERO'])
+            err_panel(message['ERROR_LENGTH_ZERO'])
         elif error_type == 3:
-            err_panel(const['ERROR_ALLOWS'])
+            err_panel(message['ERROR_ALLOWS'])
         elif error_type == 4:
-            err_panel(const['ERROR_WRONG_MENU'])
+            err_panel(message['ERROR_WRONG_MENU'])
         error_type = 0
 
         display_string_menu(length, number_state, lower_state,
                             upper_state, punctuation_state)
 
-        menu = input(const['REQUIRE_MENU'])
+        menu = input(message['REQUIRE_MENU'])
 
         match menu:
             case "1":
-                length_val = input(f"{const['REQUIRE_VALUE_LENGTH']} : ")
+                length_val = input(f"{message['REQUIRE_VALUE_LENGTH']} : ")
 
                 if not length_val.isdigit():
                     error_type = 1
@@ -92,22 +92,36 @@ def toggle_condition(flg, state):
 
 
 def create_value(length, allows_number, allows_lower, allows_upper, allows_punctuation):
-    result = ""
-    target = ""
+    is_play = True
+    while True:
+        if is_play:
+            result = ""
+            target = ""
 
-    if allows_number:
-        target += string.digits
-    if allows_lower:
-        target += string.ascii_lowercase
-    if allows_upper:
-        target += string.ascii_uppercase
-    if allows_punctuation:
-        target += string.punctuation
+            if allows_number:
+                target += string.digits
+            if allows_lower:
+                target += string.ascii_lowercase
+            if allows_upper:
+                target += string.ascii_uppercase
+            if allows_punctuation:
+                target += string.punctuation
 
-    result = create_random_string(target, length)
-    clipboard.copy(result)
+            result = create_random_string(target, length)
+            clipboard.copy(result)
 
-    result_panel(result)
-    msg_panel(const['COPIED'])
-    input(const['REQUIRE_CONTINUE'])
-    clear_screen()
+            result_panel(result)
+            msg_panel(message['COPIED'])
+        try_input = input(message['REQUIRE_AGAIN'] + ' ' + '(y/n) >>')
+
+        match try_input:
+            case "y":
+                clear_screen()
+                is_play = True
+                continue
+            case "n":
+                clear_screen()
+                break
+            case _:
+                is_play = False
+                continue

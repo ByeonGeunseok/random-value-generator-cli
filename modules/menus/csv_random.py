@@ -3,7 +3,7 @@ import time
 import random
 import csv
 from conf import conf
-from const import const
+from message import message
 from ..utils import *
 
 
@@ -14,7 +14,7 @@ def set_csv_header():
 
     while True:
         if error_flg:
-            msg_print.err_panel(const['ERROR_NO_HEADER'])
+            msg_print.err_panel(message['ERROR_NO_HEADER'])
             error_flg = False
 
         msg = "If you need header, input once.\n" + \
@@ -53,14 +53,14 @@ def set_column_type(headers):
     col_cnt = len(headers)
 
     if col_cnt <= 0:
-        msg = const['ERROR_NO_HEADER'] + " " + \
+        msg = message['ERROR_NO_HEADER'] + " " + \
             "Are you continue to create CSV?"
         title = "Random CSV"
         msg_print.msg_panel(msg, title)
         continue_flg = input("(y/n) >>")
         if continue_flg == "y":
             title = "Random CSV"
-            msg_print.msg_panel(const['REQUIRE_COLUMN_COUNT'], title)
+            msg_print.msg_panel(message['REQUIRE_COLUMN_COUNT'], title)
             col_cnt = int(input(">>"))
 
             for _ in range(col_cnt):
@@ -74,10 +74,10 @@ def set_column_type(headers):
     while True:
         msg_print.clear_screen()
         if not error_index == '':
-            msg_print.err_panel(const[error_index])
+            msg_print.err_panel(message[error_index])
             error_index = ''
         value_type_list = msg_print.display_csv_type(headers, value_type_list)
-        menu = input(f"{const['REQUIRE_MENU']} >> ")
+        menu = input(f"{message['REQUIRE_MENU']} >> ")
         if menu == "":
             if '' in value_type_list:
                 error_index = 'ERROR_INPUT'
@@ -172,9 +172,9 @@ def create_csv(headers, value_type_list):
     while True:
         if is_error:
             msg_print.clear_screen()
-            msg_print.err_panel(const['ERROR_INPUT'])
+            msg_print.err_panel(message['ERROR_INPUT'])
 
-        cnt = input(f"{const['REQUIRE_ROW_COUNT']} : ")
+        cnt = input(f"{message['REQUIRE_ROW_COUNT']} : ")
         if cnt.isdigit():
             if int(cnt) <= 0:
                 is_error = True

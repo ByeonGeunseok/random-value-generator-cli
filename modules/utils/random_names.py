@@ -1,10 +1,10 @@
 from random import choice
-from const import const
+from message import message
 from .msg_print import display_name_type
 
-first_names = const['FIRST_NAME_EN']
+first_names = message['FIRST_NAME_EN']
 
-last_names = const['LAST_NAME_EN']
+last_names = message['LAST_NAME_EN']
 
 
 def choose_name_type():

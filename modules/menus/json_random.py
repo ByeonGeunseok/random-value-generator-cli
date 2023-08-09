@@ -3,7 +3,7 @@ from json import *
 import random
 import time
 from conf import conf
-from const import const
+from message import message
 from ..utils import random_list
 from ..utils import msg_print
 from ..utils import random_names
@@ -19,7 +19,7 @@ def set_json_key():
 
     while True:
         if error_flg:
-            msg_print.err_panel(const['ERROR_NO_KEY'])
+            msg_print.err_panel(message['ERROR_NO_KEY'])
             error_flg = False
 
         msg = "Input a key.\n" + \
@@ -57,20 +57,27 @@ def set_json_key():
 
 
 # TODO: Add a object
+# TODO: Modify the logic about setting variables and list row count
 def set_key_type(keys):
+    json_list = {}
+    list_id = 0
     error_index = ''
-    value_type_list = []
-    data_length = len(keys)
-    for _ in range(data_length):
-        value_type_list.append("")
+    value_type_list = [] #
+    data_length = len(keys) #
+    for _ in range(data_length): #
+        value_type_list.append("") #
+
+    for key in keys:
+        json_list[list_id] = [key, 0]
+        list_id += 1
 
     while True:
         msg_print.clear_screen()
         if not error_index == '':
-            msg_print.err_panel(const[error_index])
+            msg_print.err_panel(message[error_index])
             error_index = ''
         value_type_list = msg_print.display_json_type(keys, value_type_list)
-        menu = input(f"{const['REQUIRE_MENU']} >> ")
+        menu = input(f"{message['REQUIRE_MENU']} >> ")
         if menu == "":
             if '' in value_type_list:
                 error_index = 'ERROR_INPUT'
@@ -146,23 +153,23 @@ def create_json_data(keys, value_type_list):
         data = ""
         match value_type_list[index]:
             case "List(String)":
-                msg_print.msg_panel(const['REQUIRE_VALUE_COUNT'], '')
+                msg_print.msg_panel(message['REQUIRE_VALUE_COUNT'], '')
                 list_cnt = input(">> ")
                 data = random_list.create_random_list('str', list_cnt)
             case "List(Number)":
-                msg_print.msg_panel(const['REQUIRE_VALUE_COUNT'], '')
+                msg_print.msg_panel(message['REQUIRE_VALUE_COUNT'], '')
                 list_cnt = input(">> ")
                 data = random_list.create_random_list('number', list_cnt)
             case "List(Name)":
-                msg_print.msg_panel(const['REQUIRE_VALUE_COUNT'], '')
+                msg_print.msg_panel(message['REQUIRE_VALUE_COUNT'], '')
                 list_cnt = input(">> ")
                 data = random_list.create_random_list('name', list_cnt)
             case "List(E-Mail)":
-                msg_print.msg_panel(const['REQUIRE_VALUE_COUNT'], '')
+                msg_print.msg_panel(message['REQUIRE_VALUE_COUNT'], '')
                 list_cnt = input(">> ")
                 data = random_list.create_random_list('email', list_cnt)
             case "List(Tel)":
-                msg_print.msg_panel(const['REQUIRE_VALUE_COUNT'], '')
+                msg_print.msg_panel(message['REQUIRE_VALUE_COUNT'], '')
                 list_cnt = input(">> ")
                 data = random_list.create_random_list('tel', list_cnt)
             case "First Name":

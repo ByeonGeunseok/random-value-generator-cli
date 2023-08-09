@@ -3,7 +3,7 @@ import random
 from ..utils.msg_print import *
 from ..utils.error_check import *
 from rich.console import Console
-from const import const
+from message import message
 
 
 def execute_number_repeat():
@@ -11,11 +11,11 @@ def execute_number_repeat():
     while True:
         if error_flg:
             clear_screen()
-            err_panel(const['ERROR_INPUT'])
+            err_panel(message['ERROR_INPUT'])
             error_flg = False
         # Number amount
         amount_input = input(
-            f"{const['REQUIRE_NUMBER_NEED']} ({const['QUIT_MESSAGE']}): ")
+            f"{message['REQUIRE_NUMBER_NEED']} ({message['QUIT_MESSAGE']}): ")
         if amount_input == '!q':
             break
         if not amount_input.isdigit():
@@ -23,7 +23,7 @@ def execute_number_repeat():
             continue
         # Minimum number range
         min_range_input = input(
-            f"{const['REQUIRE_MINIMUM']} ({const['QUIT_MESSAGE']}): ")
+            f"{message['REQUIRE_MINIMUM']} ({message['QUIT_MESSAGE']}): ")
         if min_range_input == '!q':
             break
         if not min_range_input.isdigit():
@@ -31,7 +31,7 @@ def execute_number_repeat():
             continue
         # Maximum number range
         max_range_input = input(
-            f"{const['REQUIRE_MAXIMUM']} ({const['QUIT_MESSAGE']}): ")
+            f"{message['REQUIRE_MAXIMUM']} ({message['QUIT_MESSAGE']}): ")
         if max_range_input == '!q':
             break
         if not max_range_input.isdigit():
@@ -39,7 +39,7 @@ def execute_number_repeat():
             continue
         # Repeat Count
         repeat_count_input = input(
-            f"{const['REQUIRE_REPEAT_COUNT']} ({const['QUIT_MESSAGE']}): ")
+            f"{message['REQUIRE_REPEAT_COUNT']} ({message['QUIT_MESSAGE']}): ")
         if repeat_count_input == '!q':
             break
         if not repeat_count_input.isdigit():
@@ -52,7 +52,7 @@ def execute_number_repeat():
                     max_range_input), int(repeat_count_input))
                 break
         else:
-            err_panel(const['ERROR_INPUT'])
+            err_panel(message['ERROR_INPUT'])
 
 
 def calc_number_repeat(amt, min, max, repeat):
@@ -63,7 +63,7 @@ def calc_number_repeat(amt, min, max, repeat):
             console = Console()
             numList = {}
 
-            with console.status(const['PROGRESS_STATUS']) as status:
+            with console.status(message['PROGRESS_STATUS']) as status:
                 # Create Dictionary
                 rpt = range(min, max + 1)
                 for i in rpt:
@@ -80,7 +80,7 @@ def calc_number_repeat(amt, min, max, repeat):
                     numList.items(), key=operator.itemgetter(1), reverse=True)
 
             display_repeat_count(resultList, amt)
-        try_input = input(const['REQUIRE_AGAIN'] + ' ' + '(y/n) >>')
+        try_input = input(message['REQUIRE_AGAIN'] + ' ' + '(y/n) >>')
 
         match try_input:
             case "y":
