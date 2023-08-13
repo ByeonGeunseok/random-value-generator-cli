@@ -42,16 +42,19 @@ def execute_random_string():
             case "1":
                 length_val = input(f"{message['REQUIRE_VALUE_LENGTH']} : ")
 
-                if not length_val.isdigit():
+                if length_val.isdigit():
+                    if int(length_val) <= 0:
+                        error_type = 2
+                        clear_screen()
+                        continue
+                    else:
+                        length = int(length_val)
+                        clear_screen()
+                else:
                     error_type = 1
+                    clear_screen()
                     continue
 
-                if length <= 0:
-                    error_type = 2
-                    continue
-
-                length = int(length_val)
-                clear_screen()
             case "2":
                 allows_number, number_state = toggle_condition(
                     allows_number, number_state)

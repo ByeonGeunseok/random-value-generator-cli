@@ -79,7 +79,10 @@ def calc_number_repeat(amt, min, max, repeat):
                 resultList = sorted(
                     numList.items(), key=operator.itemgetter(1), reverse=True)
 
+            clear_screen()
             display_repeat_count(resultList, amt)
+            print(
+                f"Range {min} ~ {max} / {amt} numbers / Repeat {repeat} times.")
         try_input = input(message['REQUIRE_AGAIN'] + ' ' + '(y/n) >>')
 
         match try_input:

@@ -66,7 +66,10 @@ def calc_number_shuffle(amt, min, max, shuffle):
                 for _ in range(shuffle):
                     random.shuffle(numberList)
 
+            clear_screen()
             result_panel(str(numberList[:amt]))
+            print(
+                f"Range {min} ~ {max} / {amt} numbers / Shuffle {shuffle} times.")
         try_input = input(message['REQUIRE_AGAIN'] + ' ' + '(y/n) >>')
 
         match try_input:
