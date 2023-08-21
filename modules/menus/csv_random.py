@@ -170,6 +170,8 @@ def create_csv_row(value_type_list):
 def create_csv(headers, value_type_list):
     is_error = False
     while True:
+        is_quit = False
+
         if is_error:
             msg_print.clear_screen()
             msg_print.err_panel(message['ERROR_INPUT'])
@@ -182,21 +184,25 @@ def create_csv(headers, value_type_list):
             else:
                 break
         else:
+            if cnt == "!q":
+                is_quit = True
+                break
             is_error = True
             continue
 
-    current_time = time.strftime('%Y%m%d%H%M%S')
-    path = conf['OUTPUT_PATH']
-    file_name = path + "random_" + current_time + ".csv"
+    if not is_quit:
+        current_time = time.strftime('%Y%m%d%H%M%S')
+        path = conf['OUTPUT_PATH']
+        file_name = path + "random_" + current_time + ".csv"
 
-    Path(path).mkdir(exist_ok=True)
-    file = open(file_name, 'w', newline='')
-    wr = csv.writer(file)
+        Path(path).mkdir(exist_ok=True)
+        file = open(file_name, 'w', newline='')
+        wr = csv.writer(file)
 
-    if not headers[0] == "":
-        wr.writerow(headers)
+        if not headers[0] == "":
+            wr.writerow(headers)
 
-    for _ in range(int(cnt)):
-        wr.writerow(create_csv_row(value_type_list))
+        for _ in range(int(cnt)):
+            wr.writerow(create_csv_row(value_type_list))
 
-    file.close()
+        file.close()
