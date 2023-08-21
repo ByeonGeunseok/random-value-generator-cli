@@ -1,6 +1,7 @@
 from pathlib import Path
 from json import *
 import random
+import re
 import time
 from conf import conf
 from message import message
@@ -62,10 +63,10 @@ def set_key_type(keys):
     json_list = {}
     list_id = 0
     error_index = ''
-    value_type_list = [] #
-    data_length = len(keys) #
-    for _ in range(data_length): #
-        value_type_list.append("") #
+    value_type_list = []
+    data_length = len(keys)
+    for _ in range(data_length):
+        value_type_list.append("")
 
     for key in keys:
         json_list[list_id] = [key, 0]
@@ -125,17 +126,20 @@ def set_key_type(keys):
                 msg_print.clear_screen()
                 msg_print.display_list_type()
                 list_type = input(">> ")
+                msg_print.clear_screen()
+                msg_print.msg_panel(message['REQUIRE_VALUE_COUNT'], '')
+                list_cnt = input(">> ")
                 match list_type:
                     case '1':
-                        value_type_list[index] = "List(String)"
+                        value_type_list[index] = "List(String)" + list_cnt
                     case '2':
-                        value_type_list[index] = "List(Number)"
+                        value_type_list[index] = "List(Number)" + list_cnt
                     case '3':
-                        value_type_list[index] = "List(Name)"
+                        value_type_list[index] = "List(Name)" + list_cnt
                     case '4':
-                        value_type_list[index] = "List(E-Mail)"
+                        value_type_list[index] = "List(E-Mail)" + list_cnt
                     case '5':
-                        value_type_list[index] = "List(Tel)"
+                        value_type_list[index] = "List(Tel)" + list_cnt
                     case _:
                         error_index = 'ERROR_WRONG_MENU'
 
@@ -152,26 +156,40 @@ def create_json_data(keys, value_type_list):
     for key in keys:
         data = ""
         match value_type_list[index]:
-            case "List(String)":
-                msg_print.msg_panel(message['REQUIRE_VALUE_COUNT'], '')
-                list_cnt = input(">> ")
-                data = random_list.create_random_list('str', list_cnt)
-            case "List(Number)":
-                msg_print.msg_panel(message['REQUIRE_VALUE_COUNT'], '')
-                list_cnt = input(">> ")
-                data = random_list.create_random_list('number', list_cnt)
-            case "List(Name)":
-                msg_print.msg_panel(message['REQUIRE_VALUE_COUNT'], '')
-                list_cnt = input(">> ")
-                data = random_list.create_random_list('name', list_cnt)
-            case "List(E-Mail)":
-                msg_print.msg_panel(message['REQUIRE_VALUE_COUNT'], '')
-                list_cnt = input(">> ")
-                data = random_list.create_random_list('email', list_cnt)
-            case "List(Tel)":
-                msg_print.msg_panel(message['REQUIRE_VALUE_COUNT'], '')
-                list_cnt = input(">> ")
-                data = random_list.create_random_list('tel', list_cnt)
+            case value if "List" in value_type_list[index]:
+
+                list_type = extract_content_between_parentheses(value)
+                print(list_type)
+                print(type(list_type))
+                print("--")
+                match list_type[0]:
+                    case "String":
+                        list_cnt = extract_content_after_closing_parenthesis(
+                            value)
+                        print(list_type)
+                        print(list_cnt)
+                        data = random_list.create_random_list(
+                            'str', list_cnt[0])
+                    case "Number":
+                        list_cnt = extract_content_after_closing_parenthesis(
+                            value)
+                        data = random_list.create_random_list(
+                            'number', list_cnt[0])
+                    case "Name":
+                        list_cnt = extract_content_after_closing_parenthesis(
+                            value)
+                        data = random_list.create_random_list(
+                            'name', list_cnt[0])
+                    case "E-Mail":
+                        list_cnt = extract_content_after_closing_parenthesis(
+                            value)
+                        data = random_list.create_random_list(
+                            'email', list_cnt[0])
+                    case "Tel":
+                        list_cnt = extract_content_after_closing_parenthesis(
+                            value)
+                        data = random_list.create_random_list(
+                            'tel', list_cnt[0])
             case "First Name":
                 data = random_names.create_random_name("first")
                 first_name = data
@@ -210,3 +228,15 @@ def create_json_file(json_data):
 
     with open(file_name, 'w') as f:
         dump(json_data, f)
+
+
+def extract_content_between_parentheses(input_string):
+    pattern = r"\((.*?)\)"
+    matches = re.findall(pattern, input_string)
+    return matches
+
+
+def extract_content_after_closing_parenthesis(input_string):
+    pattern = r"\)(.*?)$"
+    matches = re.findall(pattern, input_string)
+    return matches
