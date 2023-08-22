@@ -158,36 +158,36 @@ def create_json_data(keys, value_type_list):
         match value_type_list[index]:
             case value if "List" in value_type_list[index]:
 
-                list_type = extract_content_between_parentheses(value)
+                list_type = slice_string("bracket", value)
                 print(list_type)
                 print(type(list_type))
                 print("--")
                 match list_type[0]:
                     case "String":
-                        list_cnt = extract_content_after_closing_parenthesis(
-                            value)
+                        list_cnt = slice_string("tail",
+                                                value)
                         print(list_type)
                         print(list_cnt)
                         data = random_list.create_random_list(
                             'str', list_cnt[0])
                     case "Number":
-                        list_cnt = extract_content_after_closing_parenthesis(
-                            value)
+                        list_cnt = slice_string("tail",
+                                                value)
                         data = random_list.create_random_list(
                             'number', list_cnt[0])
                     case "Name":
-                        list_cnt = extract_content_after_closing_parenthesis(
-                            value)
+                        list_cnt = slice_string("tail",
+                                                value)
                         data = random_list.create_random_list(
                             'name', list_cnt[0])
                     case "E-Mail":
-                        list_cnt = extract_content_after_closing_parenthesis(
-                            value)
+                        list_cnt = slice_string("tail",
+                                                value)
                         data = random_list.create_random_list(
                             'email', list_cnt[0])
                     case "Tel":
-                        list_cnt = extract_content_after_closing_parenthesis(
-                            value)
+                        list_cnt = slice_string("tail",
+                                                value)
                         data = random_list.create_random_list(
                             'tel', list_cnt[0])
             case "First Name":
@@ -230,13 +230,11 @@ def create_json_file(json_data):
         dump(json_data, f)
 
 
-def extract_content_between_parentheses(input_string):
-    pattern = r"\((.*?)\)"
-    matches = re.findall(pattern, input_string)
-    return matches
-
-
-def extract_content_after_closing_parenthesis(input_string):
-    pattern = r"\)(.*?)$"
-    matches = re.findall(pattern, input_string)
-    return matches
+def slice_string(course, input):
+    result = ""
+    match course:
+        case "bracket":
+            result = re.findall(r"\((.*?)\)", input)
+        case "tail":
+            result = re.findall(r"\)(.*?)$", input)
+    return result
