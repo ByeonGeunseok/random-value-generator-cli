@@ -159,9 +159,6 @@ def create_json_data(keys, value_type_list):
             case value if "List" in value_type_list[index]:
 
                 list_type = slice_string("bracket", value)
-                print(list_type)
-                print(type(list_type))
-                print("--")
                 match list_type[0]:
                     case "String":
                         list_cnt = slice_string("tail",
