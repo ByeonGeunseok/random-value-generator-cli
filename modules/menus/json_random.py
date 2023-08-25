@@ -142,9 +142,8 @@ def set_key_type(keys):
                         value_type_list[index] = "List(Tel)" + list_cnt
                     case _:
                         error_index = 'ERROR_WRONG_MENU'
-
-            # case "object" | "obj" | "o":
-            #     value_type_list[index] = "Object"
+            case "object" | "obj" | "o":
+                value_type_list[index] = "Object"
             case _:
                 error_index = 'ERROR_WRONG_MENU'
     create_json_data(keys, value_type_list)
