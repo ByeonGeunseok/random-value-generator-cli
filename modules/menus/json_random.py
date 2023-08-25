@@ -161,30 +161,23 @@ def create_json_data(keys, value_type_list):
                 list_type = slice_string("bracket", value)
                 match list_type[0]:
                     case "String":
-                        list_cnt = slice_string("tail",
-                                                value)
-                        print(list_type)
-                        print(list_cnt)
+                        list_cnt = slice_string("tail", value)
                         data = random_list.create_random_list(
                             'str', list_cnt[0])
                     case "Number":
-                        list_cnt = slice_string("tail",
-                                                value)
+                        list_cnt = slice_string("tail", value)
                         data = random_list.create_random_list(
                             'number', list_cnt[0])
                     case "Name":
-                        list_cnt = slice_string("tail",
-                                                value)
+                        list_cnt = slice_string("tail", value)
                         data = random_list.create_random_list(
                             'name', list_cnt[0])
                     case "E-Mail":
-                        list_cnt = slice_string("tail",
-                                                value)
+                        list_cnt = slice_string("tail", value)
                         data = random_list.create_random_list(
                             'email', list_cnt[0])
                     case "Tel":
-                        list_cnt = slice_string("tail",
-                                                value)
+                        list_cnt = slice_string("tail", value)
                         data = random_list.create_random_list(
                             'tel', list_cnt[0])
             case "First Name":
