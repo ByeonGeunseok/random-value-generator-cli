@@ -126,22 +126,30 @@ def set_key_type(keys):
                 msg_print.clear_screen()
                 msg_print.display_list_type()
                 list_type = input(">> ")
+
                 msg_print.clear_screen()
                 msg_print.msg_panel(message['REQUIRE_VALUE_COUNT'], '')
                 list_cnt = input(">> ")
-                match list_type:
-                    case '1':
-                        value_type_list[index] = "List(String)" + list_cnt
-                    case '2':
-                        value_type_list[index] = "List(Number)" + list_cnt
-                    case '3':
-                        value_type_list[index] = "List(Name)" + list_cnt
-                    case '4':
-                        value_type_list[index] = "List(E-Mail)" + list_cnt
-                    case '5':
-                        value_type_list[index] = "List(Tel)" + list_cnt
-                    case _:
-                        error_index = 'ERROR_WRONG_MENU'
+
+                if list_cnt.isdigit():
+                    if int(list_cnt) > 0:
+                        match list_type:
+                            case '1':
+                                value_type_list[index] = "List(String)" + \
+                                    list_cnt
+                            case '2':
+                                value_type_list[index] = "List(Number)" + \
+                                    list_cnt
+                            case '3':
+                                value_type_list[index] = "List(Name)" + \
+                                    list_cnt
+                            case '4':
+                                value_type_list[index] = "List(E-Mail)" + \
+                                    list_cnt
+                            case '5':
+                                value_type_list[index] = "List(Tel)" + list_cnt
+                            case _:
+                                error_index = 'ERROR_WRONG_MENU'
             case "object" | "obj" | "o":
                 value_type_list[index] = "Object"
             case _:
