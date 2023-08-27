@@ -126,25 +126,32 @@ def set_key_type(keys):
                 msg_print.clear_screen()
                 msg_print.display_list_type()
                 list_type = input(">> ")
+
                 msg_print.clear_screen()
                 msg_print.msg_panel(message['REQUIRE_VALUE_COUNT'], '')
                 list_cnt = input(">> ")
-                match list_type:
-                    case '1':
-                        value_type_list[index] = "List(String)" + list_cnt
-                    case '2':
-                        value_type_list[index] = "List(Number)" + list_cnt
-                    case '3':
-                        value_type_list[index] = "List(Name)" + list_cnt
-                    case '4':
-                        value_type_list[index] = "List(E-Mail)" + list_cnt
-                    case '5':
-                        value_type_list[index] = "List(Tel)" + list_cnt
-                    case _:
-                        error_index = 'ERROR_WRONG_MENU'
 
-            # case "object" | "obj" | "o":
-            #     value_type_list[index] = "Object"
+                if list_cnt.isdigit():
+                    if int(list_cnt) > 0:
+                        match list_type:
+                            case '1':
+                                value_type_list[index] = "List(String)" + \
+                                    list_cnt
+                            case '2':
+                                value_type_list[index] = "List(Number)" + \
+                                    list_cnt
+                            case '3':
+                                value_type_list[index] = "List(Name)" + \
+                                    list_cnt
+                            case '4':
+                                value_type_list[index] = "List(E-Mail)" + \
+                                    list_cnt
+                            case '5':
+                                value_type_list[index] = "List(Tel)" + list_cnt
+                            case _:
+                                error_index = 'ERROR_WRONG_MENU'
+            case "object" | "obj" | "o":
+                value_type_list[index] = "Object"
             case _:
                 error_index = 'ERROR_WRONG_MENU'
     create_json_data(keys, value_type_list)
@@ -158,36 +165,26 @@ def create_json_data(keys, value_type_list):
         match value_type_list[index]:
             case value if "List" in value_type_list[index]:
 
-                list_type = extract_content_between_parentheses(value)
-                print(list_type)
-                print(type(list_type))
-                print("--")
+                list_type = slice_string("bracket", value)
                 match list_type[0]:
                     case "String":
-                        list_cnt = extract_content_after_closing_parenthesis(
-                            value)
-                        print(list_type)
-                        print(list_cnt)
+                        list_cnt = slice_string("tail", value)
                         data = random_list.create_random_list(
                             'str', list_cnt[0])
                     case "Number":
-                        list_cnt = extract_content_after_closing_parenthesis(
-                            value)
+                        list_cnt = slice_string("tail", value)
                         data = random_list.create_random_list(
                             'number', list_cnt[0])
                     case "Name":
-                        list_cnt = extract_content_after_closing_parenthesis(
-                            value)
+                        list_cnt = slice_string("tail", value)
                         data = random_list.create_random_list(
                             'name', list_cnt[0])
                     case "E-Mail":
-                        list_cnt = extract_content_after_closing_parenthesis(
-                            value)
+                        list_cnt = slice_string("tail", value)
                         data = random_list.create_random_list(
                             'email', list_cnt[0])
                     case "Tel":
-                        list_cnt = extract_content_after_closing_parenthesis(
-                            value)
+                        list_cnt = slice_string("tail", value)
                         data = random_list.create_random_list(
                             'tel', list_cnt[0])
             case "First Name":
@@ -230,13 +227,11 @@ def create_json_file(json_data):
         dump(json_data, f)
 
 
-def extract_content_between_parentheses(input_string):
-    pattern = r"\((.*?)\)"
-    matches = re.findall(pattern, input_string)
-    return matches
-
-
-def extract_content_after_closing_parenthesis(input_string):
-    pattern = r"\)(.*?)$"
-    matches = re.findall(pattern, input_string)
-    return matches
+def slice_string(course, input):
+    result = ""
+    match course:
+        case "bracket":
+            result = re.findall(r"\((.*?)\)", input)
+        case "tail":
+            result = re.findall(r"\)(.*?)$", input)
+    return result
