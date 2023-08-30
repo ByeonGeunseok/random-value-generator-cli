@@ -165,26 +165,26 @@ def create_json_data(keys, value_type_list):
         match value_type_list[index]:
             case value if "List" in value_type_list[index]:
 
-                list_type = slice_string("bracket", value)
+                list_type = slice_bracket(value)
                 match list_type[0]:
                     case "String":
-                        list_cnt = slice_string("tail", value)
+                        list_cnt = slice_tail(value)
                         data = random_list.create_random_list(
                             'str', list_cnt[0])
                     case "Number":
-                        list_cnt = slice_string("tail", value)
+                        list_cnt = slice_tail(value)
                         data = random_list.create_random_list(
                             'number', list_cnt[0])
                     case "Name":
-                        list_cnt = slice_string("tail", value)
+                        list_cnt = slice_tail(value)
                         data = random_list.create_random_list(
                             'name', list_cnt[0])
                     case "E-Mail":
-                        list_cnt = slice_string("tail", value)
+                        list_cnt = slice_tail(value)
                         data = random_list.create_random_list(
                             'email', list_cnt[0])
                     case "Tel":
-                        list_cnt = slice_string("tail", value)
+                        list_cnt = slice_tail(value)
                         data = random_list.create_random_list(
                             'tel', list_cnt[0])
             case "First Name":
@@ -225,6 +225,16 @@ def create_json_file(json_data):
 
     with open(file_name, 'w') as f:
         dump(json_data, f)
+
+
+def slice_bracket(input):
+    result = slice_string("bracket", input)
+    return result
+
+
+def slice_tail(input):
+    result = slice_string("tail", input)
+    return result
 
 
 def slice_string(course, input):
